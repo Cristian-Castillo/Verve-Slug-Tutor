@@ -1,1 +1,1 @@
-all Release Plans go here (revised)
+All release plans go here
