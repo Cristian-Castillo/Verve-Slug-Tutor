@@ -31,3 +31,6 @@ def login(request):
 
 def signup(request):
     return render(request, 'blog/signup.html', {'title': 'Signup'})
+
+def knowledge(request):
+    return render(request, 'blog/knowledge.html', {'title': 'Knowledge'})
