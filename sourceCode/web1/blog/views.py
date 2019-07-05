@@ -16,7 +16,6 @@ posts = [
 
 ]
 
-
 def home(request):
     context = {
     'posts': posts
@@ -34,3 +33,13 @@ def signup(request):
 
 def knowledge(request):
     return render(request, 'blog/knowledge.html', {'title': 'Knowledge'})
+
+def math(request):
+    return render(request, 'blog/math.html', {'title': 'Math'})
+
+def biology(request):
+    return render(request, 'blog/biology.html', {'title': 'Biology'})
+
+def chemistry(request):
+    return render(request, 'blog/chemistry.html', {'title': 'Chemistry'})
+
