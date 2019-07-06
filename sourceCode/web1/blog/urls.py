@@ -7,7 +7,4 @@ urlpatterns = [
     path('login/', views.login, name='blog-login'),
     path('signup/', views.signup, name='blog-signup'),
     path('knowledge/', views.knowledge, name='blog-knowledge'),
-    path('math/', views.math, name='blog-math'),
-    path('chemistry/', views.chemistry, name='blog-chemistry'),
-    path('biology/', views.biology, name='blog-biology'),
 ]
