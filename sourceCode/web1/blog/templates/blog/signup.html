@@ -44,8 +44,87 @@
       </nav>
     </header>
     <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
+
+      <div class="signup_container">
+        <div><h1>SignUp for Verve-Slug-Tutor</h1></div>
+        <div class="signup_content">
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Username</label>
+            </h4>
+            <div class="signup_input_id">
+              <span class="signup_input" style="position: relative; display: inline-block;">
+                <input type="text" id="signup_id" name="id" class="int" title="ID" maxlength="20" style="border: none; width: 100%;">
+              </span>
+              <button class="btn_verify btn_primary" id="btnID">
+                Confirm ID
+              </button>
+              <span class="error_next_box" id="idMsg" style="display:none" role="alert">Username is already taken.</span>
+            </div>
+          </div>
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Password</label>
+            </h4>
+            <span class="signup_input">
+              <input type="text" id="signup_pw1" name="pw1" maxlength="20" style="border: none; width: 100%;">
+            <span>
+          </div>
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Password Confirm</label>
+            </h4>
+            <span class="signup_input">
+              <input type="text" id="signup_pw2" name="pw2" maxlength="20" style="border: none; width: 100%;">
+            <span>
+            <span class="error_next_box" id="idPw" style="display:none" role="alert">These passwords don’t match.</span>
+          </div>
+
+          <div class="signup_row" style="margin-top: 20px;">
+            <h4 class="signup_title">
+              <label for="id">Name</label>
+            </h4>
+            <div class="signup_input_wrap">
+              <div class="signup_box_row">
+                <span class="signup_input box_right_space">
+                  <input type="text" id="signup_name1" name="name1" placeholder="First Name" maxlength="40" style="border: none;">
+                </span>
+              </div>
+              <div class="signup_box_row">
+                <span class="signup_input">
+                  <input type="text" id="signup_name2" name="name2" placeholder="Last Name" maxlength="40" style="border: none; ">
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">E-mail</label>
+            </h4>
+            <span class="signup_input">
+              <input type="text" id="signup_email" name="email" maxlength="100" style="border: none; width: 100%;">
+            <span>
+          </div>
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Contact</label>
+            </h4>
+            <span class="signup_input">
+              <input type="text" id="signup_contact" name="contact" maxlength="20" style="border: none; width: 100%;">
+            <span>
+          </div>
+
+          <div class="signup_btn_row">
+            <button type="button" id="btnJoin" class="btn_type btn_primary">
+              <span>Sign Up</span>
+            </button>
+          </div>
+        </div>
+        <!-- <div class="col-md-8">
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
@@ -60,7 +139,7 @@
               </ul>
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
 
