@@ -82,47 +82,6 @@
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
-      <div class="knowledge_container">
-      	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for subject..">
-      	<ul id="myUL">
-      		<li><a class="nav-item nav-link" href="{% url 'blog-biology' %}">Biology</a></li>
-      		<li><a class="nav-item nav-link" href="{% url 'blog-chemistry' %}">Chemistry</a></li>
-      		<li><a href="#">Computer Engineering</a></li>
-      		<li><a href="#">Computer Science</a></li>
-      		<li><a href="#">Economics</a></li>
-			<li><a href="#">Electrical Engineering</a></li>
-  			<li><a href="#">English</a></li>
-  			<li><a class="nav-item nav-link" href="{% url 'blog-math' %}">Math</a></li>
-			<li><a href="#">Physics</a></li>
-		 	<li><a href="#">Statistics and Probability</a></li>	  	
-		</ul>
-		<script>
-			function myFunction()
-			{
-				var input, filter, ul, li, a, i, txtValue;
-				input = document.getElementById("myInput");
-			    filter = input.value.toUpperCase();
-			    ul = document.getElementById("myUL");
-			    li = ul.getElementsByTagName("li");
-			    for (i = 0; i < li.length; i++) 
-			    {
-			    	a = li[i].getElementsByTagName("a")[0];
-		        	txtValue = a.textContent || a.innerText;
-        			
-        			if (txtValue.toUpperCase().indexOf(filter) > -1)
-        			{
-        				li[i].style.display = "";
-        			}
-        			else
-        			{
-        				li[i].style.display = "none";
-        			}
-    			}
-			}
-		</script>
-	</div>
-        
         <!-- <div class="col-md-8">
           {% block content %}{% endblock %}
         </div>
