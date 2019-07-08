@@ -44,8 +44,38 @@
       </nav>
     </header>
     <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
+
+      <div class="signup_container">
+        <div><h1>Login for Verve-Slug-Tutor</h1></div>
+        <div class="signup_content">
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Username</label>
+            </h4>
+            <span class="signup_input">
+              <input type="text" id="login_id" name="id" maxlength="20" style="border: none; width: 100%;">
+            <span>
+          </div>
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Password</label>
+            </h4>
+            <span class="signup_input">
+              <input type="text" id="login_pw" name="pw" maxlength="20" style="border: none; width: 100%;">
+            <span>
+            <span class="error_next_box" id="idPw" style="display:none" role="alert">These passwords don’t match.</span>
+          </div>
+
+
+          <div class="signup_btn_row">
+            <button type="button" id="btnLogin" class="btn_type btn_primary">
+              <span>Login</span>
+            </button>
+          </div>
+        </div>
+        <!-- <div class="col-md-8">
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
@@ -60,7 +90,7 @@
               </ul>
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
 
