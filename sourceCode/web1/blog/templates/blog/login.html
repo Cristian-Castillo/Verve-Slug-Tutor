@@ -1,4 +1,9 @@
 {% load static %}
+{% if messg %}
+<script>
+    alert('{{ messg }}');
+</script>
+{% endif %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +50,11 @@
     </header>
     <main role="main" class="container">
 
+    <div class="signup_container">
+    <div><h1>Login for Verve-Slug-Tutor</h1></div>
+    <!-- Sorry Dana, you can tweak my code to make it look like what you had before.
+        <main role="main" class="container">
+
       <div class="signup_container">
         <div><h1>Login for Verve-Slug-Tutor</h1></div>
         <div class="signup_content">
@@ -77,6 +87,19 @@
         </div>
 
       </div>
+    </main>
+
+      </div> -->
+    <!-- CC: added email & password encryption that correspond to firebase --> 
+    <form action="/postsign/" method="post">
+    <br>
+    {% csrf_token %}
+    Email :
+    <input type="email" name ="email">
+    Password:
+    <input type="password" name ="pass">
+    <input type="submit" value="SignIn">
+    </form>
     </main>
 
    <!-- Optional JavaScript -->
