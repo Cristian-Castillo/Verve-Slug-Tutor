@@ -34,4 +34,7 @@ def signup(request):
 def knowledge(request):
     return render(request, 'blog/knowledge.html', {'title': 'Knowledge'})
 
+def contact(request):
+    return render(request, 'blog/contact.html', {'title': 'Contact'})
+
 
