@@ -30,11 +30,6 @@ def login(request):
 
 def signup(request):
     return render(request, 'blog/signup.html', {'title': 'Signup'})
-<<<<<<< HEAD
-=======
 
 def knowledge(request):
     return render(request, 'blog/knowledge.html', {'title': 'Knowledge'})
-
-
->>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
