@@ -20,6 +20,58 @@
     <title>Tutor trade</title>
     {% endif %}
 </head>
+<<<<<<< HEAD
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+<script>
+
+    var firebaseConfig = {
+        apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+        authDomain: "verve-slug-tutor.firebaseapp.com",
+        databaseURL: "https://verve-slug-tutor.firebaseio.com",
+        projectId: "verve-slug-tutor",
+        storageBucket: "verve-slug-tutor.appspot.com",
+        messagingSenderId: "1013220996189",
+        appId: "1:1013220996189:web:615c1dfe72a6e660"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    //var database=firebase.database();
+    //var auth = firebase.auth();
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider).then(function(result){
+        var token=result.credential.accessToken;
+        var user=result.user;
+
+        console.log(user);
+    }).catch(function(error){
+        var errorcode=error.code;
+        var errorMessage=error.message;
+        var email=error.email;
+        var credential=error.credential;
+    });
+
+    var database=firebase.database();
+
+    var dbTestRef=database.ref('userdata/')
+    dbTestRef.on('child_added', function(data){
+        console.log(data.val());
+    })
+
+
+    function confirmID() {
+      console.log("confirmID");
+    }
+
+
+</script>
+=======
+>>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
 <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
@@ -32,7 +84,10 @@
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+<<<<<<< HEAD
+=======
               <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
+>>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -44,7 +99,12 @@
       </nav>
     </header>
     <main role="main" class="container">
+<<<<<<< HEAD
+    <form action="/postsignup/" method="post">
+        {% csrf_token %}
+=======
 
+>>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
       <div class="signup_container">
         <div><h1>SignUp for Verve-Slug-Tutor</h1></div>
         <div class="signup_content">
@@ -56,9 +116,15 @@
               <span class="signup_input" style="position: relative; display: inline-block;">
                 <input type="text" id="signup_id" name="id" class="int" title="ID" maxlength="20" style="border: none; width: 100%;">
               </span>
+<<<<<<< HEAD
+              <a class="btn_verify btn_primary" id="btnID" onclick="confirmID()">
+                Confirm ID
+              </a>
+=======
               <button class="btn_verify btn_primary" id="btnID">
                 Confirm ID
               </button>
+>>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
               <span class="error_next_box" id="idMsg" style="display:none" role="alert">Username is already taken.</span>
             </div>
           </div>
@@ -69,7 +135,11 @@
             </h4>
             <span class="signup_input">
               <input type="text" id="signup_pw1" name="pw1" maxlength="20" style="border: none; width: 100%;">
+<<<<<<< HEAD
+            </span>
+=======
             <span>
+>>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
           </div>
 
           <div class="signup_row">
@@ -77,8 +147,12 @@
               <label for="id">Password Confirm</label>
             </h4>
             <span class="signup_input">
+<<<<<<< HEAD
+                <input type="text" id="signup_pw2" name="pw2" maxlength="20" style="border: none; width: 100%;"></span>
+=======
               <input type="text" id="signup_pw2" name="pw2" maxlength="20" style="border: none; width: 100%;">
             <span>
+>>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
             <span class="error_next_box" id="idPw" style="display:none" role="alert">These passwords don’t match.</span>
           </div>
 
@@ -106,7 +180,11 @@
             </h4>
             <span class="signup_input">
               <input type="text" id="signup_email" name="email" maxlength="100" style="border: none; width: 100%;">
+<<<<<<< HEAD
+            </span>
+=======
             <span>
+>>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
           </div>
 
           <div class="signup_row">
@@ -115,11 +193,19 @@
             </h4>
             <span class="signup_input">
               <input type="text" id="signup_contact" name="contact" maxlength="20" style="border: none; width: 100%;">
+<<<<<<< HEAD
+            </span>
+          </div>
+
+          <div class="signup_btn_row">
+            <button type="submit" onclick="location.href='{% url 'postsignup' %}'" id="btnJoin" class="btn_type btn_primary">
+=======
             <span>
           </div>
 
           <div class="signup_btn_row">
             <button type="button" id="btnJoin" class="btn_type btn_primary">
+>>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
               <span>Sign Up</span>
             </button>
           </div>
@@ -141,6 +227,10 @@
           </div>
         </div> -->
       </div>
+<<<<<<< HEAD
+    </form>
+=======
+>>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
     </main>
 
    <!-- Optional JavaScript -->
