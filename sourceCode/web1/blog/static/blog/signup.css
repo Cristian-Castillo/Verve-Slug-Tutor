@@ -35,19 +35,16 @@
 
 
 .signup_input{
+  background: #fff;
   display: block;
   position: relative;
   width: 100%;
-<<<<<<< HEAD
   height: 51px;
   border: solid 1px #dadada;
   padding: 10px 14px 10px 14px;
-=======
   height: 48px;
   border: solid 1px #dadada;
   padding: 8px 12px 8px 12px;
->>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
-  background: #fff;
   /* box-sizing: border-box; */
   vertical-align: top;
 }
