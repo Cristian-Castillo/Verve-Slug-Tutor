@@ -33,17 +33,13 @@ def postsign(request):
     return render(request, "base.html", {"e":email})
 
 def logout(request):
-
     authe.logout(request)
-
     return render(request, 'login.html')
 
 def signup(request):
-
     return render(request, 'signup.html')
 
 def checkid(request):
-
     id=request.POST.get('id')
     for user in database.child("userdata").get().each():
         if(id==user.val().get("id")):
