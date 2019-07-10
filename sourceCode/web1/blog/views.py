@@ -15,6 +15,7 @@ config = {
 
 firebase = pyrebase.initialize_app(config) # enables the pyrebase wrapper to be used, passed API into function
 authe = firebase.auth()
+database= firebase.database() # created the database
 
 #CC:  End of API ----------------------------------------------------------------------------------------------------------------
 
@@ -66,6 +67,25 @@ def postsign(request):
     session_id=user['idToken']
     request.session['uid']=str(session_id)
     return render(request, "blog/knowledge.html",{"e":email})
+
+def postsignup(request):
+
+    name=request.POST.get('name')
+    email=request.POST.get('email')
+    passw=request.POST.get('pass')
+
+    user=authe.create_user_with_email_and_password(email,passw)
+    # CC: Here we create account
+
+    uid = user['localId']
+    # CC unique ID for the user
+
+    data = {"name":name,"status":"1"}
+    # to push the data into the database, 1 means account is enabled
+    # from above name and email from form and enabled the account
+    # database constructor with multiple users
+    database.child("users").child(uid).child("details").set(data)
+    return render(request,"knowledge.html")
 # CC: from print down --------------------------------------------------------------------------------------------------------------
 
 
