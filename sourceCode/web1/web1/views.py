@@ -69,5 +69,5 @@ def postsignup(request):
         "EMAIL":email,
         "CONTACT":contact
     }
-    database.child("userdata").push(data)
-    return render(request, "login.html")
+    database.child("users").child(uid).child("details").set(data)
+    return render(request, "knowledge.html")
