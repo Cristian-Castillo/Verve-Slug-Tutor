@@ -85,7 +85,7 @@ def postsignup(request):
     # from above name and email from form and enabled the account
     # database constructor with multiple users
     database.child("users").child(uid).child("details").set(data)
-    return render(request,"knowledge.html")
+    return render(request,"login.html")
 # CC: from print down --------------------------------------------------------------------------------------------------------------
 
 
