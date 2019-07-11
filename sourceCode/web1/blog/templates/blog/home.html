@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
     {% for post in posts %}
-        <article class="media content-section">
+    <article class="media content-section">
       <div class="media-body">
         <div class="article-metadata">
           <a class="mr-2" href="#">{{ post.author }}</a>
@@ -13,4 +13,3 @@
     </article>
     {% endfor %}
 {% endblock content %}
-

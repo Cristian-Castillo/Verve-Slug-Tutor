@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
 <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,52 +14,16 @@
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
 
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
     <title>Tutor trade</title>
     {% endif %}
+  </head>
 
-<style>
-* {
-  box-sizing: border-box;
-}
-
-#myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-
-#myUL {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#myUL li a {
-  border: 1px solid #ddd;
-  margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  color: black;
-  display: block
-}
-
-#myUL li a:hover:not(.header) {
-  background-color: #eee;
-}
-</style>
-</head>
-<body>
+  <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -71,23 +35,33 @@
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
+              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}" style="color:white;">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
-              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
+              <a class="nav-item nav-link" href="">My Profile</a>
+              <a class="nav-item nav-link" href="">Logout</a>
             </div>
           </div>
         </div>
       </nav>
     </header>
-    Welcome {{e}}
-    <br>
-    <h1> TEST </h1>
-        <!-- <div class="col-md-8">
-          {% block content %}{% endblock %}
+
+    <main role="main" class="container">
+      <div class="row" style="margin-bottom: 10px;">
+        <div class="col-md-8">
+          <div class="title_container">
+            <h1> Knowledge Board </h1>
+          </div>
         </div>
+        <div class="col-md-4">
+          <div class="title_container">
+            Welcome {{e}}
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 10px;">
         <div class="col-md-4">
           <div class="content-section">
             <h3>Our Sidebar</h3>
@@ -100,15 +74,31 @@
               </ul>
             </p>
           </div>
-        </div> -->
+        </div>
+
+        <div class="col-md-8">
+          {% for post in posts %}
+          <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="#">{{ post.author }}</a>
+                <small class="text-muted">{{ post.date_posted }}</small>
+              </div>
+              <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+              <p class="article-content">{{ post.content }}</p>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+
       </div>
     </main>
 
-   <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-</body>
+  </body>
 </html>
