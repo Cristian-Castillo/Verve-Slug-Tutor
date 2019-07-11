@@ -54,7 +54,7 @@ def login(request):
     return render(request, "blog/login.html", {'title': 'Login'})
 
 # CC:added postsign which gets the email, and if information is entered correctly it will send you to -----------------------------
-def postsign(request): 
+def postsign(request):
     email=request.POST.get('email')
     passw = request.POST.get("pass")
     try:
@@ -63,7 +63,7 @@ def postsign(request):
         message = "invalid credentials"
         return render(request,"login.html",{"messg":message})
 
-    print(user['idToken']) 
+    print(user['idToken'])
     session_id=user['idToken']
     request.session['uid']=str(session_id)
     return render(request, "blog/knowledge.html",{"e":email})
@@ -71,8 +71,20 @@ def postsign(request):
 def postsignup(request):
 
     name=request.POST.get('name')
+    name2=request.POST.get('name2')
     email=request.POST.get('email')
+    contact=request.POST.get('contact')
     passw=request.POST.get('pass')
+
+
+    # data={
+    #     "ID":id,
+    #     "PW":pw,
+    #     "FN":fname.lower(),
+    #     "LN":lname.lower(),
+    #     "EMAIL":email,
+    #     "CONTACT":contact
+    # }
 
     user=authe.create_user_with_email_and_password(email,passw)
     # CC: Here we create account
@@ -80,13 +92,10 @@ def postsignup(request):
     uid = user['localId']
     # CC unique ID for the user
 
-    data = {"name":name,"status":"1"}
+    data = {"name":name, "lastname":name2, "email":email, "contact":contact, "status":"1"}
     # to push the data into the database, 1 means account is enabled
     # from above name and email from form and enabled the account
     # database constructor with multiple users
     database.child("users").child(uid).child("details").set(data)
-    return render(request,"login.html")
+    return render(request,"knowledge.html")
 # CC: from print down --------------------------------------------------------------------------------------------------------------
-
-
-

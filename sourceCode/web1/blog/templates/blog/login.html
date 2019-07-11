@@ -1,12 +1,13 @@
-{% load static %}
-{% if messg %}
-<script>
-    alert('{{ messg }}');
-</script>
-{% endif %}
 <!DOCTYPE html>
+
 <html>
 <head>
+  {% load static %}
+  {% if messg %}
+  <script>
+      alert('{{ messg }}');
+  </script>
+  {% endif %}
 <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,8 +42,8 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
-              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
+              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Log in</a>
+              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Sign up</a>
             </div>
           </div>
         </div>
@@ -52,7 +53,7 @@
     <main role="main" class="container">
 
       <div class="signup_container">
-        <div><h1>Login for Verve-Slug-Tutor</h1></div>
+        <div><h1>Log in for VST</h1></div>
         <div class="signup_content">
           <!-- CC: added email & password encryption that correspond to firebase -->
           <form action="/postsign/" method="post">
@@ -76,7 +77,7 @@
             </div>
 
             <div class="signup_btn_row">
-              <input type="submit" value="SignIn" class="btn_type btn_primary">
+              <input type="submit" value="Log in" class="btn_type btn_primary">
               <!-- <button type="button" id="btnLogin" class="btn_type btn_primary">
                 <span>Login</span>
               </button> -->
