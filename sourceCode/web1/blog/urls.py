@@ -1,13 +1,19 @@
 from django.urls import path
 from . import views
+from django.conf.urls import url
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
     path('', views.home, name='blog-home'),
     path('about/', views.about, name='blog-about'),
     path('login/', views.login, name='blog-login'),
-    path('signup/', views.signup, name='blog-signup'),
-<<<<<<< HEAD
-=======
     path('knowledge/', views.knowledge, name='blog-knowledge'),
->>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
+    path('postsign/',views.postsign, name='blog-knowledge'), #CC: added postsign path so when user signs up will redirect you to knowledge board
+    path('signup/',views.signup, name='blog-signup'),
+    path('postsignup/',views.postsignup, name='blog-postsignup')
 ]
+
+
+# CC note: you will not be able to access the knowledge board page unless you login. You may add
+#      yourself manually from Verve-Slug-Tutor firebase console under the authentication tab to gain entrance!

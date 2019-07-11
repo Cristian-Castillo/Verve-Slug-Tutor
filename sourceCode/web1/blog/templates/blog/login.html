@@ -1,16 +1,13 @@
-<<<<<<< HEAD
-{% extends "blog/base.html" %}
-{% block content %}
-
-      <h1>Login</h1>
-
-
-{% endblock content %}
-=======
-{% load static %}
 <!DOCTYPE html>
+
 <html>
 <head>
+  {% load static %}
+  {% if messg %}
+  <script>
+      alert('{{ messg }}');
+  </script>
+  {% endif %}
 <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,14 +42,52 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
-              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
+              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Log in</a>
+              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Sign up</a>
             </div>
           </div>
         </div>
       </nav>
     </header>
+
     <main role="main" class="container">
+
+      <div class="signup_container">
+        <div><h1>Log in for VST</h1></div>
+        <div class="signup_content">
+          <!-- CC: added email & password encryption that correspond to firebase -->
+          <form action="/postsign/" method="post">
+            <br>
+            {% csrf_token %}
+            <!-- Email :
+            <input type="email" name ="email"> -->
+            <div class="signup_row">
+              <h4 class="signup_title"><label for="id">Email</label></h4>
+              <span class="signup_input">
+                <input type="email" name ="email" id="login_email" maxlength="20" style="border: none; width: 100%;">
+              <span>
+            </div>
+
+            <div class="signup_row">
+              <h4 class="signup_title"><label for="id">Password</label></h4>
+              <span class="signup_input">
+                <input type="password" name ="pass" id="login_pass" maxlength="20" style="border: none; width: 100%;">
+              <span>
+              <!-- <span class="error_next_box" id="idPw" style="display:none" role="alert">These passwords don’t match.</span> -->
+            </div>
+
+            <div class="signup_btn_row">
+              <input type="submit" value="Log in" class="btn_type btn_primary">
+              <!-- <button type="button" id="btnLogin" class="btn_type btn_primary">
+                <span>Login</span>
+              </button> -->
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <!-- Sorry Dana, you can tweak my code to make it look like what you had before.
+        <main role="main" class="container">
 
       <div class="signup_container">
         <div><h1>Login for Verve-Slug-Tutor</h1></div>
@@ -84,25 +119,11 @@
             </button>
           </div>
         </div>
-        <!-- <div class="col-md-8">
-          {% block content %}{% endblock %}
-        </div>
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>Tutor Trade a new and free tutoring service.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
-        </div> -->
+
       </div>
     </main>
 
+      </div> -->
    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -111,4 +132,3 @@
 
 </body>
 </html>
->>>>>>> 3ce55acb55acd8e5597a28d03090589ddfdc31ae
