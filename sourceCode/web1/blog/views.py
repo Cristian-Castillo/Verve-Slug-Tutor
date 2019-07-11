@@ -53,6 +53,9 @@ def knowledge(request):
 def login(request):
     return render(request, "blog/login.html", {'title': 'Login'})
 
+def contact(request):
+    return render(request, "blog/contact.html", {'title': 'Contact'})
+
 # CC:added postsign which gets the email, and if information is entered correctly it will send you to -----------------------------
 def postsign(request):
     email=request.POST.get('email')

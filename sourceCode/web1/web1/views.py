@@ -39,6 +39,9 @@ def logout(request):
 def signup(request):
     return render(request, 'signup.html')
 
+def contact(request):
+    return render(request, 'contact.html')
+
 def checkid(request):
     id=request.POST.get('id')
     for user in database.child("userdata").get().each():
