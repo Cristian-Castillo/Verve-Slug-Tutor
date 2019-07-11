@@ -135,6 +135,7 @@
 
     </main>
 
+
         <!--
         <div class="signup_content">
           <div class="signup_row">
@@ -270,6 +271,7 @@
       firebase.initializeApp(firebaseConfig);
       //var database=firebase.database();
       //var auth = firebase.auth();
+      /*
       var provider = new firebase.auth.GoogleAuthProvider();
 
       firebase.auth().signInWithPopup(provider).then(function(result){
@@ -289,7 +291,7 @@
       dbTestRef.on('child_added', function(data){
           console.log(data.val());
       })
-
+      */
 
       function confirmEmail() {
         var email = $('#signup_email').val();
