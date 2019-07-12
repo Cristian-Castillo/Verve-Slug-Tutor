@@ -56,6 +56,9 @@ def login(request):
 def contact(request):
     return render(request, "blog/contact.html", {'title': 'Contact'})
 
+def profile(request):
+    return render(request, 'blog/profile.html', {'title': 'Profile'})
+
 # CC:added postsign which gets the email, and if information is entered correctly it will send you to -----------------------------
 def postsign(request):
     email=request.POST.get('email')
