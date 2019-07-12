@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
 
-
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
@@ -84,7 +83,7 @@
               </h4>
               <div class="signup_input_id">
                 <span class="signup_input" style="position: relative; display: inline-block;">
-                  <input type="email" name ="email" id="signup_email" class="int" title="ID" maxlength="20" style="border: none; width: 100%;">
+                  <input type="email" name ="email" id="signup_email" class="int" title="ID" maxlength="40" style="border: none; width: 100%;">
                 </span>
                 <a class="btn_primary btn_verify" id="btnEmail" onclick="confirmEmail()" style="color:white;">
                   Email check
