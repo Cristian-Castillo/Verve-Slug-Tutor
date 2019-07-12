@@ -11,7 +11,8 @@ urlpatterns = [
     path('knowledge/', views.knowledge, name='blog-knowledge'),
     path('postsign/',views.postsign, name='blog-knowledge'), #CC: added postsign path so when user signs up will redirect you to knowledge board
     path('signup/',views.signup, name='blog-signup'),
-    path('postsignup/',views.postsignup, name='blog-postsignup')
+    path('postsignup/',views.postsignup, name='blog-postsignup'),
+    path('contact/',views.contact, name='blog-contact'),
 ]
 
 
