@@ -1,0 +1,106 @@
+/* css for the knowledge page */
+:root {
+  --btn-color: #5f788a;
+  --btn-color2: #4D6270;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+
+.title_container{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 50px;
+  line-height: 50px;
+  /* text-align: center; */
+}
+
+
+.signup_container{
+  margin: 0 auto;
+  max-width: 768px;
+  min-width: 500px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.signup_content{
+  /* width: 100%; */
+  width: 500px;
+  /* text-align: center; */
+  /* vertical-align: center; */
+}
+
+
+.search_row{
+  /* margin-top: 20px; */
+  display: block;
+}
+
+.search_title{
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  color: black;
+}
+
+
+.search_input{
+  background: #fff;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 35px;
+  border: solid 1px #dadada;
+  padding: 4px 8px 4px 8px;
+  /* box-sizing: border-box; */
+  vertical-align: top;
+}
+
+
+.post-box{
+  background: #fdfdfe;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 200px;
+}
