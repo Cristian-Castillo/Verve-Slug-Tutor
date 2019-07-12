@@ -42,7 +42,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Log in</a>
+              <a class="nav-item nav-link" href="{% url 'blog-login' %}" style="color:white;">Log in</a>
               <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Sign up</a>
             </div>
           </div>
@@ -64,15 +64,15 @@
             <div class="signup_row">
               <h4 class="signup_title"><label for="id">Email</label></h4>
               <span class="signup_input">
-                <input type="email" name ="email" id="login_email" maxlength="20" style="border: none; width: 100%;">
-              <span>
+                <input type="email" name ="email" id="login_email" maxlength="40" style="border: none; width: 100%;">
+              </span>
             </div>
 
             <div class="signup_row">
               <h4 class="signup_title"><label for="id">Password</label></h4>
               <span class="signup_input">
                 <input type="password" name ="pass" id="login_pass" maxlength="20" style="border: none; width: 100%;">
-              <span>
+              </span>
               <!-- <span class="error_next_box" id="idPw" style="display:none" role="alert">These passwords don’t match.</span> -->
             </div>
 
