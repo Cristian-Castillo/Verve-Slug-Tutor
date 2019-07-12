@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html>
@@ -85,11 +86,10 @@
           </form>
         </div>
       </div>
-    </main>
-<!-- this is the bottom border for the page -->
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
+            <!-- Navbar Bottom Right Side -->
 
+      <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
         <div class="container">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -97,9 +97,22 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
 
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact</a>
             </div>
+            <!-- Navbar Bottom Right Side Buttons -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+    </main>
+<!-- this is the bottom border for the page -->
+
     <!-- Sorry Dana, you can tweak my code to make it look like what you had before.
         <main role="main" class="container">
 
