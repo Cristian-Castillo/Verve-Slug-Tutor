@@ -9,11 +9,10 @@ urlpatterns = [
     path('about/', views.about, name='blog-about'),
     path('login/', views.login, name='blog-login'),
     path('knowledge/', views.knowledge, name='blog-knowledge'),
-    path('postsign/',views.postsign, name='blog-knowledge'), #CC: added postsign path so when user signs up will redirect you to knowledge board
     path('signup/',views.signup, name='blog-signup'),
-    path('postsignup/',views.postsignup, name='blog-postsignup'),
     path('contact/',views.contact, name='blog-contact'),
     path('profile/',views.profile, name='blog-profile'),
+    path('logout/',views.logout, name='blog-logout')
 ]
 
 

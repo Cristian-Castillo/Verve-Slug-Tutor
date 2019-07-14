@@ -1,6 +1,5 @@
 
 <!DOCTYPE html>
-
 <html>
 <head>
   {% load static %}
@@ -39,7 +38,6 @@
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -57,7 +55,7 @@
         <div><h1>Log in for VST</h1></div>
         <div class="signup_content">
           <!-- CC: added email & password encryption that correspond to firebase -->
-          <form action="/postsign/" method="post">
+          <form action="/login/" method="post">
             <br>
             {% csrf_token %}
             <!-- Email :
@@ -87,7 +85,6 @@
         </div>
       </div>
             <!-- Navbar Bottom Right Side -->
-
       <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
         <div class="container">

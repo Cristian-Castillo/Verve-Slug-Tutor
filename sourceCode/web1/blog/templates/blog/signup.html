@@ -34,7 +34,6 @@
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -52,7 +51,7 @@
         <div class="signup_content">
           <!-- <form action="/postsignup/" method="post">
             {% csrf_token %} -->
-          <form action="/postsignup/" method="post">
+          <form action="/signup/", action="/signup" method="post">
             {% csrf_token %}
             <!-- Name:
             <input type="text" name ="name"><br><br> -->
@@ -124,9 +123,8 @@
 
             <!-- <input type="submit" value="SignUp"> -->
             <div class="signup_btn_row">
-              <input type="submit" value="Sign up" id="btnJoin" class="btn_type btn_primary"></input>
+              <input type="submit" value="Sign up" id="btnJoin" class="nav-item nav-link" href="{% url 'blog-knowledge' %}"> </input>
             </div>
-
           </form>
         </form>
         </div>
@@ -322,6 +320,5 @@
 
 
   </script>
-
 </body>
 </html>
