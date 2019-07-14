@@ -1,6 +1,14 @@
 from django.shortcuts import render
 import pyrebase # CC: imported pyrebase wrapper, essentially derives from firebase July 9, 2019
 from django.contrib import auth
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import (
+
+    CreateView
+    )
+from .models import Post
+
+
 
 # CC: Included API from Verve-Slug-Tutor and succesfully integrated authentication ------------------------------------------
 config = {
@@ -17,13 +25,15 @@ firebase = pyrebase.initialize_app(config) # enables the pyrebase wrapper to be 
 authe = firebase.auth()
 database= firebase.database() # created the database
 
+print(firebase);
+
 #CC:  End of API ----------------------------------------------------------------------------------------------------------------
 
 posts = [
     {
         'author': 'Brian Alegria',
         'title': 'Tutoring Post 1',
-        'content': 'I need tutoring in advanced physica 8A and I am excellent web dev',
+        'content': 'I need tutoring in advanced physics 8A and I am excellent web dev',
         'date_posted': 'June 30th, 2019'
     },
     {
@@ -36,10 +46,7 @@ posts = [
 ]
 
 def home(request):
-    context = {
-    'posts': posts
-    }
-    return render(request, 'blog/home.html', context)
+    return render(request, 'blog/home.html', {'title': 'Home'})
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
@@ -59,6 +66,14 @@ def contact(request):
 def profile(request):
     return render(request, 'blog/profile.html', {'title': 'Profile'})
 
+def post(request):
+    form = UserCreationForm()
+    return render(request, 'blog/post_form.html', {'form': form})
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['Title', 'Need', 'Offering', 'Description']
+
 # CC:added postsign which gets the email, and if information is entered correctly it will send you to -----------------------------
 def postsign(request):
     email=request.POST.get('email')
@@ -67,11 +82,13 @@ def postsign(request):
         user = authe.sign_in_with_email_and_password(email,passw)
     except:
         message = "invalid credentials"
-        return render(request,"login.html",{"messg":message})
+        return render(request,"knowledge.html",{"messg":message}) #login changed to knowledge so we dont get kicked out
 
     print(user['idToken'])
     session_id=user['idToken']
     request.session['uid']=str(session_id)
+
+
     return render(request, "blog/knowledge.html",{"e":email})
 
 def postsignup(request):
