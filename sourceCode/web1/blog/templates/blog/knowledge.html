@@ -40,7 +40,7 @@
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="{% url 'blog-profile' %}">My Profile</a>
-              <a class="nav-item nav-link" href="">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
             </div>
           </div>
         </div>
@@ -51,12 +51,12 @@
       <div class="row" style="margin-bottom: 10px;">
         <div class="col-md-8">
           <div class="title_container">
-            <h1> Knowledge Board </h1>
+            <h5> Welcome {{e}} </h5>
           </div>
         </div>
         <div class="col-md-4">
           <div class="title_container">
-            Welcome {{e}}
+         
           </div>
         </div>
       </div>
