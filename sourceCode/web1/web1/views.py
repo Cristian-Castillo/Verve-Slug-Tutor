@@ -33,16 +33,17 @@ def postsign(request):
     return render(request, "base.html", {"e":email})
 
 def logout(request):
+
     authe.logout(request)
+
     return render(request, 'login.html')
 
 def signup(request):
+
     return render(request, 'signup.html')
 
-def contact(request):
-    return render(request, 'contact.html')
-
 def checkid(request):
+
     id=request.POST.get('id')
     for user in database.child("userdata").get().each():
         if(id==user.val().get("id")):
@@ -72,5 +73,5 @@ def postsignup(request):
         "EMAIL":email,
         "CONTACT":contact
     }
-    database.child("users").child(uid).child("details").set(data)
-    return render(request, "knowledge.html")
+    database.child("userdata").push(data)
+    return render(request, "login.html")
