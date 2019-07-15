@@ -1,7 +1,7 @@
-{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
+
 <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -157,6 +157,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
 
     <script>
+    console.log("hello");
     // Your web app's Firebase configuration
     var firebaseConfig = {
         apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
@@ -172,7 +173,7 @@
 
     firebase.database().ref('post/').once('value', function(snapshot) {
       var postList = snapshot.val();
-      console.log(postList);
+      console.log("postList", postList);
       var keyList = Object.keys(postList);
       var postLength = keyList.length;
      // console.log(keyList, postLength);
@@ -225,7 +226,4 @@
 
     </script>
   </body>
-
-</body>
-
 </html>

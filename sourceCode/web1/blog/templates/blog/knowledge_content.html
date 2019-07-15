@@ -156,11 +156,6 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
 
     <script>
-
-    $(".post-box").click(function(){
-      window.location.href='knowledge_content.html';
-    })
-
     console.log('knowledge board!');
     var firebaseConfig = {
       apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
@@ -199,7 +194,7 @@
         var title = postList[curKey].title;
 
         post = `${title} <br/>${author} <br/>${date_posted}`;
-        postHTML = `<div class="col-md-6"><div class="post-box" href="{% url 'blog-knowledge_content' %}">${post}</div></div>`;
+        postHTML = '<div class="col-md-6"><div class="post-box">'+post+'</div></div>'
         postAllHTML += postHTML;
       }
       postcontainer.innerHTML = postAllHTML;
@@ -209,7 +204,5 @@
 
     </script>
   </body>
-
-</body>
 
 </html>

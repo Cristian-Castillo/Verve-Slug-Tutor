@@ -68,7 +68,7 @@ def signup(request):
 def login(request):
     email=request.POST.get('email')
     passw = request.POST.get("pass")
-    try: 
+    try:
         user = authe.sign_in_with_email_and_password(email,passw)
     except:
         message = "invalid credentials"
@@ -124,6 +124,21 @@ def logout(request):
     except KeyError:
         pass
     return render(request,'blog/login.html')
+
+def knowledge_content(request):
+    idtoken = request.session['uid']
+    a = authe.get_account_info(idtoken)
+    a = a['users']
+    a = a[0]
+    a = a['localId']
+    print("ID Token: "+ str(a))
+    try:
+        database.child('users').child(a).child('details').child('id').set(a,idtoken)
+        name = database.child('users').child(a).child('details').child('id').get(idtoken).val()
+        return render(request, 'knowledge_content.html', {'e':name})
+    except KeyError:
+        message="Opps! User Logged Out!"
+        return render(request,"login.html",{"messg":message})
 
 #def check(request):
  #   idtoken = request.session['uid']
