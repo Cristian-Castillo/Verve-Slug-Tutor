@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- main CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Tutor trade</title>
+    {% endif %}
+</head>
+
+
+
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Welcome to Tutor Trade</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Log in</a>
+              <a class="nav-item nav-link" href="{% url 'blog-signup' %}" style="color:white;">Sign up</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="container">
+      <div class="signup_container">
+        <div><h1>Sign up for VST</h1></div>
+        <div class="signup_content">
+          <!-- <form action="/postsignup/" method="post">
+            {% csrf_token %} -->
+          <form action="/postsignup/" method="post">
+            {% csrf_token %}
+            <!-- Name:
+            <input type="text" name ="name"><br><br> -->
+
+            <div class="signup_row" style="margin-top: 20px;">
+              <h4 class="signup_title">
+                <label for="id">Name</label>
+              </h4>
+              <div class="signup_input_wrap">
+                <div class="signup_box_row">
+                  <span class="signup_input box_right_space">
+                    <input type="text" name="name" id="signup_name1"  placeholder="First Name" maxlength="40" style="border: none;">
+                  </span>
+                </div>
+                <div class="signup_box_row">
+                  <span class="signup_input">
+                    <input type="text" name="name2" id="signup_name2" placeholder="Last Name" maxlength="40" style="border: none; ">
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email :
+            <input type="email" name ="email"><br><br> -->
+            <div class="signup_row">
+              <h4 class="signup_title">
+                <label for="id">Email</label>
+              </h4>
+              <div class="signup_input_id">
+                <span class="signup_input" style="position: relative; display: inline-block;">
+                  <input type="email" name ="email" id="signup_email" class="int" title="ID" maxlength="40" style="border: none; width: 100%;">
+                </span>
+                <a class="btn_primary btn_verify" id="btnEmail" onclick="confirmEmail()" style="color:white;">
+                  Email check
+                </a>
+                <span class="error_next_box" id="emailMsg" style="display:none" role="alert">Email is already taken.</span>
+              </div>
+            </div>
+
+            <!-- Password:
+            <input type="password" name ="pass"><br><br> -->
+            <div class="signup_row">
+              <h4 class="signup_title">
+                <label for="id">Password</label>
+              </h4>
+              <span class="signup_input">
+                <input type="password" name ="pass" id="signup_pw1" maxlength="20" style="border: none; width: 100%;" onchange="isSame()">
+              </span>
+            </div>
+
+            <div class="signup_row">
+              <h4 class="signup_title">
+                <label for="id">Password Confirm</label>
+              </h4>
+              <span class="signup_input">
+                  <input type="password" id="signup_pw2" maxlength="20" style="border: none; width: 100%;" onchange="isSame()">
+              </span>
+              <span class="error_next_box" id="pwMsg" style="display:none" role="alert">These passwords don’t match.</span>
+            </div>
+
+            <div class="signup_row">
+              <h4 class="signup_title">
+                <label for="id">Contact</label>
+              </h4>
+              <span class="signup_input">
+                <input type="text" id="signup_contact" name="contact" maxlength="20" style="border: none; width: 100%;">
+              </span>
+            </div>
+
+            <!-- <input type="submit" value="SignUp"> -->
+            <div class="signup_btn_row">
+              <input type="submit" value="Sign up" id="btnJoin" class="btn_type btn_primary"></input>
+            </div>
+
+          </form>
+        </form>
+        </div>
+      </div>
+
+    </main>
+
+
+        <!--
+        <div class="signup_content">
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Username</label>
+            </h4>
+            <div class="signup_input_id">
+              <span class="signup_input" style="position: relative; display: inline-block;">
+                <input type="text" id="signup_id" name="id" class="int" title="ID" maxlength="20" style="border: none; width: 100%;">
+              </span>
+              <a class="btn_verify btn_primary" id="btnID" onclick="confirmID()">
+                Confirm ID
+              </a>
+              <button class="btn_verify btn_primary" id="btnID">
+                Confirm ID
+              </button>
+              <span class="error_next_box" id="idMsg" style="display:none" role="alert">Username is already taken.</span>
+            </div>
+          </div>
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Password</label>
+            </h4>
+            <span class="signup_input">
+              <input type="text" id="signup_pw1" name="pw1" maxlength="20" style="border: none; width: 100%;">
+            </span>
+
+          </div>
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Password Confirm</label>
+            </h4>
+            <span class="signup_input">
+                <input type="text" id="signup_pw2" name="pw2" maxlength="20" style="border: none; width: 100%;">
+            </span>
+
+            <span class="error_next_box" id="idPw" style="display:none" role="alert">These passwords don’t match.</span>
+          </div>
+
+          <div class="signup_row" style="margin-top: 20px;">
+            <h4 class="signup_title">
+              <label for="id">Name</label>
+            </h4>
+            <div class="signup_input_wrap">
+              <div class="signup_box_row">
+                <span class="signup_input box_right_space">
+                  <input type="text" id="signup_name1" name="name1" placeholder="First Name" maxlength="40" style="border: none;">
+                </span>
+              </div>
+              <div class="signup_box_row">
+                <span class="signup_input">
+                  <input type="text" id="signup_name2" name="name2" placeholder="Last Name" maxlength="40" style="border: none; ">
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">E-mail</label>
+            </h4>
+            <span class="signup_input">
+              <input type="text" id="signup_email" name="email" maxlength="100" style="border: none; width: 100%;">
+            </span>
+
+          </div>
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Contact</label>
+            </h4>
+            <span class="signup_input">
+              <input type="text" id="signup_contact" name="contact" maxlength="20" style="border: none; width: 100%;">
+            </span>
+          </div>
+
+          <div class="signup_btn_row">
+            <button type="submit" onclick="location.href='{% url 'postsignup' %}'" id="btnJoin" class="btn_type btn_primary">
+            </button>
+            <span>
+          </div>
+
+          <div class="signup_btn_row">
+            <button type="button" id="btnJoin" class="btn_type btn_primary">
+              <span>Sign Up</span>
+            </button>
+          </div>
+        </div> -->
+        <!-- <div class="col-md-8">
+          {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+          <div class="content-section">
+            <h3>Our Sidebar</h3>
+            <p class='text-muted'>Tutor Trade a new and free tutoring service.
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+              </ul>
+            </p>
+          </div>
+        </div> -->
+
+
+
+   <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+  <script>
+
+      var firebaseConfig = {
+          apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+          authDomain: "verve-slug-tutor.firebaseapp.com",
+          databaseURL: "https://verve-slug-tutor.firebaseio.com",
+          projectId: "verve-slug-tutor",
+          storageBucket: "verve-slug-tutor.appspot.com",
+          messagingSenderId: "1013220996189",
+          appId: "1:1013220996189:web:615c1dfe72a6e660"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      //var database=firebase.database();
+      //var auth = firebase.auth();
+      /*
+      var provider = new firebase.auth.GoogleAuthProvider();
+
+      firebase.auth().signInWithPopup(provider).then(function(result){
+          var token=result.credential.accessToken;
+          var user=result.user;
+          console.log(user);
+      }).catch(function(error){
+          var errorcode=error.code;
+          var errorMessage=error.message;
+          var email=error.email;
+          var credential=error.credential;
+      });
+
+      var database=firebase.database();
+
+      var dbTestRef=database.ref('userdata/')
+      dbTestRef.on('child_added', function(data){
+          console.log(data.val());
+      })
+      */
+
+      function confirmEmail() {
+        var email = $('#signup_email').val();
+        var emailMsg = document.getElementById("emailMsg");
+        if (email != ''){
+          console.log("Duplicate Email Check: ", email);
+          console.log("Not yet completed");
+        }
+      }
+
+      function isSame() {
+        var pw1 = $('#signup_pw1').val();
+        var pw2 = $('#signup_pw2').val();
+        var pwMsg = document.getElementById("pwMsg");
+        // console.log("isSame Function");
+        // console.log("pw1: ", pw1, " & pw2: ", pw2);
+        if (pw1 != "" && pw2 != "") {
+          if (pw1 != pw2){
+            // console.log(pwConfirm);
+            if(pwMsg.style.display == 'none')
+              pwMsg.style.display = 'block'
+          }
+          else {
+            pwMsg.style.display = 'none'
+          }
+        }
+
+      }
+
+
+  </script>
+
+</body>
+</html>
