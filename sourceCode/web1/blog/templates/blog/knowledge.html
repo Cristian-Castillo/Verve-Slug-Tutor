@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
 <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,6 +13,7 @@
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
 
     {% if title %}
@@ -20,46 +21,9 @@
     {% else %}
     <title>Tutor trade</title>
     {% endif %}
+  </head>
 
-<style>
-* {
-  box-sizing: border-box;
-}
-
-#myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-
-#myUL {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#myUL li a {
-  border: 1px solid #ddd;
-  margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  color: black;
-  display: block
-}
-
-#myUL li a:hover:not(.header) {
-  background-color: #eee;
-}
-</style>
-</head>
-<body>
+  <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -71,44 +35,197 @@
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
+              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}" style="color:white;">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
-              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
+              <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
+              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}" style="color:white;">Create Post</a>
+              <a class="nav-item nav-link" href="">Logout</a>
             </div>
           </div>
         </div>
       </nav>
     </header>
-    Welcome {{e}}
-    <br>
-    <h1> TEST </h1>
-        <!-- <div class="col-md-8">
-          {% block content %}{% endblock %}
+
+    <main role="main" class="container">
+      <div class="row" style="margin-bottom: 10px;">
+        <div class="col-md-8">
+          <div class="title_container">
+            <h1> Knowledge Board </h1>
+          </div>
         </div>
         <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>Tutor Trade a new and free tutoring service.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
+          <div class="title_container">
+            Welcome {{e}}
           </div>
-        </div> -->
+        </div>
       </div>
-    </main>
 
-   <!-- Optional JavaScript -->
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-md-3">
+          <div class="content-section">
+            <h3>Search Tutor</h3>
+              <!-- Tutor Trade a new and free tutoring service. -->
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light" style="color: black;">
+                  <div class="search_row">
+                    <div class="search_title">Looking for</div>
+                    <span class="search_input">
+                      <input type="search1" name ="search1" id="search1_input" maxlength="40" style="border: none; width: 100%;" />
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item list-group-item-light" style="color: black;">
+                  <div class="search_row">
+                    <div class="search_title">Offering</div>
+                    <span class="search_input">
+                      <input type="search2" name ="search2" id="search2_input" maxlength="40" style="border: none; width: 100%;" />
+                    </span>
+                  </div>
+                </li>
+                <!-- <li class="list-group-item list-group-item-light">Offering</li>
+                <li class="list-group-item list-group-item-light">Offering box</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li> -->
+              </ul>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div class="content-section">
+            <h3>knowledge board part</h3>
+            <div class="row" id="post-container">
+              <!-- <div class="col-md-6 post-box">
+                <div class="post-box">
+                box1
+                </div>
+              </div>
+              <div class="col-md-6 post-box">
+                box2
+              </div> -->
+
+          <!-- {% for post in posts %}
+          <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="#">{{ post.author }}</a>
+                <small class="text-muted">{{ post.date_posted }}</small>
+              </div>
+              <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+              <p class="article-content">{{ post.content }}</p>
+            </div>
+          </article>
+          {% endfor %} -->
+            </div>
+          </div>
+        </div>
+      </div>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+
+ </main>
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+        authDomain: "verve-slug-tutor.firebaseapp.com",
+        databaseURL: "https://verve-slug-tutor.firebaseio.com",
+        projectId: "verve-slug-tutor",
+        storageBucket: "verve-slug-tutor.appspot.com",
+        messagingSenderId: "1013220996189",
+        appId: "1:1013220996189:web:615c1dfe72a6e660"
+    }
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    firebase.database().ref('post/').once('value', function(snapshot) {
+      var postList = snapshot.val();
+      console.log(postList);
+      var keyList = Object.keys(postList);
+      var postLength = keyList.length;
+     // console.log(keyList, postLength);
+      var postcontainer = document.getElementById("post-container");
+      //console.log(postcontainer);
+      //console.log(postcontainer.innerHTML);
+
+      console.log(firebase.auth().currentUser,'TESTING CURRENT USER');
+      var postAllHTML = "";
+      for(var i=0; i<keyList.length; i++) {
+        var post = "";
+        var curKey = keyList[i];
+        // console.log(postList[curKey].author);
+        var author = postList[curKey].author;
+        var content = postList[curKey].content;
+        var date_posted = postList[curKey].date_posted;
+        var email = postList[curKey].email;
+        var status = postList[curKey].status;
+        var title = postList[curKey].title;
+
+        post = "Title: " + title + "<br/>Author: " + author + "<br/>Content: " + content + "<br/>Date_posted: " + date_posted + "<br/>Email: "+ email + "<br/>Status: "+ status;
+        console.log(post);
+        postHTML = '<div class="col-md-6"><div class="post-box">'+post+'</div></div>'
+        postAllHTML += postHTML;
+      }
+      postcontainer.innerHTML = postAllHTML;
+      // console.log(post.length());
+    });
+
+
+      // var firebaseConfig = {
+      //   apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+      //   authDomain: "verve-slug-tutor.firebaseapp.com",
+      //   databaseURL: "https://verve-slug-tutor.firebaseio.com",
+      //   projectId: "verve-slug-tutor",
+      //   storageBucket: "verve-slug-tutor.appspot.com",
+      //   messagingSenderId: "1013220996189",
+      //   appId: "1:1013220996189:web:462bd852caeea191"
+      // };
+      // // Initialize Firebase
+      // firebase.initializeApp(firebaseConfig);
+      // console.log(firebase.database());
+      //
+      // var dbTestRef = firebase.database().ref('post/');
+      // dbTestRef.on('child_added', function(data){
+      //     console.log(data.val());
+      // })
+
+
+
+    </script>
+  </body>
 
 </body>
+
 </html>

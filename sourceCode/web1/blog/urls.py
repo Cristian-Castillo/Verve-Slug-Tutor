@@ -3,6 +3,10 @@ from . import views
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from .views import(
+    PostCreateView
+    )
+
 
 urlpatterns = [
     path('', views.home, name='blog-home'),
@@ -11,7 +15,10 @@ urlpatterns = [
     path('knowledge/', views.knowledge, name='blog-knowledge'),
     path('postsign/',views.postsign, name='blog-knowledge'), #CC: added postsign path so when user signs up will redirect you to knowledge board
     path('signup/',views.signup, name='blog-signup'),
-    path('postsignup/',views.postsignup, name='blog-postsignup')
+    path('postsignup/',views.postsignup, name='blog-postsignup'),
+    path('contact/',views.contact, name='blog-contact'),
+    path('profile/',views.profile, name='blog-profile'),
+    path('post/', PostCreateView.as_view(), name='blog-post_form'),
 ]
 
 
