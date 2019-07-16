@@ -56,8 +56,14 @@ def login(request):
 def contact(request):
     return render(request, "blog/contact.html", {'title': 'Contact'})
 
+  # idtoken = request.session['uid']
+  # a = authe.get_account_info(idtoken)
+  # a = a['users']
+  # a = a[0]
+  # a = a['localId']
+  # name = database.child('users').child(a).child('details').child('email').get().val()
 def profile(request):
-    return render(request, 'blog/profile.html', {'title': 'Profile'})
+   return render(request, 'blog/profile.html',{'title':'Profile'})
 
 # CC:added postsign which gets the email, and if information is entered correctly it will send you to -----------------------------
 def postsign(request):

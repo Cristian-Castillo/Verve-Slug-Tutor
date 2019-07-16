@@ -27,6 +27,13 @@
     {% else %}
     <title>Tutor trade</title>
     {% endif %}
+
+    <script> // Kisoo
+      function storageEmail(){ 
+         var email=document.getElementById("login_email").value;
+         sessionStorage.setItem('email',email);
+      }
+    </script>
 </head>
 <body>
     <header class="site-header">
@@ -79,7 +86,7 @@
             </div>
 
             <div class="signup_btn_row">
-              <input type="submit" value="Log in" class="btn_type btn_primary">
+              <input type="submit" value="Log in" class="btn_type btn_primary" onclick="storageEmail();">
               <!-- <button type="button" id="btnLogin" class="btn_type btn_primary">
                 <span>Login</span>
               </button> -->
