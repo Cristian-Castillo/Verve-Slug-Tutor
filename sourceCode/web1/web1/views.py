@@ -52,25 +52,25 @@ def checkid(request):
 
 def postsignup(request):
 
-    id=request.POST.get('id')
-    pw = request.POST.get('pw1')
-    pwcf = request.POST.get('pw2')
-    fname = request.POST.get('name1')
-    lname = request.POST.get('name2')
-    email = request.POST.get('email')
-    contact = request.POST.get('contact')
-
-    # if (id=='')|(pw=='')|(pw!=pwcf)|(fname=='')|(lname=='')|(email=='')|(contact==''):
-    #     print("Wrong Input")
-    #     return render(request, "base.html")
-    # else:
-    data={
-        "ID":id,
-        "PW":pw,
-        "FN":fname.lower(),
-        "LN":lname.lower(),
-        "EMAIL":email,
-        "CONTACT":contact
-    }
-    database.child("users").child(uid).child("details").set(data)
+    # id=request.POST.get('id')
+    # pw = request.POST.get('pw1')
+    # pwcf = request.POST.get('pw2')
+    # fname = request.POST.get('name1')
+    # lname = request.POST.get('name2')
+    # email = request.POST.get('email')
+    # contact = request.POST.get('contact')
+    #
+    # # if (id=='')|(pw=='')|(pw!=pwcf)|(fname=='')|(lname=='')|(email=='')|(contact==''):
+    # #     print("Wrong Input")
+    # #     return render(request, "base.html")
+    # # else:
+    # data={
+    #     "ID":id,
+    #     "PW":pw,
+    #     "FN":fname.lower(),
+    #     "LN":lname.lower(),
+    #     "EMAIL":email,
+    #     "CONTACT":contact
+    # }
+    # database.child("users").child(uid).child("details").set(data)
     return render(request, "knowledge.html")
