@@ -19,66 +19,119 @@ database= firebase.database() # created the database
 
 #CC:  End of API ----------------------------------------------------------------------------------------------------------------
 
-posts = [
-    {
-        'author': 'Brian Alegria',
-        'title': 'Tutoring Post 1',
-        'content': 'I need tutoring in advanced physica 8A and I am excellent web dev',
-        'date_posted': 'June 30th, 2019'
-    },
-    {
-        'author': 'Another User',
-        'title': 'Tutoring Post 2',
-        'content': 'Second Post Content',
-        'date_posted': 'June 30th, 2019'
-    }
 
-]
 
-def home(request):
-    context = {
-    'posts': posts
-    }
-    return render(request, 'blog/home.html', context)
+def home(request): 
 
-def about(request):
-    return render(request, 'blog/about.html', {'title': 'About'})
+    message = "hide"
+    try:
+        idtoken = request.session['uid']
+
+        return render(request, "blog/home.html", {"title": "Profile"})
+        
+    except KeyError:
+
+        return render(request, "blog/home.html", {"messg": message})
+    
+    
+
+def about(request): 
+
+    message = "hide"
+    try:
+        idtoken = request.session['uid']
+
+        return render(request, "blog/about.html", {"title": "About"})
+        
+    except KeyError:
+
+        return render(request, "blog/about.html", {"messg": message})
+    
 
 def signup(request):
+    
     return render(request, 'blog/signup.html', {'title': 'Signup'})
 
-def knowledge(request):
-    return render(request, 'blog/knowledge.html', {'title': 'Knowledge'})
 
-def login(request):
+def post_form(request):
+    message = "Please log in to access this feature."
+    
+    try:
+        idtoken = request.session['uid']
+        return render(request, 'blog/post_form.html', {'title': 'Post'})
+        
+    
+    except KeyError:
+
+        return render(request, "blog/login.html", {"messg": message})
+
+
+def knowledge(request): 
+    message = "Please log in to access this feature."
+    
+    try:
+        idtoken = request.session['uid']
+        localID = authe.get_account_info(idtoken)['users'][0]['localId']
+        name = database.child('users').child(localID).child('details').child('name').get().val()   
+        return render(request, "blog/knowledge.html", {"e": name})
+    
+    except KeyError:
+
+        return render(request, "blog/login.html", {"messg": message})
+
+
+        
+
+def login(request): 
     return render(request, "blog/login.html", {'title': 'Login'})
 
 def contact(request):
-    return render(request, "blog/contact.html", {'title': 'Contact'})
 
-  # idtoken = request.session['uid']
-  # a = authe.get_account_info(idtoken)
-  # a = a['users']
-  # a = a[0]
-  # a = a['localId']
-  # name = database.child('users').child(a).child('details').child('email').get().val()
-def profile(request):
-   return render(request, 'blog/profile.html',{'title':'Profile'})
+    message = "hide"
+    try:
+        idtoken = request.session['uid']
+
+        return render(request, "blog/contact.html", {"title": "Contact"})
+        
+    except KeyError:
+
+        return render(request, "blog/contact.html", {"messg": message})
+    
+
+def profile(request): 
+    message = "Please log in to access this feature."
+    try:
+        idtoken = request.session['uid']
+
+        return render(request, "blog/profile.html", {"title": "Profile"})
+        
+    
+    except KeyError:
+
+        return render(request, "blog/login.html", {"messg": message})
 
 # CC:added postsign which gets the email, and if information is entered correctly it will send you to -----------------------------
-def postsign(request):
+def postsign(request): #Changes made by JR in order to display name instead of email
     email=request.POST.get('email')
-    passw = request.POST.get("pass")
+    passw = request.POST.get('pass')
+
+    print("email")
+    print("passw")
     try:
         user = authe.sign_in_with_email_and_password(email,passw)
     except:
         message = "invalid credentials"
         return render(request,"login.html",{"messg":message})
 
-    print(user['idToken'])
+    #print(user['idToken'])
     session_id=user['idToken']
     request.session['uid']=str(session_id)
-    return render(request, "blog/knowledge.html",{"e":email})
+    idtoken = request.session['uid']
+    #a = authe.get_account_info
+
+    localID = authe.get_account_info(idtoken)['users'][0]['localId']
+    name = database.child('users').child(localID).child('details').child('name').get().val()
+    return render(request, "blog/knowledge.html",{"e": name})
 
 def postsignup(request):
 
@@ -87,16 +140,6 @@ def postsignup(request):
     email=request.POST.get('email')
     contact=request.POST.get('contact')
     passw=request.POST.get('pass')
-
-
-    # data={
-    #     "ID":id,
-    #     "PW":pw,
-    #     "FN":fname.lower(),
-    #     "LN":lname.lower(),
-    #     "EMAIL":email,
-    #     "CONTACT":contact
-    # }
 
     user=authe.create_user_with_email_and_password(email,passw)
     # CC: Here we create account
@@ -109,5 +152,13 @@ def postsignup(request):
     # from above name and email from form and enabled the account
     # database constructor with multiple users
     database.child("users").child(uid).child("details").set(data)
-    return render(request,"knowledge.html")
+    return render(request,"knowledge.html")    
 # CC: from print down --------------------------------------------------------------------------------------------------------------
+def logout(request): #JR deletes session; if there is no session to delete, render login page regardless
+    try:
+        del request.session['uid']
+
+    except KeyError:
+        pass
+            
+    return render(request, 'login.html')

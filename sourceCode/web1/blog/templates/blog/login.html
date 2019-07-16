@@ -45,14 +45,12 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-login' %}" style="color:white;">Log in</a>
-              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Sign up</a>
+              <a class="nav-item nav-link" href="{% url 'blog-login' %}" style="color:white;">Login</a>
+              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
             </div>
           </div>
         </div>
@@ -62,7 +60,7 @@
     <main role="main" class="container">
 
       <div class="signup_container">
-        <div><h1>Log in for VST</h1></div>
+        <div><h1>Log in to Tutor Trade!</h1></div>
         <div class="signup_content">
           <!-- CC: added email & password encryption that correspond to firebase -->
           <form action="/postsign/" method="post">
@@ -108,7 +106,6 @@
             </div>
             <!-- Navbar Bottom Right Side Buttons -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
