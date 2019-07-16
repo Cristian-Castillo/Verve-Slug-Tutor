@@ -3,6 +3,10 @@ from . import views
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from .views import(
+    PostCreateView
+    )
+
 
 urlpatterns = [
     path('', views.home, name='blog-home'),
@@ -14,6 +18,7 @@ urlpatterns = [
     path('postsignup/',views.postsignup, name='blog-postsignup'),
     path('contact/',views.contact, name='blog-contact'),
     path('profile/',views.profile, name='blog-profile'),
+    path('post/', PostCreateView.as_view(), name='blog-post_form'),
 ]
 
 
