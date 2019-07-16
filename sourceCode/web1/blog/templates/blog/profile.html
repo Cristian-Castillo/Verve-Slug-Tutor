@@ -2,6 +2,11 @@
 <html>
 <head>
     {% load static %}
+    {% if messg %}
+      <script>
+        alert('{{ messg }}');
+      </script>
+    {% endif %}
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -47,19 +52,58 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
-              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-profile' %}" style="color:white;">Profile</a>
+              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
             </div>
           </div>
         </div>
       </nav>
     </header>
+
+    </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+        </div>
+      </div>
+      <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+    </main>
+    <div>
+      <h1>
+        Tutor Trade!
+      </h1>
+        Bringing free knowledge to all UCSC students.
+    </div> 
 
     <br>
     <br>
@@ -93,6 +137,7 @@
     </table>
 
     <br>
+
     </main>
 
  
