@@ -91,10 +91,25 @@
           </div>
         </div>
 
-        <div class="col-md-9">
-          <div class="content-section">
+        <!-- <div class="col-md-9"> -->
+          <!-- <div class="content-section"> -->
+          <div class="container">
             <h3>knowledge board part</h3>
             <div class="row" id="post-container">
+
+              <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+                <thead>
+                  <tr>
+                    <th style="background-color: #eeeeee; text-align: center;">Number</th>
+                    <th style="background-color: #eeeeee; text-align: center;">Title</th>
+                    <th style="background-color: #eeeeee; text-align: center;">Author</th>
+                    <th style="background-color: #eeeeee; text-align: center;">Date</th>
+                  </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+              </table>
+
               <!-- <div class="col-md-6 post-box">
                 <div class="post-box">
                 box1
@@ -118,7 +133,6 @@
           {% endfor %} -->
             </div>
           </div>
-        </div>
       </div>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
@@ -157,9 +171,9 @@
 
     <script>
 
-    $(".post-box").click(function(){
-      window.location.href='knowledge_content.html';
-    })
+    function content(param){
+      sessionStorage.setItem('postid', param);
+    }
 
     console.log('knowledge board!');
     var firebaseConfig = {
@@ -197,13 +211,21 @@
         // var email = postList[curKey].email;
         // var status = postList[curKey].status;
         var title = postList[curKey].title;
-
+        var id = postList[curKey].id;
         post = `${title} <br/>${author} <br/>${date_posted}`;
-        postHTML = `<div class="col-md-6"><div class="post-box" href="{% url 'blog-knowledge_content' %}">${post}</div></div>`;
+        // postHTML = `<div class="col-md-6"><div class="post-box" href="{% url 'blog-knowledge_content' %}">${post}</div></div>`;
+        postHTML = `<tr class='table-row'>
+          <td>${id}</td>
+          <td><a onclick="content(\'${id}\');" href="{% url 'blog-knowledge_content' %}">${title}</a></td>
+          <td>${author}</td>
+          <td>${date_posted}</td>
+        </tr>`;
         postAllHTML += postHTML;
+
       }
-      postcontainer.innerHTML = postAllHTML;
+      // postcontainer.innerHTML = postAllHTML;
       // console.log(post.length());
+      $("#table-body").append(postAllHTML);
     });
 
 

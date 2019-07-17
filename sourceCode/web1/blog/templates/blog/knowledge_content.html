@@ -157,6 +157,7 @@
 
     <script>
     console.log('knowledge board!');
+    console.log(sessionStorage.getItem('postid'));
     var firebaseConfig = {
       apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
       authDomain: "verve-slug-tutor.firebaseapp.com",
@@ -173,31 +174,31 @@
     var fbData = firebase.database();
 
     fbData.ref('post/').once('value', function(snapshot) {
-      var postList = snapshot.val();
-      console.log(postList);
-      var keyList = Object.keys(postList);
-      var postLength = keyList.length;
-      console.log(keyList, postLength);
-      var postcontainer = document.getElementById("post-container");
-      console.log(postcontainer);
-      console.log(postcontainer.innerHTML);
-      var postAllHTML = "";
-      for(var i=0; i<keyList.length; i++) {
-        var post = "";
-        var curKey = keyList[i];
-        // console.log(postList[curKey].author);
-        var author = postList[curKey].author;
-        // var content = postList[curKey].content;
-        var date_posted = postList[curKey].date_posted;
-        // var email = postList[curKey].email;
-        // var status = postList[curKey].status;
-        var title = postList[curKey].title;
-
-        post = `${title} <br/>${author} <br/>${date_posted}`;
-        postHTML = '<div class="col-md-6"><div class="post-box">'+post+'</div></div>'
-        postAllHTML += postHTML;
-      }
-      postcontainer.innerHTML = postAllHTML;
+      // var postList = snapshot.val();
+      // console.log(postList);
+      // var keyList = Object.keys(postList);
+      // var postLength = keyList.length;
+      // console.log(keyList, postLength);
+      // var postcontainer = document.getElementById("post-container");
+      // console.log(postcontainer);
+      // console.log(postcontainer.innerHTML);
+      // var postAllHTML = "";
+      // for(var i=0; i<keyList.length; i++) {
+      //   var post = "";
+      //   var curKey = keyList[i];
+      //   // console.log(postList[curKey].author);
+      //   var author = postList[curKey].author;
+      //   // var content = postList[curKey].content;
+      //   var date_posted = postList[curKey].date_posted;
+      //   // var email = postList[curKey].email;
+      //   // var status = postList[curKey].status;
+      //   var title = postList[curKey].title;
+      //
+      //   post = `${title} <br/>${author} <br/>${date_posted}`;
+      //   postHTML = '<div class="col-md-6"><div class="post-box">'+post+'</div></div>'
+      //   postAllHTML += postHTML;
+      // }
+      // postcontainer.innerHTML = postAllHTML;
       // console.log(post.length());
     });
 
