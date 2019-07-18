@@ -12,6 +12,7 @@
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
 
     {% if title %}
     <title>{{ title }}</title>
@@ -32,9 +33,8 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
+              
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -134,117 +134,7 @@
 
     </main>
 
-
-        <!--
-        <div class="signup_content">
-          <div class="signup_row">
-            <h4 class="signup_title">
-              <label for="id">Username</label>
-            </h4>
-            <div class="signup_input_id">
-              <span class="signup_input" style="position: relative; display: inline-block;">
-                <input type="text" id="signup_id" name="id" class="int" title="ID" maxlength="20" style="border: none; width: 100%;">
-              </span>
-              <a class="btn_verify btn_primary" id="btnID" onclick="confirmID()">
-                Confirm ID
-              </a>
-              <button class="btn_verify btn_primary" id="btnID">
-                Confirm ID
-              </button>
-              <span class="error_next_box" id="idMsg" style="display:none" role="alert">Username is already taken.</span>
-            </div>
-          </div>
-
-          <div class="signup_row">
-            <h4 class="signup_title">
-              <label for="id">Password</label>
-            </h4>
-            <span class="signup_input">
-              <input type="text" id="signup_pw1" name="pw1" maxlength="20" style="border: none; width: 100%;">
-            </span>
-
-          </div>
-
-          <div class="signup_row">
-            <h4 class="signup_title">
-              <label for="id">Password Confirm</label>
-            </h4>
-            <span class="signup_input">
-                <input type="text" id="signup_pw2" name="pw2" maxlength="20" style="border: none; width: 100%;">
-            </span>
-
-            <span class="error_next_box" id="idPw" style="display:none" role="alert">These passwords don’t match.</span>
-          </div>
-
-          <div class="signup_row" style="margin-top: 20px;">
-            <h4 class="signup_title">
-              <label for="id">Name</label>
-            </h4>
-            <div class="signup_input_wrap">
-              <div class="signup_box_row">
-                <span class="signup_input box_right_space">
-                  <input type="text" id="signup_name1" name="name1" placeholder="First Name" maxlength="40" style="border: none;">
-                </span>
-              </div>
-              <div class="signup_box_row">
-                <span class="signup_input">
-                  <input type="text" id="signup_name2" name="name2" placeholder="Last Name" maxlength="40" style="border: none; ">
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="signup_row">
-            <h4 class="signup_title">
-              <label for="id">E-mail</label>
-            </h4>
-            <span class="signup_input">
-              <input type="text" id="signup_email" name="email" maxlength="100" style="border: none; width: 100%;">
-            </span>
-
-          </div>
-
-          <div class="signup_row">
-            <h4 class="signup_title">
-              <label for="id">Contact</label>
-            </h4>
-            <span class="signup_input">
-              <input type="text" id="signup_contact" name="contact" maxlength="20" style="border: none; width: 100%;">
-            </span>
-          </div>
-
-          <div class="signup_btn_row">
-            <button type="submit" onclick="location.href='{% url 'postsignup' %}'" id="btnJoin" class="btn_type btn_primary">
-            </button>
-            <span>
-          </div>
-
-          <div class="signup_btn_row">
-            <button type="button" id="btnJoin" class="btn_type btn_primary">
-              <span>Sign Up</span>
-            </button>
-          </div>
-        </div> -->
-        <!-- <div class="col-md-8">
-          {% block content %}{% endblock %}
-        </div>
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>Tutor Trade a new and free tutoring service.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
-        </div> -->
-
-
-
-   <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

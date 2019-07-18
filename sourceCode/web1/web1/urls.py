@@ -17,17 +17,12 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 
-from . import views
+
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'', include('blog.urls')),
+    
+    url(r'', include('blog.urls'))
 
-    url(r'^$',views.login),
-    url(r'^postsign/',views.postsign),
-    url(r'^logout/', views.logout, name="log"),
-    url(r'^signup/', views.signup, name='signup'),
-    url(r'^postsignup/', views.postsignup, name='postsignup'),
-    url(r'^contact/', views.contact, name='contact'),
+    
     # url(r'^checkid/', views.checkid, name='checkid'),
 ]
