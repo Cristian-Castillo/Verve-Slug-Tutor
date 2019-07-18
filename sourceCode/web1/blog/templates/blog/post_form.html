@@ -59,14 +59,14 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}" style="color:white;">Knowledge Board</a>
+              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
-              <a class="nav-item nav-link" href="">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}" style="color:white;">Post</a>
             </div>
           </div>
         </div>
@@ -86,7 +86,6 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
