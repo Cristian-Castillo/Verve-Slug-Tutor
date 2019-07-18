@@ -117,7 +117,7 @@
       </div>
     </div>
     <button type="button" onclick="deleteContent()" class="btn btn-danger" id="delete-button" style="display:none;">Delete</button>
-    <button type="button" onclick="updateContent()" class="btn btn-primary" id="update-button" style="display:none;">Update</button>
+    <button type="button" class="btn btn-primary" id="update-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge_content_update' %}">Update</a></button>
   </form>
               <!-- <div class="col-md-6 post-box">
                 <div class="post-box">
@@ -211,10 +211,6 @@
       }else{
         alert("unexpected error!");
       }
-    }
-
-    function updateContent(){
-      
     }
 
 
