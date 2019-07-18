@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+
 <html>
 <head>
   {% load static %}
@@ -18,6 +19,7 @@
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
 
 
     {% if title %}
@@ -25,6 +27,13 @@
     {% else %}
     <title>Tutor trade</title>
     {% endif %}
+
+    <script> // Kisoo
+      function storageEmail(){
+         var email=document.getElementById("login_email").value;
+         sessionStorage.setItem('email',email);
+      }
+    </script>
 </head>
 <body>
     <header class="site-header">
@@ -36,13 +45,12 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-login' %}" style="color:white;">Log in</a>
-              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Sign up</a>
+              <a class="nav-item nav-link" href="{% url 'blog-login' %}" style="color:white;">Login</a>
+              <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
             </div>
           </div>
         </div>
@@ -52,10 +60,10 @@
     <main role="main" class="container">
 
       <div class="signup_container">
-        <div><h1>Log in for VST</h1></div>
+        <div><h1>Log in to Tutor Trade!</h1></div>
         <div class="signup_content">
           <!-- CC: added email & password encryption that correspond to firebase -->
-          <form action="/login/" method="post">
+          <form action="/postsign/" method="post">
             <br>
             {% csrf_token %}
             <!-- Email :
@@ -76,7 +84,7 @@
             </div>
 
             <div class="signup_btn_row">
-              <input type="submit" value="Log in" onclick="storageEmail();" class="btn_type btn_primary">
+              <input type="submit" value="Log in" class="btn_type btn_primary" onclick="storageEmail();">
               <!-- <button type="button" id="btnLogin" class="btn_type btn_primary">
                 <span>Login</span>
               </button> -->
@@ -85,6 +93,7 @@
         </div>
       </div>
             <!-- Navbar Bottom Right Side -->
+
       <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
         <div class="container">
@@ -97,7 +106,6 @@
             </div>
             <!-- Navbar Bottom Right Side Buttons -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
@@ -108,13 +116,6 @@
       <div class="row">
         <div class="col-md-8">
     </main>
-
-    <script>
-      function storageEmail(){
-        console.log($("#login_email").val());
-        sessionStorage.setItem('email', $("#login_email").val());
-      }
-    </script>
 <!-- this is the bottom border for the page -->
 
     <!-- Sorry Dana, you can tweak my code to make it look like what you had before.
