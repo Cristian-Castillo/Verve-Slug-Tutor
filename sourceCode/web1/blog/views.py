@@ -27,7 +27,7 @@ database= firebase.database() # created the database
 #CC:  End of API ----------------------------------------------------------------------------------------------------------------
 
 
-def home(request): 
+def home(request):
 
     message = "hide"
     try:
@@ -42,14 +42,14 @@ def home(request):
 
 def about(request):
 
-        
-    except KeyError:
+
+    # except KeyError:
 
         return render(request, "blog/home.html", {"messg": message})
-    
-    
 
-def about(request): 
+
+
+def about(request):
 
 
     message = "hide"
@@ -77,25 +77,25 @@ def post(request):
 
 
 
-        
+
     except KeyError:
 
         return render(request, "blog/about.html", {"messg": message})
-    
+
 
 def signup(request):
-    
+
     return render(request, 'blog/signup.html', {'title': 'Signup'})
 
 
 def post_form(request):
     message = "Please log in to access this feature."
-    
+
     try:
         idtoken = request.session['uid']
         return render(request, 'blog/post_form.html', {'title': 'Post'})
-        
-    
+
+
     except KeyError:
 
         return render(request, "blog/login.html", {"messg": message})
@@ -117,7 +117,7 @@ def knowledge(request):
 
 
 
-def login(request): 
+def login(request):
     return render(request, "blog/login.html", {'title': 'Login'})
 
 def contact(request):
@@ -133,9 +133,9 @@ def contact(request):
 
         return render(request, "blog/contact.html", {"messg": message})
 
-    
 
-def profile(request): 
+
+def profile(request):
 
     message = "Please log in to access this feature."
     try:
@@ -198,11 +198,9 @@ def logout(request): #JR deletes session; if there is no session to delete, rend
 
     except KeyError:
         pass
-eturn render(request, 'login.html')
+    return render(request, 'login.html')
 
 
 class PostCreateView(CreateView):
     model = Post
     fields = ['Title', 'Need', 'Offering', 'Description']
-
-  

@@ -48,6 +48,26 @@
       </nav>
     </header>
 
+    <!-- bottom header -->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto" style="color: white;">
+              Bringing free knowledge to all UCSC students.
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
     <main role="main" class="container">
       <div class="row" style="margin-bottom: 10px;">
         <div class="col-md-8">
@@ -105,7 +125,7 @@
           <div class="content-section">
             <h3>knowledge board part</h3>
             <div class="row" id="post-container">
-              
+
             </div>
           </div>
         </div>
