@@ -176,6 +176,7 @@
     }
 
     console.log('knowledge board!');
+    console.log(sessionStorage.getItem('email'));
     var firebaseConfig = {
       apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
       authDomain: "verve-slug-tutor.firebaseapp.com",
@@ -196,10 +197,10 @@
       console.log(postList);
       var keyList = Object.keys(postList);
       var postLength = keyList.length;
-      console.log(keyList, postLength);
+      // console.log(keyList, postLength);
       var postcontainer = document.getElementById("post-container");
-      console.log(postcontainer);
-      console.log(postcontainer.innerHTML);
+      // console.log(postcontainer);
+      // console.log(postcontainer.innerHTML);
       var postAllHTML = "";
       for(var i=0; i<keyList.length; i++) {
         var post = "";
@@ -211,12 +212,12 @@
         // var email = postList[curKey].email;
         // var status = postList[curKey].status;
         var title = postList[curKey].title;
-        var id = postList[curKey].id;
+        // var id = postList[curKey].id;
         post = `${title} <br/>${author} <br/>${date_posted}`;
         // postHTML = `<div class="col-md-6"><div class="post-box" href="{% url 'blog-knowledge_content' %}">${post}</div></div>`;
         postHTML = `<tr class='table-row'>
-          <td>${id}</td>
-          <td><a onclick="content(\'${id}\');" href="{% url 'blog-knowledge_content' %}">${title}</a></td>
+          <td>${i+1}</td>
+          <td><a onclick="content(\'${curKey}\');" href="{% url 'blog-knowledge_content' %}">${title}</a></td>
           <td>${author}</td>
           <td>${date_posted}</td>
         </tr>`;
