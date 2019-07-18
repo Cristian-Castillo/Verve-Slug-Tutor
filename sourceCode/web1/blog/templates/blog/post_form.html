@@ -31,21 +31,33 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
- <div class="content-section">
-   <!-- <form action="/knowledge" class="form-horizontal"> -->
+ <div class="content-section" style="padding-top: 50px">
+   <form action="/knowledge" class="form-horizontal">
      <div>
      <legend class="border-bottom mb-4">Post</legend>
    </div>
   <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
+    <label for="inputTitle3" class="col-sm-2 control-label">Title</label>
     <div class="col-sm-10">
       <input type="name" class="form-control" id="input-title" >
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Content</label>
+    <label for="inputContent3" class="col-sm-2 control-label">Content</label>
     <div class="col-sm-10">
       <textarea class="form-control" rows="3"id="input-content"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputSubject3" class="col-sm-2 control-label">Subject that you want to learn</label>
+    <div class="col-sm-offset-2 col-sm-10">
+      <select class="form-control" id="select-subject">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
     </div>
   </div>
   <div class="form-group">
@@ -53,7 +65,7 @@
       <button type="submit" id="button-post" class="btn btn-success"><a href="{% url "blog-knowledge"%}" style="color: #fff;" >Sign in</a></button>
     </div>
   </div>
-<!-- </form> -->
+</form>
 
         <!-- <form method="POST">
             {% csrf_token %}
@@ -72,10 +84,9 @@
               </div>
           </div>
             </form> -->
-        </div>
+        <!-- </div> -->
             {% endblock content %}
-<div class="content-section">
-    <form method
+<!-- <div class="content-section"> -->
   <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
@@ -132,6 +143,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script>
+      $(document).ready(function(){
+        console.log(sessionStorage.getItem('email'));
+        console.log(sessionStorage.getItem('author'));
+      })
 
       var d = new Date();
       console.log(`Today is ${d.getFullYear()}, ${d.getMonth()+1}, ${d.getDate()}`);
@@ -162,22 +177,16 @@
           // postCnt+= keyList.length;
           // postKey+= 'post'+(postCnt+1).toString();
           firebase.database().ref('post/').push({
-
               "title": title,
               "content": content,
               "date_posted": date,
               "email": sessionStorage.getItem('email'),
               "author": sessionStorage.getItem('author'),
-
             // postCnt=0;
             // postKey="";
           });
         });
-
-
-
-
-      })
+      });
 
     </script>
 

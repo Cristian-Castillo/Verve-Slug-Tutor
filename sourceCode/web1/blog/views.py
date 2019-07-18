@@ -26,11 +26,11 @@ def home(request):
     message = "hide"
     try:
         idtoken = request.session['uid']
-        # print(idtoken)
-        # localID = authe.get_account_info(idtoken)['users'][0]['localId']
-        # print(localID)
-        # name = database.child('users').child(localID).child('details').child('name').get().val()
-        # print(name)
+        print(idtoken)
+        localID = authe.get_account_info(idtoken)['users'][0]['localId']
+        print(localID)
+        name = database.child('users').child(localID).child('details').child('name').get().val()
+        print(name)
         return render(request, "blog/home.html", {"title": "Profile"})
 
     except KeyError:

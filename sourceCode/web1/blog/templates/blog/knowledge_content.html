@@ -116,7 +116,7 @@
         <p class="form-control-static" id="content-content"></p>
       </div>
     </div>
-    <button type="button" onclick="deleteContent()" class="btn btn-danger" id="delete-button" style="display:none;">Delete</button>
+    <button type="button" class="btn btn-danger" id="delete-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge' %}">Delete</a></button>
     <button type="button" class="btn btn-primary" id="update-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge_content_update' %}">Update</a></button>
   </form>
               <!-- <div class="col-md-6 post-box">
@@ -204,14 +204,12 @@
     var fbAuth = firebase.auth();
     var fbData = firebase.database();
 
-    function deleteContent(){
-      if(fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).remove()){
-        alert("successfully deleted");
-        window.location.href="knowledge/";
-      }else{
-        alert("unexpected error!");
-      }
-    }
+    $("#delete-button").click(function(){
+      fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).remove();
+      alert('successfully deleted.');
+    })
+
+
 
 
     fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).once('value', function(snapshot) {
