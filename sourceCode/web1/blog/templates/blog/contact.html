@@ -31,12 +31,12 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-                {% if messg %}  
+                {% if messg %}
                     <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
                 {% else %}
                     <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
                     <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
-                {% endif %}    
+                {% endif %}
 
             </div>
             <!-- Navbar Right Side -->
@@ -48,12 +48,33 @@
                     <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
                     <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
                     <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
-                {% endif %}        
+                {% endif %}
             </div>
           </div>
         </div>
       </nav>
     </header>
+
+    <!-- bottom header -->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto" style="color: white;">
+              Bringing free knowledge to all UCSC students.
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
@@ -85,8 +106,8 @@
             <h1>
                 Contact Us!
             </h1>
-                
-        </div> 
+
+        </div>
 
 
 
