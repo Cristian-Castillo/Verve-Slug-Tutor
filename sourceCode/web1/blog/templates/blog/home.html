@@ -15,15 +15,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
 
 
-    <!-- {% if title %}
+    {% if title %}
     <title>{{ title }}</title>
     {% else %}
     <title>Tutor trade</title>
-    {% endif %} -->
-    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
+    {% endif %}
   </head>
   <body>
     <header class="site-header">
@@ -36,22 +32,25 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               {% if messg %}
-                <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+
               {% else %}
-                <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+
                 <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
               {% endif %}
 
 
             </div>
             <!-- Navbar Right Side -->
-            <div class="navbar-nav" id="login-or-not">
-              <!-- {% if messg %} -->
+            <div class="navbar-nav">
+              {% if messg %}
+                <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+                <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
 
-              <!-- {% else %} -->
-
-
-              <!-- {% endif %} -->
+              {% endif %}
 
 
             </div>
@@ -59,6 +58,7 @@
         </div>
       </nav>
     </header>
+
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
@@ -76,6 +76,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
@@ -87,57 +88,40 @@
         <div class="col-md-8">
     </main>
     <div>
-      <h1>
-        Tutor Trade!
-      </h1>
-        Bringing free knowledge to all UCSC students.
-    </div>
+
+     <h2>Welcome To Tutor Trade</h2>
+<body><br>
+<div class="containerOne">
+
+<style>
+.containerOne{
+ background: #5f788a;
+ padding: 15px 15px;
+ border: 2px solid #dddddd;
+ border-radius: 3px;
+ margin-bottom: 10px;
+}
+</style>
+        <img src="https://admissions.ucsc.edu/apply/images/22oakes-students.jpg" alt="Norway" style="width:100%;">
+ <div class="text-block">  </body>
+
 
 
 
 
           {% block content %}{% endblock %}
 
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
 
-    $(document).ready(function(){
-      console.log(`email is ${sessionStorage.getItem('email')}`);
-      var firebaseConfig = {
-          apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
-          authDomain: "verve-slug-tutor.firebaseapp.com",
-          databaseURL: "https://verve-slug-tutor.firebaseio.com",
-          projectId: "verve-slug-tutor",
-          storageBucket: "verve-slug-tutor.appspot.com",
-          messagingSenderId: "1013220996189",
-          appId: "1:1013220996189:web:615c1dfe72a6e660"
-      };
-      firebase.initializeApp(firebaseConfig);
-      // check whether the user logged in or not
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User is signed in.
-          console.log('logged in!');
-
-          $("#login-or-not").append(`<a class="nav-item nav-link" id="button-3" href="{% url 'blog-logout' %}">Logout</a>
-          <a class="nav-item nav-link" id="button-profile" href="{% url 'blog-profile' %}">Profile</a>
-          <a class="nav-item nav-link" id="button-post" href="{% url 'blog-post_form' %}">Post</a>`);
-        } else {
-          console.log('not logged in!');
-          $("#login-or-not").append(`<a class="nav-item nav-link" id="button-1" style="color:#fff" href="{% url 'blog-login' %}">Login</a>
-          <a class="nav-item nav-link" id="button-2" style="color:#fff" href="{% url 'blog-signup' %}">Signup</a>`);
-        }
-      });
-    });
-
-    // Initialize Firebase
-
-    </script>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    </body>
+  </body>
 </html>

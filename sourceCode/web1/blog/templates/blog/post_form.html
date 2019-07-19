@@ -1,5 +1,6 @@
-
 {% load static %}
+<!DOCTYPE html>
+
 <html>
   <head>
 <!-- Required meta tags -->
@@ -13,7 +14,6 @@
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/makePost.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'blog/makePost.css' %}">
 
 
     {% if title %}
@@ -99,14 +99,12 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
+              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}" style="color:white;">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
-              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}" style="color:white;">Post</a>
+              <a class="nav-item nav-link" href="">Logout</a>
             </div>
           </div>
         </div>
@@ -114,6 +112,7 @@
     </header>
 
 
+    <!-- bottom header -->
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
         <div class="container">
@@ -121,17 +120,19 @@
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-
+            <div class="navbar-nav mr-auto" style="color: white;">
+              Bringing free knowledge to all UCSC students.
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
         </div>
       </nav>
     </header>
+
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">

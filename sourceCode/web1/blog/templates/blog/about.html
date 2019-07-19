@@ -32,26 +32,26 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
                 {% if messg %}
-                
-                    <a class="nav-item nav-link" href="{% url 'blog-about' %}" style="color:white;">About</a>
-                    
+
+
+
                 {% else %}
-                    <a class="nav-item nav-link" href="{% url 'blog-about' %}" style="color:white;">About</a>
+
                     <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
-                {% endif %}        
+                {% endif %}
 
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if messg %}
-                
+
                 <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
                 <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
                 <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
-              {% endif %}    
+                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -84,15 +84,8 @@
       <div class="row">
         <div class="col-md-8">
     </main>
-      <div>
-            <h1>
-                About Tutor Trade
-            </h1>
-                
-        </div> 
-
-
-
+<h3>About Tutor Trade</h3>
+<p>Tutor Trade is a web application that was established at UCSC for the sole purposes to exchange knowledge. Students offer their strong academic skillsets in exchange for that of their peers. The services provided enable students to interact with ease, learn with confidence, and reinforce their academic strengths by teaching others.</p>
 
           {% block content %}{% endblock %}
       <!-- </div>

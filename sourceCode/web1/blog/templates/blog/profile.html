@@ -43,6 +43,7 @@
 
 
 <body>
+    <!-- top header -->
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -52,107 +53,128 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'blog-profile' %}" style="color:white;">Profile</a>
-              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
+              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
             </div>
           </div>
         </div>
       </nav>
     </header>
 
-    </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
-        </div>
-      </div>
-      <header class="site-header">
+    <!-- bottom header -->
+    <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
         <div class="container">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-
+            <div class="navbar-nav mr-auto" style="color: white;">
+              Bringing free knowledge to all UCSC students.
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
         </div>
       </nav>
     </header>
+
     <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
+      <div class="signup_container">
+        <!-- <div class="row" style="height: 50px; margin-bottom: 30px;">
+          <div class="col-md-5"><h1>Tutor Trade!</h1></div>
+          <div class="col-md-7" style="line-height: 50px;">Bringing free knowledge to all UCSC students.</div>
+        </div> -->
+
+        <div><h1>Edit Profile</h1></div>
+        <div class="signup_content">
+          <div class="signup_row" style="margin-top: 20px;">
+            <h4 class="signup_title"><label for="id">Email</label></h4>
+            <span class="signup_input" style="background-color: #F2F2F2">
+              <input type="email" name ="email" id="email" placeholder="email" style="border: none; width: 100%; background-color: #F2F2F2" disabled>
+            </span>
+          </div>
+
+          <div class="signup_row" >
+            <h4 class="signup_title">
+              <label for="id">Name</label>
+            </h4>
+            <div class="signup_input_wrap">
+              <div class="signup_box_row">
+                <span class="signup_input box_right_space">
+                  <input type="text" name="name" id="name"  placeholder="First Name" maxlength="40" style="border: none;">
+                </span>
+              </div>
+              <div class="signup_box_row">
+                <span class="signup_input">
+                  <input type="text" name="lastname" id="lastname" placeholder="Last Name" maxlength="40" style="border: none;">
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="signup_row">
+            <h4 class="signup_title">
+              <label for="id">Contact</label>
+            </h4>
+            <span class="signup_input">
+              <input type="text" name="contact" id="contact" placeholder="" maxlength="20" style="border: none; width: 100%;">
+            </span>
+          </div>
+
+          <div class="signup_btn_row">
+            <input type="button" class="btn_type btn_primary" value="Update Profile" onclick="update_user();"></input>
+          </div>
+
+        </div>
+      </div>
     </main>
-    <div>
-      <h1>
-        Tutor Trade!
-      </h1>
-        Bringing free knowledge to all UCSC students.
-    </div> 
 
-    <br>
-    <br>
-
-    <main role="main" class="container">
+    <!-- <main role="main" class="container">
     <h1>Edit Profile {{e}}</h1>
-
-    <table> 
-      <tr> 
+    <table>
+      <tr>
         <td>First Name:</td>
         <td><input type="text" name="name" id="name" /></td>
       </tr>
-
       <tr>
         <td>Last Name:</td>
         <td><input type="text" name="lastname" id="lastname" /></td>
       </tr>
-
       <tr>
         <td>Contact:</td>
         <td><input type="text" name="contact" id="contact" /></td>
       </tr>
-
       <tr>
         <td colspan="2">
           <br>
           <input type="button" value="Update Profile" onclick="update_user();" />
-          <!-- <input type="button" value="Delete Profile" onclick="delete_user();" /> -->
+          //<input type="button" value="Delete Profile" onclick="delete_user();" />
         </td>
       </tr>
     </table>
-
     <br>
+    </main> -->
 
-    </main>
 
- 
  <script>
-
   var tblUsers = document.getElementById('tbl_users_list');
   var databaseRef = firebase.database().ref('users/');
   var rowIndex = 1;
-
   console.log(sessionStorage.getItem('email'));
   var userKey = "";
-
+  /* initial verification of the email */
   firebase.database().ref('users/').once('value', function(snapshot){
     var userList = snapshot.val();
-    // console.log(userList);
+    console.log(userList);
     var userKeyList = Object.keys(userList);
     // console.log(userKeyList);
     for (var i=0; i<userKeyList.length; i++){
@@ -161,71 +183,23 @@
       if(sessionStorage.getItem('email') === userList[userKeyList[i]].details.email){
         userKey = userKeyList[i];
         console.log("Match", userKeyList[i], userList[userKeyList[i]].details.email);
+        console.log(userList[userKeyList[i]].details);
+        console.log(document.getElementById('email').placeholder);
+        document.getElementById('email').placeholder = userList[userKeyList[i]].details.email;
+        document.getElementById('name').placeholder = userList[userKeyList[i]].details.name;
+        document.getElementById('lastname').placeholder = userList[userKeyList[i]].details.lastname;
+        document.getElementById('contact').placeholder = userList[userKeyList[i]].details.contact;
         // return userKey;
       }
       // console.log(userKey);
     }
-    
-    
-    // firebase.database().ref('users/'+userKey+'/details').update(data);
     });
-    // return 
-  
-
-  
-
-
-  /*
-  databaseRef.once('value', function(snapshot) 
-  {
-    snapshot.forEach(function(childSnapshot){
-   var childKey = childSnapshot.key;
-   var childData = childSnapshot.val();
-   
-   var row = tblUsers.insertRow(rowIndex);
-   var cellId = row.insertCell(0);
-   var cellName = row.insertCell(1);
-   cellId.appendChild(document.createTextNode(childKey));
-   cellName.appendChild(document.createTextNode(childData.name));
-   
-   rowIndex = rowIndex++;
-    });
-  });*/
-   /*
-  
-  function save_user(){
-   var name = document.getElementById('name').value;
-   var lastname = document.getElementById('lastname').value;
-   var email = document.getElementById('email').value;
-   var contact = document.getElementById('contact').value;
-  
-   var uid = firebase.database().ref().child('users').push().key;
-   
-   var data = {
-    user_id: uid,
-    name: name,
-    lastname: lastname,
-    email: email,
-    contact: contact
-   }
-   
-   var updates = {};
-   updates['/users/' + uid] = data;
-   firebase.database().ref().update(updates);
-   
-   alert('The user is created successfully!');
-   reload_page();
-  }*/
-  
   function update_user() {
     // var email = sessionStorage.setItem('email'); // look into this
     var name = document.getElementById('name').value;
     var lastname = document.getElementById('lastname').value;
-
     var contact = document.getElementById('contact').value;
     var email = sessionStorage.getItem('email');
-
-     
     var data = {
       name: name,
       lastname: lastname,
@@ -233,20 +207,15 @@
       contact: contact,
       status: 1,
     };
-
     console.log("userKey", userKey);
-
     setTimeout(function(){
       // console.log("userKey", userKey);
       firebase.database().ref('users/'+userKey+'/details').update(data);
       alert('The user is updated successfully!');
       reload_page();
     }, 500);
-
    // try if here after
-     
   }
-  
   function delete_user() {
      // var user_id = document.getElementById('user_id').value;
      firebase.database().ref('users/'+userKey).remove();
@@ -254,19 +223,16 @@
      alert('The user is deleted successfully!');
      reload_page();
   }
-  
   function reload_page() {
     window.location.reload();
   }
-  
- </script>
- 
+  </script>
+
    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 
-</html>

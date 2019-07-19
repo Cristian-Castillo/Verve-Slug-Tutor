@@ -31,12 +31,12 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-                {% if messg %}  
-                    <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+                {% if messg %}
+
                 {% else %}
-                    <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+
                     <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
-                {% endif %}    
+                {% endif %}
 
             </div>
             <!-- Navbar Right Side -->
@@ -48,12 +48,13 @@
                     <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
                     <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
                     <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
-                {% endif %}        
+                {% endif %}
             </div>
           </div>
         </div>
       </nav>
     </header>
+
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
@@ -81,12 +82,148 @@
       <div class="row">
         <div class="col-md-8">
     </main>
-        <div>
-            <h1>
-                Contact Us!
-            </h1>
-                
-        </div> 
+
+      <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: #5f788a;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #5f788a;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+
+.button:hover {
+  background-color: #5f788a;
+}
+</style>
+</head>
+<body>
+
+<h2>Meet The Team</h2>
+<p>Verve Slug Academics</p>
+<br>
+<style>
+  a{color:white;}
+  </style>
+
+<div class="row">
+  <div class="column">
+    <div class="card">
+ <!--  <img src="/w3images/team2.jpg" alt="Mike" style="width:100%"> -->
+       <div class="container">
+        <h2>Cris Castillo</h2>
+        <p class="title">Product Owner</p>
+        <p>Founder of multi-million dollar Tutoring App</p>
+        <p>ccarri11@ucsc.edu</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <!--  <img src="/w3images/team2.jpg" alt="Mike" style="width:100%"> -->
+      <div class="container">
+        <h2>Brian Alegria</h2>
+        <p class="title">Senior Developer</p>
+        <p>My current rate is $500 per line of code</p>
+        <p>brpereir@ucsc.edu</p>
+        <p><button class="button"><a href="mailto:ccarri11@ucsc.edu?"Subject=Hello%20again target="_top">Contact</a></button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+       <!--  <img src="/w3images/team2.jpg" alt="Mike" style="width:100%"> -->
+      <div class="container">
+        <h2>Dayna Kim</h2>
+        <p class="title">Senior Developer</p>
+        <p>250k a year.</p>
+        <p>dkim197@ucsc.edu</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+       <!--  <img src="/w3images/team2.jpg" alt="Mike" style="width:100%"> -->
+      <div class="container">
+        <h2>Kisoo Kim</h2>
+        <p class="title">Senior Developer</p>
+        <p>Full Stack engineer</p>
+        <p>kkim93@ucsc.edu</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+    <!--  <img src="/w3images/team2.jpg" alt="Mike" style="width:100%"> -->
+      <div class="container">
+        <h2>Josh Rony</h2>
+        <p class="title">Senior Developer</p>
+        <p>Developer</p>
+        <p>jrony@ucsc.edu</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
 
 
 

@@ -1,6 +1,13 @@
+
 from django.shortcuts import render
 import pyrebase # CC: imported pyrebase wrapper, essentially derives from firebase July 9, 2019
 from django.contrib import auth
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import (
+
+    CreateView
+    )
+from .models import Post
 
 # CC: Included API from Verve-Slug-Tutor and succesfully integrated authentication ------------------------------------------
 config = {
@@ -26,11 +33,7 @@ def home(request):
     message = "hide"
     try:
         idtoken = request.session['uid']
-        # print(idtoken)
-        # localID = authe.get_account_info(idtoken)['users'][0]['localId']
-        # print(localID)
-        # name = database.child('users').child(localID).child('details').child('name').get().val()
-        # print(name)
+
         return render(request, "blog/home.html", {"title": "Profile"})
 
     except KeyError:
@@ -53,22 +56,23 @@ def about(request):
 
 
 def signup(request):
-
     return render(request, 'blog/signup.html', {'title': 'Signup'})
 
 
-def post_form(request):
-    message = "Please log in to access this feature."
-
+def post(request):
+    form = UserCreationForm()
     try:
         idtoken = request.session['uid']
-        return render(request, 'blog/post_form.html', {'title': 'Post'})
+        return render(request, 'blog/post_form.html', {'form': form})
 
 
     except KeyError:
 
         return render(request, "blog/login.html", {"messg": message})
 
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['Title', 'Need', 'Offering', 'Description']
 
 def knowledge(request):
     message = "Please log in to access this feature."
@@ -83,31 +87,7 @@ def knowledge(request):
 
         return render(request, "blog/login.html", {"messg": message})
 
-def knowledge_content(request):
-    message = "Please log in to access this feature."
 
-    try:
-        idtoken = request.session['uid']
-        localID = authe.get_account_info(idtoken)['users'][0]['localId']
-        name = database.child('users').child(localID).child('details').child('name').get().val()
-        return render(request, "blog/knowledge_content.html", {"e": name})
-
-    except KeyError:
-
-        return render(request, "blog/login.html", {"messg": message})
-
-def knowledge_content_update(request):
-    message = "Please log in to access this feature."
-
-    try:
-        idtoken = request.session['uid']
-        localID = authe.get_account_info(idtoken)['users'][0]['localId']
-        name = database.child('users').child(localID).child('details').child('name').get().val()
-        return render(request, "blog/knowledge_content_update.html", {"e": name})
-
-    except KeyError:
-
-        return render(request, "blog/login.html", {"messg": message})
 
 
 def login(request):
@@ -138,10 +118,15 @@ def profile(request):
 
         return render(request, "blog/login.html", {"messg": message})
 
+
+
 # CC:added postsign which gets the email, and if information is entered correctly it will send you to -----------------------------
 def postsign(request): #Changes made by JR in order to display name instead of email
     email=request.POST.get('email')
     passw = request.POST.get('pass')
+
+    print("email")
+    print("passw")
     try:
         user = authe.sign_in_with_email_and_password(email,passw)
     except:
@@ -156,7 +141,7 @@ def postsign(request): #Changes made by JR in order to display name instead of e
 
     localID = authe.get_account_info(idtoken)['users'][0]['localId']
     name = database.child('users').child(localID).child('details').child('name').get().val()
-    return render(request, "blog/knowledge.html",{"localID": localID, "e": name})
+    return render(request, "blog/knowledge.html",{"e": name})
 
 def postsignup(request):
 
