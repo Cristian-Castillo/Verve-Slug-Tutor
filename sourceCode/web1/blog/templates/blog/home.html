@@ -32,9 +32,9 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               {% if messg %}
-                <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+
               {% else %}
-                <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+
                 <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
               {% endif %}
 
@@ -48,31 +48,11 @@
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
                 <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
+                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
 
               {% endif %}
 
 
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <!-- bottom header -->
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
-        <div class="container">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto" style="color: white;">
-              Bringing free knowledge to all UCSC students.
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
         </div>
@@ -96,6 +76,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
@@ -107,11 +88,23 @@
         <div class="col-md-8">
     </main>
     <div>
-      <h1>
-        Tutor Trade!
-      </h1>
-        Bringing free knowledge to all UCSC students.
-    </div>
+
+     <h2>Welcome To Tutor Trade</h2>
+<body><br>
+<div class="containerOne">
+
+<style>
+.containerOne{
+ background: #5f788a;
+ padding: 15px 15px;
+ border: 2px solid #dddddd;
+ border-radius: 3px;
+ margin-bottom: 10px;
+}
+</style>
+        <img src="https://admissions.ucsc.edu/apply/images/22oakes-students.jpg" alt="Norway" style="width:100%;">
+ <div class="text-block">  </body>
+
 
 
 

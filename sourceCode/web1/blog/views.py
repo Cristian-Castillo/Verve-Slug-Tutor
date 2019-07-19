@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 import pyrebase # CC: imported pyrebase wrapper, essentially derives from firebase July 9, 2019
 from django.contrib import auth
@@ -7,7 +8,6 @@ from django.views.generic import (
     CreateView
     )
 from .models import Post
-
 
 # CC: Included API from Verve-Slug-Tutor and succesfully integrated authentication ------------------------------------------
 config = {
@@ -27,6 +27,7 @@ database= firebase.database() # created the database
 #CC:  End of API ----------------------------------------------------------------------------------------------------------------
 
 
+
 def home(request):
 
     message = "hide"
@@ -34,6 +35,7 @@ def home(request):
         idtoken = request.session['uid']
 
         return render(request, "blog/home.html", {"title": "Profile"})
+
     except KeyError:
 
         return render(request, "blog/home.html", {"messg": message})
@@ -42,22 +44,11 @@ def home(request):
 
 def about(request):
 
-
-    # except KeyError:
-
-        return render(request, "blog/home.html", {"messg": message})
-
-
-
-def about(request):
-
-
     message = "hide"
     try:
         idtoken = request.session['uid']
 
         return render(request, "blog/about.html", {"title": "About"})
-
 
     except KeyError:
 
@@ -69,38 +60,19 @@ def signup(request):
 
 
 def post(request):
-
+    form = UserCreationForm()
     try:
         idtoken = request.session['uid']
-        form = UserCreationForm()
         return render(request, 'blog/post_form.html', {'form': form})
-
-
-
-
-    except KeyError:
-
-        return render(request, "blog/about.html", {"messg": message})
-
-
-def signup(request):
-
-    return render(request, 'blog/signup.html', {'title': 'Signup'})
-
-
-def post_form(request):
-    message = "Please log in to access this feature."
-
-    try:
-        idtoken = request.session['uid']
-        return render(request, 'blog/post_form.html', {'title': 'Post'})
 
 
     except KeyError:
 
         return render(request, "blog/login.html", {"messg": message})
 
-
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['Title', 'Need', 'Offering', 'Description']
 
 def knowledge(request):
     message = "Please log in to access this feature."
@@ -117,6 +89,7 @@ def knowledge(request):
 
 
 
+
 def login(request):
     return render(request, "blog/login.html", {'title': 'Login'})
 
@@ -128,24 +101,24 @@ def contact(request):
 
         return render(request, "blog/contact.html", {"title": "Contact"})
 
-
     except KeyError:
 
         return render(request, "blog/contact.html", {"messg": message})
 
 
-
 def profile(request):
-
     message = "Please log in to access this feature."
     try:
         idtoken = request.session['uid']
 
         return render(request, "blog/profile.html", {"title": "Profile"})
 
+
     except KeyError:
 
         return render(request, "blog/login.html", {"messg": message})
+
+
 
 # CC:added postsign which gets the email, and if information is entered correctly it will send you to -----------------------------
 def postsign(request): #Changes made by JR in order to display name instead of email
@@ -190,7 +163,6 @@ def postsignup(request):
     # database constructor with multiple users
     database.child("users").child(uid).child("details").set(data)
     return render(request,"knowledge.html")
-
 # CC: from print down --------------------------------------------------------------------------------------------------------------
 def logout(request): #JR deletes session; if there is no session to delete, render login page regardless
     try:
@@ -198,9 +170,8 @@ def logout(request): #JR deletes session; if there is no session to delete, rend
 
     except KeyError:
         pass
+
     return render(request, 'login.html')
 
 
-class PostCreateView(CreateView):
-    model = Post
-    fields = ['Title', 'Need', 'Offering', 'Description']
+
