@@ -72,11 +72,11 @@
         <div class="col-md-8">
           <div class="title_container">
             <h1> Knowledge Board </h1>
+            <div id="localID" style="display:none;">{{localID}}</div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="title_container">
-            Welcome {{e}}
+          <div class="title_container" id="welcome">
           </div>
         </div>
       </div>
@@ -122,9 +122,19 @@
 
         <div class="col-md-12">
           <div class="content-section">
-            <h3>knowledge board part</h3>
             <div class="row" id="post-container">
-
+              <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+                <thead>
+                  <th style="background-color: #eeeeee; text-align: center;">Look</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Offer</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Title</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Writer</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Date</th>
+                  <!-- <th style="background-color: #eeeeee; text-align: center;">author</th> -->
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -168,7 +178,6 @@
 
     <script>
     // Your web app's Firebase configuration
-
     var firebaseConfig = {
         apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
         authDomain: "verve-slug-tutor.firebaseapp.com",
@@ -180,8 +189,39 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-
     var courseNameList = [];
+
+    $(document).ready(function(){
+      var localID = document.getElementById('localID').innerHTML;
+      console.log(`localID is ${localID}`);
+      console.log(`email is ${sessionStorage.getItem('email')}`);
+      firebase.database().ref(`users/${localID}`).child('details').once('value', function(data){
+        var fullname = `${data.val()['name']} ${data.val()['lastname']}`;
+        sessionStorage.setItem('name', fullname);
+        console.log(`name is ${fullname}`);
+      });
+
+      firebase.database().ref('post/').once('value', function(snapshot) {
+        var postList = snapshot.val();
+          console.log(postList);
+          var keyList = Object.keys(postList);
+          var postLength = keyList.length;
+          for(var i=0;i<postLength;i++){
+            var curKey = keyList[i];
+            //     var email = postList[curKey].email;
+            //     var status = postList[curKey].status;
+            //     var title = postList[curKey].title;
+
+            $("#table-body").append(`<tr>
+              <td>${postList[keyList[i]].look}</td>
+              <td>${postList[keyList[i]].offer}</td>
+              <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${postList[keyList[i]].title}</a></td>
+              <td>${postList[keyList[i]].author}</td>
+              <td>${postList[keyList[i]].date_posted}</td>
+              </tr>`)
+          }
+      });
+    })
 
     firebase.database().ref('courseList/').once('value', function(snapshot){
       var courseList = snapshot.val();
@@ -276,7 +316,12 @@
       console.log("filtered", filtered);
     });
 
-    function filtering(){
+
+
+
+
+    async function filtering(){
+      $("#table-body").remove();
       var fkeyList = Object.keys(fpostList);
       var fpostLength = fkeyList.length;
       var new_filtered = {};
@@ -297,37 +342,71 @@
       }
       filtered = new_filtered;
       console.log("modified filtered", filtered);
+      console.log(Object.keys(filtered).length);
+
+      var keyList=Object.keys(filtered);
+
+
+      // I want to remove the whole data of table, then add rows -> sequential execution of function needed.
+
+
+      // for(var i=0; i<Object.keys(filtered).length; i++) {
+      //   $("#table-body").append(`<tr>
+      //     <td>${filtered[keyList[i]].look}</td>
+      //     <td>${filtered[keyList[i]].offer}</td>
+      //     <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${filtered[keyList[i]].title}</a></td>
+      //     <td>${filtered[keyList[i]].author}</td>
+      //     <td>${filtered[keyList[i]].date_posted}</td>
+      //     </tr>`);
+      // }
+      $("#table-body").empty();
+      func(filtered, keyList);
     }
 
-    firebase.database().ref('post/').once('value', function(snapshot) {
-      var postList = snapshot.val();
-      console.log(postList);
-      var keyList = Object.keys(postList);
-      var postLength = keyList.length;
-      console.log(keyList, postLength);
-      var postcontainer = document.getElementById("post-container");
-      console.log(postcontainer);
-      console.log(postcontainer.innerHTML);
-      var postAllHTML = "";
-      for(var i=0; i<keyList.length; i++) {
-        var post = "";
-        var curKey = keyList[i];
-        // console.log(postList[curKey].author);
-        var author = postList[curKey].author;
-        var content = postList[curKey].content;
-        var date_posted = postList[curKey].date_posted;
-        var email = postList[curKey].email;
-        var status = postList[curKey].status;
-        var title = postList[curKey].title;
-
-        post = "Title: " + title + "<br/>Author: " + author + "<br/>Content: " + content + "<br/>Date_posted: " + date_posted + "<br/>Email: "+ email + "<br/>Status: "+ status;
-        console.log(post);
-        postHTML = '<div class="col-md-6"><div class="post-box">'+post+'</div></div>'
-        postAllHTML += postHTML;
+    function func(filtered, keyList){
+      for(var i=0; i<Object.keys(filtered).length; i++) {
+        $("#table-body").append(`<tr>
+          <td>${filtered[keyList[i]].look}</td>
+          <td>${filtered[keyList[i]].offer}</td>
+          <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${filtered[keyList[i]].title}</a></td>
+          <td>${filtered[keyList[i]].author}</td>
+          <td>${filtered[keyList[i]].date_posted}</td>
+          </tr>`);
       }
-      postcontainer.innerHTML = postAllHTML;
-      // console.log(post.length());
-    });
+    }
+
+    function moveToContent(contentKey){
+      sessionStorage.setItem('contentKey', contentKey);
+    }
+
+    // firebase.database().ref('post/').once('value', function(snapshot) {
+    //   var postList = snapshot.val();
+    //   console.log(postList);
+    //   var keyList = Object.keys(postList);
+    //   var postLength = keyList.length;
+    //   console.log(keyList, postLength);
+    //   var postcontainer = document.getElementById("post-container");
+    //   console.log(postcontainer);
+    //   console.log(postcontainer.innerHTML);
+    //   var postAllHTML = "";
+    //   for(var i=0; i<keyList.length; i++) {
+    //     var post = "";
+    //     var curKey = keyList[i];
+    //     // console.log(postList[curKey].author);
+    //     var author = postList[curKey].author;
+    //     var content = postList[curKey].content;
+    //     var date_posted = postList[curKey].date_posted;
+    //     var email = postList[curKey].email;
+    //     var status = postList[curKey].status;
+    //     var title = postList[curKey].title;
+    //     post = "Title: " + title + "<br/>Author: " + author + "<br/>Content: " + content + "<br/>Date_posted: " + date_posted + "<br/>Email: "+ email + "<br/>Status: "+ status;
+    //     console.log(post);
+    //     postHTML = '<div class="col-md-6"><div class="post-box">'+post+'</div></div>'
+    //     postAllHTML += postHTML;
+    //   }
+    //   postcontainer.innerHTML = postAllHTML;
+    //   // console.log(post.length());
+    // });
 
     </script>
   </body>

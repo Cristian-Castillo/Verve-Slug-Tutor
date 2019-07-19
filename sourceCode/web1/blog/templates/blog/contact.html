@@ -41,17 +41,14 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-
-              {% if messg %}
-
-                <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
-                <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
-              {% else %}
-                <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
-                <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
-              {% endif %}
-
+                {% if messg %}
+                    <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
+                {% else %}
+                    <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+                    <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
+                    <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
+                {% endif %}
             </div>
           </div>
         </div>
@@ -75,8 +72,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
+              <a class="nav-item nav-link" href="{% url 'blog-contact' %}" style="color:white;">Contact Us</a>
             </div>
           </div>
         </div>
