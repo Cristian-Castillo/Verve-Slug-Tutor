@@ -88,17 +88,6 @@
     </header>
 
     <main role="main" class="container">
-
-      <div class="row">
-        <div class="col-md-8">
-    </main>
-    <div>
-      <h1>
-        Tutor Trade!
-      </h1>
-        Bringing free knowledge to all UCSC students.
-    </div>
-
       <div class="signup_container">
         <!-- <div class="row" style="height: 50px; margin-bottom: 30px;">
           <div class="col-md-5"><h1>Tutor Trade!</h1></div>
@@ -113,7 +102,6 @@
               <input type="email" name ="email" id="email" placeholder="email" style="border: none; width: 100%; background-color: #F2F2F2" disabled>
             </span>
           </div>
-
 
           <div class="signup_row" >
             <h4 class="signup_title">
@@ -150,26 +138,21 @@
       </div>
     </main>
 
-
     <!-- <main role="main" class="container">
     <h1>Edit Profile {{e}}</h1>
-
     <table>
       <tr>
         <td>First Name:</td>
         <td><input type="text" name="name" id="name" /></td>
       </tr>
-
       <tr>
         <td>Last Name:</td>
         <td><input type="text" name="lastname" id="lastname" /></td>
       </tr>
-
       <tr>
         <td>Contact:</td>
         <td><input type="text" name="contact" id="contact" /></td>
       </tr>
-
       <tr>
         <td colspan="2">
           <br>
@@ -182,16 +165,12 @@
     </main> -->
 
 
-
  <script>
-
   var tblUsers = document.getElementById('tbl_users_list');
   var databaseRef = firebase.database().ref('users/');
   var rowIndex = 1;
-
   console.log(sessionStorage.getItem('email'));
   var userKey = "";
-
   /* initial verification of the email */
   firebase.database().ref('users/').once('value', function(snapshot){
     var userList = snapshot.val();
@@ -214,70 +193,13 @@
       }
       // console.log(userKey);
     }
-
-
-
-    // firebase.database().ref('users/'+userKey+'/details').update(data);
     });
-    // return
-
-
-
-
-
-  /*
-  databaseRef.once('value', function(snapshot)
-  {
-    snapshot.forEach(function(childSnapshot){
-   var childKey = childSnapshot.key;
-   var childData = childSnapshot.val();
-
-   var row = tblUsers.insertRow(rowIndex);
-   var cellId = row.insertCell(0);
-   var cellName = row.insertCell(1);
-   cellId.appendChild(document.createTextNode(childKey));
-   cellName.appendChild(document.createTextNode(childData.name));
-
-   rowIndex = rowIndex++;
-    });
-  });*/
-   /*
-
-  function save_user(){
-   var name = document.getElementById('name').value;
-   var lastname = document.getElementById('lastname').value;
-   var email = document.getElementById('email').value;
-   var contact = document.getElementById('contact').value;
-
-   var uid = firebase.database().ref().child('users').push().key;
-
-   var data = {
-    user_id: uid,
-    name: name,
-    lastname: lastname,
-    email: email,
-    contact: contact
-   }
-
-   var updates = {};
-   updates['/users/' + uid] = data;
-   firebase.database().ref().update(updates);
-
-   alert('The user is created successfully!');
-   reload_page();
-  }*/
-
-    });
-
-
   function update_user() {
     // var email = sessionStorage.setItem('email'); // look into this
     var name = document.getElementById('name').value;
     var lastname = document.getElementById('lastname').value;
     var contact = document.getElementById('contact').value;
     var email = sessionStorage.getItem('email');
-
-
     var data = {
       name: name,
       lastname: lastname,
@@ -285,20 +207,15 @@
       contact: contact,
       status: 1,
     };
-
     console.log("userKey", userKey);
-
     setTimeout(function(){
       // console.log("userKey", userKey);
       firebase.database().ref('users/'+userKey+'/details').update(data);
       alert('The user is updated successfully!');
       reload_page();
     }, 500);
-
    // try if here after
-
   }
-
   function delete_user() {
      // var user_id = document.getElementById('user_id').value;
      firebase.database().ref('users/'+userKey).remove();
@@ -306,16 +223,10 @@
      alert('The user is deleted successfully!');
      reload_page();
   }
-
   function reload_page() {
     window.location.reload();
   }
-
-
- </script>
-
   </script>
-
 
    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -325,4 +236,3 @@
 
 </body>
 
-</html>
