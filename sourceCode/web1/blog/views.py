@@ -156,7 +156,7 @@ def postsign(request): #Changes made by JR in order to display name instead of e
 
     localID = authe.get_account_info(idtoken)['users'][0]['localId']
     name = database.child('users').child(localID).child('details').child('name').get().val()
-    return render(request, "blog/knowledge.html",{"e": name})
+    return render(request, "blog/knowledge.html",{"localID": localID, "e": name})
 
 def postsignup(request):
 

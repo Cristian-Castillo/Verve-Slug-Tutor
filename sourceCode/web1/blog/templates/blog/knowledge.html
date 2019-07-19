@@ -53,6 +53,7 @@
         <div class="col-md-8">
           <div class="title_container">
             <h1> Knowledge Board </h1>
+            <div id="localID" style="display:none;">{{localID}}</div>
           </div>
         </div>
         <div class="col-md-4">
@@ -157,7 +158,6 @@
 
     <script>
     // Your web app's Firebase configuration
-
     var firebaseConfig = {
         apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
         authDomain: "verve-slug-tutor.firebaseapp.com",
@@ -169,10 +169,18 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-
     var courseNameList = [];
 
     $(document).ready(function(){
+      var localID = document.getElementById('localID').innerHTML;
+      console.log(`localID is ${localID}`);
+      console.log(`email is ${sessionStorage.getItem('email')}`);
+      firebase.database().ref(`users/${localID}`).child('details').once('value', function(data){
+        var fullname = `${data.val()['name']} ${data.val()['lastname']}`;
+        sessionStorage.setItem('name', fullname);
+        console.log(`name is ${fullname}`);
+      });
+
       firebase.database().ref('post/').once('value', function(snapshot) {
         var postList = snapshot.val();
           console.log(postList);

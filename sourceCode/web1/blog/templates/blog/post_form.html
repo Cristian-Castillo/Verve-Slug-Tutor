@@ -164,6 +164,15 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
+      // var localID = document.getElementById('localID').innerHTML;
+      // console.log(`localID is ${localID}`);
+      // console.log(`email is ${sessionStorage.getItem('email')}`);
+      // firebase.database().ref(`users/${sessionStorage.getItem('name')}`).child('details').once('value', function(data){
+        // var fullname = `${data.val()['name']} ${data.val()['lastname']}`;
+        sessionStorage.getItem('name');
+        // console.log(`name is ${fullname}`);
+      // });
+
       // var postCnt=0;
       // var postKey="";
 
@@ -172,6 +181,8 @@
         console.log(`Today is ${d.getFullYear()}, ${d.getMonth()}, ${d.getDate()}`);
         var title = $("#input-title").val();
         var content = $("#input-content").val();
+        var look=$("#lookfor-subject").val();
+        var offer=$("#teach-subject").val();
         var date = d.getFullYear().toString()+"/"+(d.getMonth()+1).toString()+"/"+d.getDate().toString();
         firebase.database().ref('post/').once('value', function(snapshot) {
           var postList = snapshot.val();
@@ -181,11 +192,11 @@
           firebase.database().ref('post/').push({
               "title": title,
               "content": content,
+              "look": look,
+              "offer": offer,
               "date_posted": date,
               "email": sessionStorage.getItem('email'),
-              "author": sessionStorage.getItem('author'),
-            // postCnt=0;
-            // postKey="";
+              "author": sessionStorage.getItem('name'),
           });
         });
       });
