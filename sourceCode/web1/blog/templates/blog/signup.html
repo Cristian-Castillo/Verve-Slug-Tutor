@@ -147,47 +147,46 @@
   <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
   <script>
 
-      var firebaseConfig = {
-          apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
-          authDomain: "verve-slug-tutor.firebaseapp.com",
-          databaseURL: "https://verve-slug-tutor.firebaseio.com",
-          projectId: "verve-slug-tutor",
-          storageBucket: "verve-slug-tutor.appspot.com",
-          messagingSenderId: "1013220996189",
-          appId: "1:1013220996189:web:615c1dfe72a6e660"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      //var database=firebase.database();
-      //var auth = firebase.auth();
-      /*
-      var provider = new firebase.auth.GoogleAuthProvider();
+    var config = {
+      apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+      authDomain: "verve-slug-tutor.firebaseapp.com",
+      databaseURL: "https://verve-slug-tutor.firebaseio.com",
+      projectId: "verve-slug-tutor",
+      storageBucket: "verve-slug-tutor.appspot.com",
+      messagingSenderId: "1013220996189"
+    };
+    firebase.initializeApp(config);
 
-      firebase.auth().signInWithPopup(provider).then(function(result){
-          var token=result.credential.accessToken;
-          var user=result.user;
-          console.log(user);
-      }).catch(function(error){
-          var errorcode=error.code;
-          var errorMessage=error.message;
-          var email=error.email;
-          var credential=error.credential;
-      });
+    var emailList = [];
 
-      var database=firebase.database();
+    firebase.database().ref('users/').once('value', function(snapshot){
+      var userList = snapshot.val();
+      console.log(userList);
+      var userKeyList = Object.keys(userList);
+      // console.log(userKeyList);
+      for (var i=0; i<userKeyList.length; i++){
+        // console.log(userKeyList[i]);
+        console.log(userList[userKeyList[i]].details.email);
+        emailList.push(userList[userKeyList[i]].details.email);
+      }
+      // console.log(emailList);
+    });
 
-      var dbTestRef=database.ref('userdata/')
-      dbTestRef.on('child_added', function(data){
-          console.log(data.val());
-      })
-      */
 
       function confirmEmail() {
         var email = $('#signup_email').val();
         var emailMsg = document.getElementById("emailMsg");
         if (email != ''){
           console.log("Duplicate Email Check: ", email);
-          console.log("Not yet completed");
+          console.log(emailList);
+          if (emailList.includes(email)){
+            console.log("You cannot use this email: ", email);
+            if(emailMsg.style.display == 'none')
+              emailMsg.style.display = 'block';
+          }
+          else{
+            emailMsg.style.display = 'none';
+          }
         }
       }
 

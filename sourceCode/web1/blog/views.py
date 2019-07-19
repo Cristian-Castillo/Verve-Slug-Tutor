@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 import pyrebase # CC: imported pyrebase wrapper, essentially derives from firebase July 9, 2019
 from django.contrib import auth
@@ -171,5 +172,6 @@ def logout(request): #JR deletes session; if there is no session to delete, rend
         pass
 
     return render(request, 'login.html')
+
 
 
