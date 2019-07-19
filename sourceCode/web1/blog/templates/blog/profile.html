@@ -53,14 +53,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'blog-profile' %}" style="color:white;">Profile</a>
-              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
+              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
             </div>
           </div>
         </div>
@@ -80,6 +79,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
@@ -145,17 +145,14 @@
         <td>First Name:</td>
         <td><input type="text" name="name" id="name" /></td>
       </tr>
-
       <tr>
         <td>Last Name:</td>
         <td><input type="text" name="lastname" id="lastname" /></td>
       </tr>
-
       <tr>
         <td>Contact:</td>
         <td><input type="text" name="contact" id="contact" /></td>
       </tr>
-
       <tr>
         <td colspan="2">
           <br>
@@ -169,14 +166,11 @@
 
 
  <script>
-
   var tblUsers = document.getElementById('tbl_users_list');
   var databaseRef = firebase.database().ref('users/');
   var rowIndex = 1;
-
   console.log(sessionStorage.getItem('email'));
   var userKey = "";
-
   /* initial verification of the email */
   firebase.database().ref('users/').once('value', function(snapshot){
     var userList = snapshot.val();
@@ -200,14 +194,12 @@
       // console.log(userKey);
     }
     });
-
   function update_user() {
     // var email = sessionStorage.setItem('email'); // look into this
     var name = document.getElementById('name').value;
     var lastname = document.getElementById('lastname').value;
     var contact = document.getElementById('contact').value;
     var email = sessionStorage.getItem('email');
-
     var data = {
       name: name,
       lastname: lastname,
@@ -215,20 +207,15 @@
       contact: contact,
       status: 1,
     };
-
     console.log("userKey", userKey);
-
     setTimeout(function(){
       // console.log("userKey", userKey);
       firebase.database().ref('users/'+userKey+'/details').update(data);
       alert('The user is updated successfully!');
       reload_page();
     }, 500);
-
    // try if here after
-
   }
-
   function delete_user() {
      // var user_id = document.getElementById('user_id').value;
      firebase.database().ref('users/'+userKey).remove();
@@ -236,11 +223,9 @@
      alert('The user is deleted successfully!');
      reload_page();
   }
-
   function reload_page() {
     window.location.reload();
   }
-
   </script>
 
    <!-- Optional JavaScript -->
@@ -251,4 +236,3 @@
 
 </body>
 
-</html>
