@@ -26,11 +26,11 @@ def home(request):
     message = "hide"
     try:
         idtoken = request.session['uid']
-        print(idtoken)
-        localID = authe.get_account_info(idtoken)['users'][0]['localId']
-        print(localID)
-        name = database.child('users').child(localID).child('details').child('name').get().val()
-        print(name)
+        # print(idtoken)
+        # localID = authe.get_account_info(idtoken)['users'][0]['localId']
+        # print(localID)
+        # name = database.child('users').child(localID).child('details').child('name').get().val()
+        # print(name)
         return render(request, "blog/home.html", {"title": "Profile"})
 
     except KeyError:
@@ -142,9 +142,6 @@ def profile(request):
 def postsign(request): #Changes made by JR in order to display name instead of email
     email=request.POST.get('email')
     passw = request.POST.get('pass')
-
-    print("email")
-    print("passw")
     try:
         user = authe.sign_in_with_email_and_password(email,passw)
     except:

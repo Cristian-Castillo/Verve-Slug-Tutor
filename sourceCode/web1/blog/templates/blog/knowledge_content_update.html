@@ -49,16 +49,16 @@
 
     <main role="main" class="container">
       <div class="row" style="margin-bottom: 10px;">
-        <div class="col-md-8">
+        <!-- <div class="col-md-8">
           <div class="title_container" >
             <h5 id="welcome-tag"></h5>
           </div>
-        </div>
-        <div class="col-md-4">
+        </div> -->
+        <!-- <div class="col-md-4">
           <div class="title_container">
 
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="row" style="margin-top: 10px;">
@@ -93,39 +93,40 @@
 
         <div class="col-md-9">
           <div class="content-section">
-            <h3>knowledge board part</h3>
+            <!-- <h3>knowledge board part</h3> -->
 
-            <div class="row" id="post-container">
+            <!-- <div class="row" id="post-container"> -->
 
               <form action="/knowledge_content" class="form-horizontal">
                 <div class="form-group">
                   <label class="col-sm-2 control-label"><strong>Title</strong></label>
-                  <div class="col-sm-10">
+                  <div class="col-sm-10" style="max-width: 100%;">
                     <input type="text" id="title-update" class="form-control" >
                   </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><strong>content</strong></label>
-                  <div class="col-sm-10">
-                    <input type="text" id="content-update" class="form-control" >
+                  <div class="col-sm-10" style="max-width: 100%;">
+                    <textarea class="form-control" rows="3"id="input-content"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label"><strong>Author</strong></label>
-                  <div class="col-sm-10">
-                    <input class="form-control" id="author-update" type="text"  disabled>
+                  <label class="col-sm-2 control-label"><strong>look</strong></label>
+                  <div class="col-sm-10" style="max-width: 100%;">
+                    <input class="form-control" id="look-update" type="text"  disabled>
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"><strong>Date</strong></label>
-                  <div class="col-sm-10">
-                    <input class="form-control" id="date-update" type="text"  disabled>
+                <div class="form-group" style="max-width: 100%;">
+                  <label class="col-sm-2 control-label"><strong>offer</strong></label>
+                  <div class="col-sm-10" style="max-width: 100%;">
+                    <input class="form-control" id="offer-update" type="text"  disabled>
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10">
+                  <div class="col-sm-offset-2 col-sm-10" style="max-width: 100%;">
                     <button type="submit" class="btn btn-success" id="update-button">Update</button>
+                    <button onclick="window.history.back();" class="btn btn-danger" id="cancel-button">Cancel</button>
                   </div>
                 </div>
               </form>
@@ -150,7 +151,7 @@
             </div>
           </article>
           {% endfor %} -->
-            </div>
+            <!-- </div> -->
           </div>
 
         </div>
@@ -192,10 +193,8 @@
 
     <script>
     console.log('knowledge board!');
-    console.log(sessionStorage.getItem('contentKey'));
-    console.log(sessionStorage.getItem('email'));
-
-
+    console.log(`contentKey is ${sessionStorage.getItem('contentKey')}`);
+    console.log(`email is ${sessionStorage.getItem('email')}`);
 
 
     var firebaseConfig = {
@@ -233,8 +232,8 @@
       // console.log(Object.keys(postList).length);
       $("#title-update").attr("value", postList.title);
       $("#content-update").attr("value", postList.content);
-      $("#date-update").attr("value", postList.date_posted);
-      $("#author-update").attr("value", postList.author);
+      $("#look-update").attr("value", postList.look);
+      $("#offer-update").attr("value", postList.offer);
       // document.getElementById("content-title").value = postList.title;
       // document.getElementById("content-author").value = postList.author;
       // document.getElementById("content-date").value = postList.date_posted;

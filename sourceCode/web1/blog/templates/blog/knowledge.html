@@ -102,11 +102,11 @@
 
         <div class="col-md-12">
           <div class="content-section">
-            <h3>knowledge board part</h3>
             <div class="row" id="post-container">
               <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
                 <thead>
-                  <th style="background-color: #eeeeee; text-align: center;">Number</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Look</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Offer</th>
                   <th style="background-color: #eeeeee; text-align: center;">Title</th>
                   <th style="background-color: #eeeeee; text-align: center;">Writer</th>
                   <th style="background-color: #eeeeee; text-align: center;">Date</th>
@@ -185,7 +185,8 @@
             //     var title = postList[curKey].title;
 
             $("#table-body").append(`<tr>
-              <td>${i+1}</td>
+              <td>${postList[keyList[i]].look}</td>
+              <td>${postList[keyList[i]].offer}</td>
               <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${postList[keyList[i]].title}</a></td>
               <td>${postList[keyList[i]].author}</td>
               <td>${postList[keyList[i]].date_posted}</td>
@@ -291,7 +292,8 @@
 
 
 
-    function filtering(){
+    async function filtering(){
+      $("#table-body").remove();
       var fkeyList = Object.keys(fpostList);
       var fpostLength = fkeyList.length;
       var new_filtered = {};
@@ -316,18 +318,33 @@
 
       var keyList=Object.keys(filtered);
 
-      // $("table-body").remove();
+
       // I want to remove the whole data of table, then add rows -> sequential execution of function needed.
 
+
+      // for(var i=0; i<Object.keys(filtered).length; i++) {
+      //   $("#table-body").append(`<tr>
+      //     <td>${filtered[keyList[i]].look}</td>
+      //     <td>${filtered[keyList[i]].offer}</td>
+      //     <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${filtered[keyList[i]].title}</a></td>
+      //     <td>${filtered[keyList[i]].author}</td>
+      //     <td>${filtered[keyList[i]].date_posted}</td>
+      //     </tr>`);
+      // }
+      $("#table-body").empty();
+      func(filtered, keyList);
+    }
+
+    function func(filtered, keyList){
       for(var i=0; i<Object.keys(filtered).length; i++) {
         $("#table-body").append(`<tr>
-          <td>${i+1}</td>
+          <td>${filtered[keyList[i]].look}</td>
+          <td>${filtered[keyList[i]].offer}</td>
           <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${filtered[keyList[i]].title}</a></td>
           <td>${filtered[keyList[i]].author}</td>
           <td>${filtered[keyList[i]].date_posted}</td>
           </tr>`);
       }
-
     }
 
     function moveToContent(contentKey){

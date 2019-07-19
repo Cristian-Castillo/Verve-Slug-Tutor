@@ -45,16 +45,13 @@
 
             </div>
             <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              {% if messg %}
-                <a class="nav-item nav-link" id="button-1" style="color:#fff" href="{% url 'blog-login' %}">Login</a>
-                <a class="nav-item nav-link" id="button-2" style="color:#fff" href="{% url 'blog-signup' %}">Signup</a>
-              {% else %}
-                <a class="nav-item nav-link" id="button-3" href="{% url 'blog-logout' %}">Logout</a>
-                <a class="nav-item nav-link" id="button-profile" href="{% url 'blog-profile' %}">Profile</a>
-                <a class="nav-item nav-link" id="button-post" href="{% url 'blog-post_form' %}">Post</a>
+            <div class="navbar-nav" id="login-or-not">
+              <!-- {% if messg %} -->
 
-              {% endif %}
+              <!-- {% else %} -->
+
+
+              <!-- {% endif %} -->
 
 
             </div>
@@ -100,43 +97,47 @@
 
 
           {% block content %}{% endblock %}
-    <script>
-    var firebaseConfig = {
-        apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
-        authDomain: "verve-slug-tutor.firebaseapp.com",
-        databaseURL: "https://verve-slug-tutor.firebaseio.com",
-        projectId: "verve-slug-tutor",
-        storageBucket: "verve-slug-tutor.appspot.com",
-        messagingSenderId: "1013220996189",
-        appId: "1:1013220996189:web:615c1dfe72a6e660"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        console.log('logged in!');
 
-        // $("#button-1").val('logout');
-        // $("#button-1").css("href","{% url 'blog-logout' %}");
-        // $("#button-2").val('profile');
-        // $("#button-2").css("href","{% url 'blog-profile' %}");
-      } else {
-        console.log('not logged in!');
-        // $(document).ready(
-	      //    function(){
-		    //        (function() { $("#button-login").css("display","block");})(),
-        //         (function() { $("#button-signup").css("display","block");})();
-        // });
-        // $("#button-logout").css("display","none");
-      }
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+
+    $(document).ready(function(){
+      console.log(`email is ${sessionStorage.getItem('email')}`);
+      var firebaseConfig = {
+          apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+          authDomain: "verve-slug-tutor.firebaseapp.com",
+          databaseURL: "https://verve-slug-tutor.firebaseio.com",
+          projectId: "verve-slug-tutor",
+          storageBucket: "verve-slug-tutor.appspot.com",
+          messagingSenderId: "1013220996189",
+          appId: "1:1013220996189:web:615c1dfe72a6e660"
+      };
+      firebase.initializeApp(firebaseConfig);
+      // check whether the user logged in or not
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          console.log('logged in!');
+
+          $("#login-or-not").append(`<a class="nav-item nav-link" id="button-3" href="{% url 'blog-logout' %}">Logout</a>
+          <a class="nav-item nav-link" id="button-profile" href="{% url 'blog-profile' %}">Profile</a>
+          <a class="nav-item nav-link" id="button-post" href="{% url 'blog-post_form' %}">Post</a>`);
+        } else {
+          console.log('not logged in!');
+          $("#login-or-not").append(`<a class="nav-item nav-link" id="button-1" style="color:#fff" href="{% url 'blog-login' %}">Login</a>
+          <a class="nav-item nav-link" id="button-2" style="color:#fff" href="{% url 'blog-signup' %}">Signup</a>`);
+        }
+      });
     });
+
+    // Initialize Firebase
+
     </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+    </body>
 </html>
