@@ -52,14 +52,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'blog-profile' %}" style="color:white;">Profile</a>
-              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
+              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
             </div>
           </div>
         </div>
@@ -88,6 +87,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
@@ -103,7 +103,7 @@
         Tutor Trade!
       </h1>
         Bringing free knowledge to all UCSC students.
-    </div> 
+    </div>
 
     <br>
     <br>
@@ -111,8 +111,8 @@
     <main role="main" class="container">
     <h1>Edit Profile {{e}}</h1>
 
-    <table> 
-      <tr> 
+    <table>
+      <tr>
         <td>First Name:</td>
         <td><input type="text" name="name" id="name" /></td>
       </tr>
@@ -140,7 +140,7 @@
 
     </main>
 
- 
+
  <script>
 
   var tblUsers = document.getElementById('tbl_users_list');
@@ -165,42 +165,42 @@
       }
       // console.log(userKey);
     }
-    
-    
+
+
     // firebase.database().ref('users/'+userKey+'/details').update(data);
     });
-    // return 
-  
+    // return
 
-  
+
+
 
 
   /*
-  databaseRef.once('value', function(snapshot) 
+  databaseRef.once('value', function(snapshot)
   {
     snapshot.forEach(function(childSnapshot){
    var childKey = childSnapshot.key;
    var childData = childSnapshot.val();
-   
+
    var row = tblUsers.insertRow(rowIndex);
    var cellId = row.insertCell(0);
    var cellName = row.insertCell(1);
    cellId.appendChild(document.createTextNode(childKey));
    cellName.appendChild(document.createTextNode(childData.name));
-   
+
    rowIndex = rowIndex++;
     });
   });*/
    /*
-  
+
   function save_user(){
    var name = document.getElementById('name').value;
    var lastname = document.getElementById('lastname').value;
    var email = document.getElementById('email').value;
    var contact = document.getElementById('contact').value;
-  
+
    var uid = firebase.database().ref().child('users').push().key;
-   
+
    var data = {
     user_id: uid,
     name: name,
@@ -208,15 +208,15 @@
     email: email,
     contact: contact
    }
-   
+
    var updates = {};
    updates['/users/' + uid] = data;
    firebase.database().ref().update(updates);
-   
+
    alert('The user is created successfully!');
    reload_page();
   }*/
-  
+
   function update_user() {
     // var email = sessionStorage.setItem('email'); // look into this
     var name = document.getElementById('name').value;
@@ -225,7 +225,7 @@
     var contact = document.getElementById('contact').value;
     var email = sessionStorage.getItem('email');
 
-     
+
     var data = {
       name: name,
       lastname: lastname,
@@ -244,9 +244,9 @@
     }, 500);
 
    // try if here after
-     
+
   }
-  
+
   function delete_user() {
      // var user_id = document.getElementById('user_id').value;
      firebase.database().ref('users/'+userKey).remove();
@@ -254,13 +254,13 @@
      alert('The user is deleted successfully!');
      reload_page();
   }
-  
+
   function reload_page() {
     window.location.reload();
   }
-  
+
  </script>
- 
+
    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

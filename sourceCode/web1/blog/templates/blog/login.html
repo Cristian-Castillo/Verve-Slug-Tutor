@@ -29,7 +29,7 @@
     {% endif %}
 
     <script> // Kisoo
-      function storageEmail(){ 
+      function storageEmail(){
          var email=document.getElementById("login_email").value;
          sessionStorage.setItem('email',email);
       }
@@ -45,7 +45,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -106,6 +105,7 @@
             </div>
             <!-- Navbar Bottom Right Side Buttons -->
             <div class="navbar-nav">
+               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
@@ -118,7 +118,7 @@
     </main>
 <!-- this is the bottom border for the page -->
 
-    <!-- Sorry Dana, you can tweak my code to make it look like what you had before.
+    <!--
         <main role="main" class="container">
 
       <div class="signup_container">

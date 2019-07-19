@@ -31,28 +31,28 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              {% if messg %}  
-                <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+              {% if messg %}
+
               {% else %}
-                <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+
                 <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
-              {% endif %}  
-                  
+              {% endif %}
+
 
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              {% if messg %}  
+              {% if messg %}
                 <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
                 <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
                 <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
+                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
 
-              {% endif %}  
+              {% endif %}
 
-                  
+
             </div>
           </div>
         </div>
@@ -75,6 +75,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
@@ -86,17 +87,27 @@
         <div class="col-md-8">
     </main>
     <div>
-      <h1>
-        Tutor Trade!
-      </h1>
-        Bringing free knowledge to all UCSC students.
-    </div>    
+     <h2>Welcome To Tutor Trade</h2>
+<body><br>
+<div class="containerOne">
+
+<style>
+.containerOne{
+ background: #5f788a;
+ padding: 15px 15px;
+ border: 2px solid #dddddd;
+ border-radius: 3px;
+ margin-bottom: 10px;
+}
+</style>
+        <img src="https://admissions.ucsc.edu/apply/images/22oakes-students.jpg" alt="Norway" style="width:100%;">
+ <div class="text-block">  </body>
 
 
 
 
           {% block content %}{% endblock %}
-      
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
