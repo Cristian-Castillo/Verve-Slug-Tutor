@@ -33,8 +33,12 @@ def home(request):
     message = "hide"
     try:
         idtoken = request.session['uid']
-
-        return render(request, "blog/home.html", {"title": "Profile"})
+        # print(idtoken)
+        localID = authe.get_account_info(idtoken)['users'][0]['localId']
+        # print(localID)
+        # name = database.child('users').child(localID).child('details').child('name').get().val()
+        # print(name)
+        return render(request, "blog/home.html", {"title": "Profile", "localID": localID})
 
     except KeyError:
 
@@ -129,19 +133,20 @@ def postsign(request): #Changes made by JR in order to display name instead of e
     print("passw")
     try:
         user = authe.sign_in_with_email_and_password(email,passw)
+        session_id=user['idToken']
+        request.session['uid']=str(session_id)
+        idtoken = request.session['uid']
+        #a = authe.get_account_info
+
+        localID = authe.get_account_info(idtoken)['users'][0]['localId']
+        # name = database.child('users').child(localID).child('details').child('name').get().val()
+        return render(request, "blog/knowledge.html",{"localID": localID})
     except:
         message = "invalid credentials"
         return render(request,"login.html",{"messg":message})
 
     #print(user['idToken'])
-    session_id=user['idToken']
-    request.session['uid']=str(session_id)
-    idtoken = request.session['uid']
-    #a = authe.get_account_info
 
-    localID = authe.get_account_info(idtoken)['users'][0]['localId']
-    name = database.child('users').child(localID).child('details').child('name').get().val()
-    return render(request, "blog/knowledge.html",{"e": name})
 
 def postsignup(request):
 
@@ -153,16 +158,22 @@ def postsignup(request):
 
     user=authe.create_user_with_email_and_password(email,passw)
     # CC: Here we create account
+    # user = authe.sign_in_with_email_and_password(email,passw)
 
     uid = user['localId']
     # CC unique ID for the user
+    session_id=user['idToken']
+    request.session['uid']=str(session_id)
+    idtoken = request.session['uid']
+    #a = authe.get_account_info
+    localID = authe.get_account_info(idtoken)['users'][0]['localId']
 
     data = {"name":name, "lastname":name2, "email":email, "contact":contact, "status":"1"}
     # to push the data into the database, 1 means account is enabled
     # from above name and email from form and enabled the account
     # database constructor with multiple users
     database.child("users").child(uid).child("details").set(data)
-    return render(request,"knowledge.html")
+    return render(request,"knowledge.html", {"localID": localID})
 # CC: from print down --------------------------------------------------------------------------------------------------------------
 def logout(request): #JR deletes session; if there is no session to delete, render login page regardless
     try:
@@ -172,3 +183,30 @@ def logout(request): #JR deletes session; if there is no session to delete, rend
         pass
 
     return render(request, 'login.html')
+
+
+def knowledge_content(request):
+    message = "Please log in to access this feature."
+
+    try:
+        idtoken = request.session['uid']
+        localID = authe.get_account_info(idtoken)['users'][0]['localId']
+        name = database.child('users').child(localID).child('details').child('name').get().val()
+        return render(request, "blog/knowledge_content.html", {"e": name})
+
+    except KeyError:
+
+        return render(request, "blog/login.html", {"messg": message})
+
+def knowledge_content_update(request):
+    message = "Please log in to access this feature."
+
+    try:
+        idtoken = request.session['uid']
+        localID = authe.get_account_info(idtoken)['users'][0]['localId']
+        name = database.child('users').child(localID).child('details').child('name').get().val()
+        return render(request, "blog/knowledge_content_update.html", {"e": name})
+
+    except KeyError:
+
+        return render(request, "blog/login.html", {"messg": message})
