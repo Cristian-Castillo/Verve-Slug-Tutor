@@ -45,6 +45,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -125,7 +126,6 @@
             </div>
             <!-- Navbar Bottom Right Side Buttons -->
             <div class="navbar-nav">
-               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
@@ -138,13 +138,11 @@
     </main>
 <!-- this is the bottom border for the page -->
 
-    <!--
+    <!-- Sorry Dana, you can tweak my code to make it look like what you had before.
         <main role="main" class="container">
-
       <div class="signup_container">
         <div><h1>Login for Verve-Slug-Tutor</h1></div>
         <div class="signup_content">
-
           <div class="signup_row">
             <h4 class="signup_title">
               <label for="id">Username</label>
@@ -153,7 +151,6 @@
               <input type="text" id="login_id" name="id" maxlength="20" style="border: none; width: 100%;">
             <span>
           </div>
-
           <div class="signup_row">
             <h4 class="signup_title">
               <label for="id">Password</label>
@@ -163,18 +160,14 @@
             <span>
             <span class="error_next_box" id="idPw" style="display:none" role="alert">These passwords don’t match.</span>
           </div>
-
-
           <div class="signup_btn_row">
             <button type="button" id="btnLogin" class="btn_type btn_primary">
               <span>Login</span>
             </button>
           </div>
         </div>
-
       </div>
     </main>
-
       </div> -->
    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -183,4 +176,3 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
-</html>
