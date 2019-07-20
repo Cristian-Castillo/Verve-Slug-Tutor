@@ -28,7 +28,7 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/">Welcome to Tutor Trade</a>
+          <a class="navbar-brand mr-4" href="/"><i class="fas fa-school"></i>&nbsp&nbspWelcome to Tutor Trade&nbsp&nbsp<i class="fas fa-exchange-alt"></i></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -50,8 +50,8 @@
 
         <div class="signup_content">
           <div style="text-align: center;"><h1>Sign up</h1></div>
-          <!-- <form action="/postsignup/" method="post">
-            {% csrf_token %} -->
+          <form action="/postsignup/" method="post">
+            {% csrf_token %}
 
             <!-- Name:
             <input type="text" name ="name"><br><br> -->
@@ -141,8 +141,7 @@
               </span>
             </div>
 
-        <form action="/postsignup/" method="post">
-          {% csrf_token %}
+
             <!-- <input type="submit" value="SignUp"> -->
             <div class="signup_btn_row">
               <input type="submit" value="Sign up" id="btnJoin" class="btn_type btn_primary" onclick="checkAll()"></input>

@@ -11,6 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/makePost.css' %}">
@@ -21,14 +22,55 @@
     {% else %}
     <title>Tutor trade</title>
     {% endif %}
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
   </head>
 
 
 {% load crispy_forms_tags %}
 {% block content %}
 
- <div class="content-section">
-        <form method="POST">
+ <div class="content-section" style="padding-top: 10px">
+   <form action="/knowledge" class="form-horizontal">
+     <div>
+     <legend class="border-bottom mb-4">Post</legend>
+   </div>
+  <div class="form-group">
+    <label for="inputTitle3" class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+      <input type="name" class="form-control" id="input-title" >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputContent3" class="col-sm-2 control-label">Content</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" rows="3"id="input-content"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputSubject3" class="col-sm-2 control-label" style="max-width: 20vw">Subject that you're looking for</label>
+    <div class="col-sm-offset-2 col-sm-10">
+      <!-- not implemented yet. -->
+      <input type="text" class="form-control" id="lookfor-subject" placeholder="look for">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputSubject3" class="col-sm-2 control-label" style="max-width: 20vw">Subject that you can teach</label>
+    <div class="col-sm-offset-2 col-sm-10">
+      <!-- not implemented yet. -->
+      <input type="text" class="form-control" id="teach-subject" placeholder="teach">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" id="button-post" class="btn btn-success"><a href="{% url "blog-knowledge"%}" style="color: #fff;" >Post</a></button>
+    </div>
+  </div>
+</form>
+
+        <!-- <form method="POST">
             {% csrf_token %}
               <fieldset class="form-group">
                 <div>
@@ -44,11 +86,10 @@
 
               </div>
           </div>
-            </form>
-        </div>
+            </form> -->
+        <!-- </div> -->
             {% endblock content %}
-<div class="content-section">
-    <form method
+<!-- <div class="content-section"> -->
   <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
@@ -98,11 +139,71 @@
         <div class="col-md-8">
 
  </main>
+
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <script>
+      $(document).ready(function(){
+        console.log(sessionStorage.getItem('email'));
+        console.log(sessionStorage.getItem('author'));
+      })
+
+      var d = new Date();
+      console.log(`Today is ${d.getFullYear()}, ${d.getMonth()+1}, ${d.getDate()}`);
+      var firebaseConfig = {
+          apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+          authDomain: "verve-slug-tutor.firebaseapp.com",
+          databaseURL: "https://verve-slug-tutor.firebaseio.com",
+          projectId: "verve-slug-tutor",
+          storageBucket: "verve-slug-tutor.appspot.com",
+          messagingSenderId: "1013220996189",
+          appId: "1:1013220996189:web:615c1dfe72a6e660"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // var localID = document.getElementById('localID').innerHTML;
+      // console.log(`localID is ${localID}`);
+      // console.log(`email is ${sessionStorage.getItem('email')}`);
+      // firebase.database().ref(`users/${sessionStorage.getItem('name')}`).child('details').once('value', function(data){
+        // var fullname = `${data.val()['name']} ${data.val()['lastname']}`;
+        sessionStorage.getItem('name');
+        // console.log(`name is ${fullname}`);
+      // });
+
+      // var postCnt=0;
+      // var postKey="";
+
+      $("#button-post").click(function(){
+        var d = new Date();
+        console.log(`Today is ${d.getFullYear()}, ${d.getMonth()}, ${d.getDate()}`);
+        var title = $("#input-title").val();
+        var content = $("#input-content").val();
+        var look=$("#lookfor-subject").val();
+        var offer=$("#teach-subject").val();
+        var date = d.getFullYear().toString()+"/"+(d.getMonth()+1).toString()+"/"+d.getDate().toString();
+        firebase.database().ref('post/').once('value', function(snapshot) {
+          var postList = snapshot.val();
+          var keyList = Object.keys(postList);
+          // postCnt+= keyList.length;
+          // postKey+= 'post'+(postCnt+1).toString();
+          firebase.database().ref('post/').push({
+              "title": title,
+              "content": content,
+              "look": look,
+              "offer": offer,
+              "date_posted": date,
+              "email": sessionStorage.getItem('email'),
+              "author": sessionStorage.getItem('name'),
+          });
+        });
+      });
+
+    </script>
 
   </body>
 
