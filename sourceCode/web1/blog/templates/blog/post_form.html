@@ -15,6 +15,9 @@
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/makePost.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
 
 
     {% if title %}
@@ -100,12 +103,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}" style="color:white;">Knowledge Board</a>
+              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
-              <a class="nav-item nav-link" href="">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
+              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}" style="color:white;">Make A Post</a>
             </div>
           </div>
         </div>

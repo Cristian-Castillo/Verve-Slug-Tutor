@@ -20,7 +20,13 @@ urlpatterns = [
     path('profile/',views.profile, name='blog-profile'),
     path('postsign/', views.postsign),
     path('post/', PostCreateView.as_view(), name='blog-post_form'),
-    path('logout/', views.logout, name="blog-logout")
+    path('logout/', views.logout, name="blog-logout"),
+
+    path('editProfile/',views.editProfile, name='blog-editProfile'),
+    path('myProfile/', views.myProfile, name='blog-myProfile'),
+    path('postprofile/', views.postprofile, name='blog-postprofile'),
+    path('passwordReset/', views.passwordReset, name='blog-passwordReset'),
+    path('postpasswordreset/', views.postpasswordreset),
 ]
 
 

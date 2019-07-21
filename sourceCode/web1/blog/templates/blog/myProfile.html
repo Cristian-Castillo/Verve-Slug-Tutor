@@ -2,13 +2,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    {% if messg %}
+      <script>
+        alert('{{ messg }}');
+      </script>
+    {% endif %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
@@ -23,43 +27,78 @@
     {% endif %}
   </head>
   <body>
+    <main role="main" class="container">
+      <div class="row" style="margin-bottom: 10px;">
+        <div class="col-md-8">
+          <div class="title_container">
+            <h1> {{ headerName }}'s Profile </h1>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="title_container">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 10px; margin-bottom: 50px">
+
+
+        <div class="col-md-12">
+          <div class="content-section">
+            <div class="row">
+              <div class="col-md-4">
+                {% for x in labelList %}
+
+                  {{x}}<br>
+
+                {% endfor %}
+              </div>
+              <div = class="col-md-4">
+               {% for x in detailList %}
+
+                {{x}}<br>
+
+               {% endfor %}
+              </div>
+              <div class="col-md-4">
+                <!-- put profile image here -->
+              </div>
+
+                <a class="nav-item nav-link" href="{% url 'blog-editProfile' %}">Edit Profile</a>
+            </div>
+            <div class="row" id="post-container">
+
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/"><i class="fas fa-school"></i>&nbsp&nbspWelcome to Tutor Trade&nbsp&nbsp<i class="fas fa-exchange-alt"></i></a>
+          <a class="navbar-brand mr-4" href="/">Welcome to Tutor Trade</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              {% if messg %}
-
-              {% else %}
-
-                <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
-              {% endif %}
-
-
+              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              {% if messg %}
-                <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
-                <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
-              {% else %}
-                <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
-                <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
-                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
-
-              {% endif %}
-
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}" style="color:white;">My Profile</a>
+              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
 
             </div>
           </div>
         </div>
       </nav>
     </header>
-
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
@@ -88,30 +127,11 @@
       <div class="row">
         <div class="col-md-8">
     </main>
-    <div>
-
-     <h2>Welcome To Tutor Trade</h2>
-<body><br>
-<div class="containerOne">
-
-<!-- <style>
-  .containerOne{
-    background: #5f788a;
-    padding: 15px 15px;
-    border: 2px solid #dddddd;
-    border-radius: 3px;
-    margin-bottom: 80px;
-  }
-</style> -->
-        <img src="https://admissions.ucsc.edu/apply/images/22oakes-students.jpg" alt="Norway" style="width:100%;">
- <div class="text-block">  </body>
-
 
 
 
 
           {% block content %}{% endblock %}
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
