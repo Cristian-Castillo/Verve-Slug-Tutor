@@ -68,9 +68,9 @@
       </nav>
     </header>
 
-    <main role="main" class="container">
+    <main role="main" class="container" style="max-width: 90vw;">
       <div class="row" style="margin-bottom: 10px;">
-        <div class="col-md-8">
+        <div class="col-md-8" style="padding:0%">
           <div class="title_container">
             <h1> Knowledge Board </h1>
             <div id="localID" style="display:none;">{{localID}}</div>
@@ -82,11 +82,11 @@
         </div>
       </div>
       <div class="row" style="margin-top: 10px;">
-        <div class="col-md-12">
+        <div class="col-md-12" style="padding:0%">
           <div class="content-section">
             <div class="row">
               <div class="col-md-2" style="text-align: center;">
-                <h4>Search Tutor</h4>
+                <div style="margin-top: 15px"><h4>Search Tutor</h4></div>
               </div>
               <div class="col-md-4">
                 <div class="search_row">
@@ -104,9 +104,12 @@
                   </span>
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-2" style="display: flex;           /* establish flex container */
+                          flex-direction: row;  /* make main axis vertical */
+                          justify-content: space-around; /* center items vertically, in this case */
+                          align-items: center;">
                 <div class="search_row">
-                  <a class="btn_primary btn_search" id="btnSearch" onclick="filtering()" style="color:white; position: relative; margin: auto; margin-top: 22px;">
+                  <a class="btn_primary btn_search" id="btnSearch" onclick="filtering()" style="text-align: center; color:white; position: relative; border-radius: 3px">
                     Search
                   </a>
                 </div>
@@ -122,9 +125,9 @@
 
 
         <div class="col-md-12">
-          <div class="content-section">
+          <!-- <div class="content-section"> -->
             <div class="row" id="post-container">
-              <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+              <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width: 90vw;">
                 <thead>
                   <th style="background-color: #eeeeee; text-align: center;">Look</th>
                   <th style="background-color: #eeeeee; text-align: center;">Offer</th>
@@ -137,7 +140,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
       </div>
     </main>
@@ -197,7 +200,7 @@
       console.log(`localID is ${localID}`);
       console.log(`email is ${sessionStorage.getItem('email')}`);
       firebase.database().ref(`users/${localID}`).child('details').once('value', function(data){
-        var fullname = `${data.val()['name']} ${data.val()['lastname']}`;
+        var fullname = `${data.val()['name']} ${data.val()['nametwo']}`;
         sessionStorage.setItem('name', fullname);
         console.log(`name is ${fullname}`);
       });
@@ -321,8 +324,8 @@
 
 
 
-    async function filtering(){
-      $("#table-body").remove();
+    function filtering(){
+      // $("#table-body").remove();
       var fkeyList = Object.keys(fpostList);
       var fpostLength = fkeyList.length;
       var new_filtered = {};
@@ -360,8 +363,9 @@
       //     <td>${filtered[keyList[i]].date_posted}</td>
       //     </tr>`);
       // }
-      $("#table-body").empty();
-      func(filtered, keyList);
+      $("#table-body").empty().promise().done(function(){
+        func(filtered, keyList);
+      })
     }
 
     function func(filtered, keyList){

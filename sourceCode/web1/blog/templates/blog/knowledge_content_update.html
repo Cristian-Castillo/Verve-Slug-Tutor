@@ -98,33 +98,38 @@
             <!-- <div class="row" id="post-container"> -->
 
               <form action="/knowledge_content" class="form-horizontal">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"><strong>Title</strong></label>
+                <div class="form-group" style="margin-top: 2vh">
+                  <label class="col-sm-2 control-label"><strong><h3>Title</h3></strong></label>
                   <div class="col-sm-10" style="max-width: 100%;">
                     <input type="text" id="title-update" class="form-control" >
                   </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><strong>content</strong></label>
-                  <div class="col-sm-10" style="max-width: 100%;">
-                    <textarea class="form-control" rows="3"id="content-update"></textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"><strong>look</strong></label>
-                  <div class="col-sm-10" style="max-width: 100%;">
+                  <label class="col-sm-2 control-label" style="max-width: 100%;"><strong><h3>A subject you want to learn</h3></strong></label>
+                  <div class="col-sm-10">
                     <input class="form-control" id="look-update" type="text"  disabled>
                   </div>
                 </div>
-
-                <div class="form-group" style="max-width: 100%;">
-                  <label class="col-sm-2 control-label"><strong>offer</strong></label>
+                <div class="form-group" >
+                  <label class="col-sm-2 control-label" style="max-width: 100%;"><strong><h3>A subject you can teach</h3></strong></label>
                   <div class="col-sm-10" style="max-width: 100%;">
                     <input class="form-control" id="offer-update" type="text"  disabled>
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10" style="max-width: 100%;">
+                    <label class="col-sm-2 control-label"><strong><h3>Content</h3></strong></label>
+                  <div class="col-sm-10" style="max-width: 100%;">
+                    <textarea class="form-control" rows="10"id="content-update"></textarea>
+                  </div>
+                </div>
+
+
+
+                <div class="form-group" style="max-width: 100%;">
+                  <div style="display: flex;           /* establish flex container */
+                              flex-direction: row;  /* make main axis vertical */
+                              justify-content: space-around; /* center items vertically, in this case */
+                              align-items: center; width: 100%; height: 5vh">
                     <button type="submit" class="btn btn-success" id="update-button">Update</button>
                     <button onclick="window.history.back();" class="btn btn-danger" id="cancel-button">Cancel</button>
                   </div>
@@ -217,10 +222,10 @@
         title: $("#title-update").val(),
         content: $("#content-update").val()
       })){
-        alert('successfully updated');
+        // alert('successfully updated');
         // window.location.href="knowledge/";
       } else{
-        alert('unexpected error!');
+        // alert('unexpected error!');
       }
     })
 
