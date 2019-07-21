@@ -112,6 +112,13 @@
 
           {% block content %}{% endblock %}
 
+          <script>
+            if(sessionStorage.getItem('email')===null){
+              console.log('yes!')
+            } else{
+              console.log(`login now, email is ${sessionStorage.getItem('email')}`)
+            }
+          </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
