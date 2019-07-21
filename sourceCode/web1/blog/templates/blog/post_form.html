@@ -47,25 +47,26 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="inputSubject3" class="col-sm-2 control-label" style="max-width: 30vw">Subject that you're looking for</label>
+    <div class="col-sm-offset-2 col-sm-10">
+      <!-- not implemented yet. -->
+      <input type="text" class="form-control" id="lookfor-subject" placeholder="look for" onchange="input1Check()">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputSubject3" class="col-sm-2 control-label" style="max-width: 30vw">Subject that you can teach</label>
+    <div class="col-sm-offset-2 col-sm-10">
+      <!-- not implemented yet. -->
+      <input type="text" class="form-control" id="teach-subject" placeholder="teach" onchange="input2Check()">
+    </div>
+  </div>
+  <div class="form-group">
     <label for="inputContent3" class="col-sm-2 control-label">Content</label>
     <div class="col-sm-10">
       <textarea class="form-control" rows="3"id="input-content"></textarea>
     </div>
   </div>
-  <div class="form-group">
-    <label for="inputSubject3" class="col-sm-2 control-label" style="max-width: 20vw">Subject that you're looking for</label>
-    <div class="col-sm-offset-2 col-sm-10">
-      <!-- not implemented yet. -->
-      <input type="text" class="form-control" id="lookfor-subject" placeholder="look for">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputSubject3" class="col-sm-2 control-label" style="max-width: 20vw">Subject that you can teach</label>
-    <div class="col-sm-offset-2 col-sm-10">
-      <!-- not implemented yet. -->
-      <input type="text" class="form-control" id="teach-subject" placeholder="teach">
-    </div>
-  </div>
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" id="button-post" class="btn btn-success"><a href="{% url "blog-knowledge"%}" style="color: #fff;" >Post</a></button>
@@ -90,9 +91,9 @@
               </div>
           </div>
             </form> -->
-        <!-- </div> -->
+
             {% endblock content %}
-<!-- <div class="content-section"> -->
+
   <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
@@ -146,9 +147,16 @@
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
 
     <script>
       $(document).ready(function(){
@@ -170,16 +178,90 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-      // var localID = document.getElementById('localID').innerHTML;
-      // console.log(`localID is ${localID}`);
-      // console.log(`email is ${sessionStorage.getItem('email')}`);
-      // firebase.database().ref(`users/${sessionStorage.getItem('name')}`).child('details').once('value', function(data){
-        // var fullname = `${data.val()['name']} ${data.val()['lastname']}`;
-        // console.log(`name is ${fullname}`);
-      // });
+      var courseNameList = [];
 
-      // var postCnt=0;
-      // var postKey="";
+      firebase.database().ref('courseList/').once('value', function(snapshot){
+        var courseList = snapshot.val();
+        console.log("courseList: ", courseList);
+        var category = Object.keys(courseList);
+        console.log("category: ", category);
+        // var courseNameList =[];
+        for (var i=0; i<category.length; i++) {
+          var curKey = category[i]; /* department name */
+          var subcourseList = Object.keys(courseList[curKey]);
+          // console.log(subcourseList);
+          for (var j=0; j<subcourseList.length; j++) {
+            // var subcurKey = subcourseList[j]; /* department name */
+            var current = courseList[curKey][subcourseList[j]];
+            courseNameList.push(current.cName);
+          }
+        }
+        console.log(courseNameList);
+
+
+      });
+      /* Auto Complete */
+      $( function() {
+        // var names = [ "Jörn Zaefferer", "Scott González", "John Resig" ];
+        var accentMap = { "á": "a", "ö": "o" };
+        var normalize = function( term ) {
+          var ret = "";
+          for ( var i = 0; i < term.length; i++ ) {
+            ret += accentMap[ term.charAt(i) ] || term.charAt(i);
+          }
+          return ret;
+        };
+
+        $( "#lookfor-subject" ).autocomplete({
+          source: function( request, response ) {
+            var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+            response( $.grep( courseNameList, function( value ) {
+              value = value.label || value.value || value;
+              return matcher.test( value ) || matcher.test( normalize( value ) );
+            }) );
+          },
+          select: function( event, ui ) {
+            $( "#lookfor-subject" ).val(ui.item.value);
+            // // console.log("input text : "+ document.getElementById("pr2__answer").value);
+            // $( "#pr2__submit" ).click();
+            return false;
+          },
+          close: function(event, ui) {
+            console.log("close");
+          }
+        });
+      });
+
+      $( function() {
+        // var names = [ "Jörn Zaefferer", "Scott González", "John Resig" ];
+        var accentMap = { "á": "a", "ö": "o" };
+        var normalize = function( term ) {
+          var ret = "";
+          for ( var i = 0; i < term.length; i++ ) {
+            ret += accentMap[ term.charAt(i) ] || term.charAt(i);
+          }
+          return ret;
+        };
+
+        $( "#teach-subject" ).autocomplete({
+          source: function( request, response ) {
+            var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+            response( $.grep( courseNameList, function( value ) {
+              value = value.label || value.value || value;
+              return matcher.test( value ) || matcher.test( normalize( value ) );
+            }) );
+          },
+          select: function( event, ui ) {
+            $( "#teach-subject" ).val(ui.item.value);
+            // // console.log("input text : "+ document.getElementById("pr2__answer").value);
+            // $( "#pr2__submit" ).click();
+            return false;
+          },
+          close: function(event, ui) {
+            console.log("close");
+          }
+        });
+      });
 
       $("#button-post").click(function(){
         var d = new Date();
@@ -205,6 +287,31 @@
           });
         });
       });
+
+      function input1Check() {
+        var input1 = $('#lookfor-subject').val();
+        console.log("inputCheck: ", input1);
+        if (courseNameList.includes(input1)){
+          console.log("inputCheck Success: ", input1);
+        }
+        else{
+          console.log("inputCheck Failed: ", input1);
+        }
+        // var emailCheckMsg = document.getElementById("emailCheckMsg");
+        // var emailDone = document.getElementById("emailDone");
+        // emailDone.style.color = "red";
+        //
+        // var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+  			// if (exptext.test(email)==false){
+        //   console.log("email check failed");
+        //   if (emailCheckMsg.style.display == 'none'){
+        //     emailCheckMsg.style.display = 'block';
+        //   }
+  		  // }
+        // else{
+        //   emailCheckMsg.style.display = 'none';
+        // }
+      }
 
     </script>
 
