@@ -35,10 +35,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
- <div class="content-section" style="padding-top: 10px">
+ <div class="content-section" style="padding-top: 10px; width: 900px; margin: auto">
    <form action="/knowledge" class="form-horizontal">
      <div>
-     <legend class="border-bottom mb-4">Post</legend>
+     <legend class="border-bottom mb-4">Make a Post</legend>
    </div>
   <div class="form-group">
     <label for="inputTitle3" class="col-sm-2 control-label">Title</label>
@@ -51,6 +51,7 @@
     <div class="col-sm-offset-2 col-sm-10">
       <!-- not implemented yet. -->
       <input type="text" class="form-control" id="lookfor-subject" placeholder="look for" onchange="input1Check()">
+      <span class="error_next_box" id="input1Msg" style="display:none" role="alert">&nbsp&nbsp&nbsp&nbspIncorrect subject</span>
     </div>
   </div>
   <div class="form-group">
@@ -58,6 +59,7 @@
     <div class="col-sm-offset-2 col-sm-10">
       <!-- not implemented yet. -->
       <input type="text" class="form-control" id="teach-subject" placeholder="teach" onchange="input2Check()">
+      <span class="error_next_box" id="input2Msg" style="display:none" role="alert">&nbsp&nbsp&nbsp&nbspIncorrect subject</span>
     </div>
   </div>
   <div class="form-group">
@@ -227,6 +229,14 @@
             return false;
           },
           close: function(event, ui) {
+            var input1 = $('#lookfor-subject').val();
+            var input1CheckMsg = document.getElementById("input1Msg");
+            if (courseNameList.includes(input1)){
+              input1CheckMsg.style.display = 'none'
+            }
+            else{
+              input1CheckMsg.style.display = 'block';
+            }
             console.log("close");
           }
         });
@@ -258,6 +268,14 @@
             return false;
           },
           close: function(event, ui) {
+            var input2 = $('#teach-subject').val();
+            var input2CheckMsg = document.getElementById("input2Msg");
+            if (courseNameList.includes(input2)){
+              input2CheckMsg.style.display = 'none'
+            }
+            else{
+              input2CheckMsg.style.display = 'block';
+            }
             console.log("close");
           }
         });
@@ -290,27 +308,30 @@
 
       function input1Check() {
         var input1 = $('#lookfor-subject').val();
+        var input1CheckMsg = document.getElementById("input1Msg");
         console.log("inputCheck: ", input1);
         if (courseNameList.includes(input1)){
-          console.log("inputCheck Success: ", input1);
+          // console.log("inputCheck Success: ", input1);
+          input1CheckMsg.style.display = 'none'
         }
         else{
-          console.log("inputCheck Failed: ", input1);
+          // console.log("inputCheck Failed: ", input1);
+          if (input1CheckMsg.style.display == 'none')
+            input1CheckMsg.style.display = 'block';
         }
-        // var emailCheckMsg = document.getElementById("emailCheckMsg");
-        // var emailDone = document.getElementById("emailDone");
-        // emailDone.style.color = "red";
-        //
-        // var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-  			// if (exptext.test(email)==false){
-        //   console.log("email check failed");
-        //   if (emailCheckMsg.style.display == 'none'){
-        //     emailCheckMsg.style.display = 'block';
-        //   }
-  		  // }
-        // else{
-        //   emailCheckMsg.style.display = 'none';
-        // }
+      }
+
+      function input2Check() {
+        var input2 = $('#teach-subject').val();
+        var input2CheckMsg = document.getElementById("input2Msg");
+        console.log("inputCheck: ", input2);
+        if (courseNameList.includes(input2)){
+          input2CheckMsg.style.display = 'none'
+        }
+        else{
+          if (input2CheckMsg.style.display == 'none')
+            input2CheckMsg.style.display = 'block';
+        }
       }
 
     </script>
