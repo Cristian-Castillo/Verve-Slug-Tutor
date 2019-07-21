@@ -50,8 +50,8 @@
                 <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
-                <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
+                <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
+                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a>
               {% endif %}
             </div>
           </div>
@@ -75,6 +75,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}" style="color:white;">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>

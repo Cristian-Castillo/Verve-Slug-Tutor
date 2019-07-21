@@ -188,7 +188,7 @@
         console.log(document.getElementById('email').placeholder);
         document.getElementById('email').placeholder = userList[userKeyList[i]].details.email;
         document.getElementById('name').placeholder = userList[userKeyList[i]].details.name;
-        document.getElementById('lastname').placeholder = userList[userKeyList[i]].details.lastname;
+        document.getElementById('lastname').placeholder = userList[userKeyList[i]].details.name2;
         document.getElementById('contact').placeholder = userList[userKeyList[i]].details.contact;
         // return userKey;
       }
@@ -203,7 +203,7 @@
     var email = sessionStorage.getItem('email');
     var data = {
       name: name,
-      lastname: lastname,
+      name2: lastname,
       email: email,
       contact: contact,
       status: 1,

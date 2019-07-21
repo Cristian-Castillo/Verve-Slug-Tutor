@@ -47,8 +47,8 @@
                     <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
                 {% else %}
                     <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
-                    <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
-                    <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Post</a>
+                    <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
+                    <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a>
                 {% endif %}
             </div>
           </div>
@@ -73,6 +73,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}" style="color:white;">Contact Us</a>
             </div>
           </div>
@@ -166,7 +167,7 @@ html {
         <p class="title">Product Owner</p>
         <p>Founder of multi-million dollar Tutoring App</p>
         <p>ccarri11@ucsc.edu</p>
-        <p><button class="button">Contact</button></p>
+        <p><button class="button"><a href="mailto:ccarri11@ucsc.edu?"Subject=Hello%20again target="_top">Contact</a></button></p>
       </div>
     </div>
   </div>
@@ -179,7 +180,7 @@ html {
         <p class="title">Senior Developer</p>
         <p>My current rate is $500 per line of code</p>
         <p>brpereir@ucsc.edu</p>
-        <p><button class="button"><a href="mailto:ccarri11@ucsc.edu?"Subject=Hello%20again target="_top">Contact</a></button></p>
+        <p><button class="button"><a href="mailto:brpereir@ucsc.edu?"Subject=Hello%20again target="_top">Contact</a></button></p>
       </div>
     </div>
   </div>
@@ -192,7 +193,8 @@ html {
         <p class="title">Senior Developer</p>
         <p>250k a year.</p>
         <p>dkim197@ucsc.edu</p>
-        <p><button class="button">Contact</button></p>
+        <p><button class="button"><a href="mailto:dkim197@ucsc.edu?"Subject=Hello%20again target="_top">Contact</a></button></p>
+      </div>
       </div>
     </div>
   </div>
@@ -205,7 +207,8 @@ html {
         <p class="title">Senior Developer</p>
         <p>Full Stack engineer</p>
         <p>kkim93@ucsc.edu</p>
-        <p><button class="button">Contact</button></p>
+        <p><button class="button"><a href="mailto:kkim93@ucsc.edu?"Subject=Hello%20again target="_top">Contact</a></button></p>
+      </div>
       </div>
     </div>
   </div>
@@ -218,7 +221,8 @@ html {
         <p class="title">Senior Developer</p>
         <p>Developer</p>
         <p>jrony@ucsc.edu</p>
-        <p><button class="button">Contact</button></p>
+        <p><button class="button"><a href="mailto:jrony@ucsc.edu?"Subject=Hello%20again target="_top">Contact</a></button></p>
+      </div>
       </div>
     </div>
   </div>
