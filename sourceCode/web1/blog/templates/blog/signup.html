@@ -6,8 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap and Fontawesome CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
@@ -27,14 +28,12 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/">Welcome to Tutor Trade</a>
+          <a class="navbar-brand mr-4" href="/"><i class="fas fa-school"></i>&nbsp&nbspWelcome to Tutor Trade&nbsp&nbsp<i class="fas fa-exchange-alt"></i></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-
-
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -48,28 +47,28 @@
 
     <main role="main" class="container">
       <div class="signup_container">
-        <div><h1>Sign up for VST</h1></div>
+
         <div class="signup_content">
-          <!-- <form action="/postsignup/" method="post">
-            {% csrf_token %} -->
+          <div style="text-align: center;"><h1>Sign up</h1></div>
           <form action="/postsignup/" method="post">
             {% csrf_token %}
+
             <!-- Name:
             <input type="text" name ="name"><br><br> -->
 
             <div class="signup_row" style="margin-top: 20px;">
               <h4 class="signup_title">
-                <label for="id">Name</label>
+                <label for="id">Name&nbsp&nbsp&nbsp&nbsp<i class="fas fa-check-circle" id="nameDone" style="color:red;"></i></label>
               </h4>
               <div class="signup_input_wrap">
                 <div class="signup_box_row">
                   <span class="signup_input box_right_space">
-                    <input type="text" name="name" id="signup_name1"  placeholder="First Name" maxlength="40" style="border: none;">
+                    <input type="text" name="name" id="signup_name1"  placeholder="First Name" maxlength="40" onchange="nameCheck()" style="border: none;">
                   </span>
                 </div>
                 <div class="signup_box_row">
                   <span class="signup_input">
-                    <input type="text" name="name2" id="signup_name2" placeholder="Last Name" maxlength="40" style="border: none; ">
+                    <input type="text" name="name2" id="signup_name2" placeholder="Last Name" maxlength="40" onchange="nameCheck()" style="border: none; ">
                   </span>
                 </div>
               </div>
@@ -79,16 +78,17 @@
             <input type="email" name ="email"><br><br> -->
             <div class="signup_row">
               <h4 class="signup_title">
-                <label for="id">Email</label>
+                <label for="id">Email&nbsp&nbsp&nbsp&nbsp<i class="fas fa-check-circle" id="emailDone" style="color:red;"></i></label>
               </h4>
               <div class="signup_input_id">
                 <span class="signup_input" style="position: relative; display: inline-block;">
-                  <input type="email" name ="email" id="signup_email" class="int" title="ID" maxlength="40" style="border: none; width: 100%;">
+                  <input type="email" name ="email" id="signup_email" class="int" title="ID" maxlength="40" onchange="emailCheck()" style="border: none; width: 100%;">
                 </span>
                 <a class="btn_primary btn_verify" id="btnEmail" onclick="confirmEmail()" style="color:white;">
                   Email check
                 </a>
                 <span class="error_next_box" id="emailMsg" style="display:none" role="alert">Email is already taken.</span>
+                <span class="error_next_box" id="emailCheckMsg" style="display:none" role="alert">Incorrect Email Format</span>
               </div>
             </div>
 
@@ -96,35 +96,55 @@
             <input type="password" name ="pass"><br><br> -->
             <div class="signup_row">
               <h4 class="signup_title">
-                <label for="id">Password</label>
+                <label for="id">Password&nbsp&nbsp&nbsp&nbsp<i class="fas fa-check-circle" id="pwdDone1" style="color:red;"></i></label>
               </h4>
               <span class="signup_input">
-                <input type="password" name ="pass" id="signup_pw1" maxlength="20" style="border: none; width: 100%;" onchange="isSame()">
+                <input type="password" name ="pass" id="signup_pw1" maxlength="20" style="border: none; width: 100%;" onchange="isPwdSame()">
               </span>
+              <span class="error_next_box" id="pwCheckMsg" style="display:none" role="alert">Incorrect Passwords: Passwords should be longer than 6.</span>
             </div>
 
             <div class="signup_row">
               <h4 class="signup_title">
-                <label for="id">Password Confirm</label>
+                <label for="id">Password Confirm&nbsp&nbsp&nbsp&nbsp<i class="fas fa-check-circle" id="pwdDone2" style="color:red;"></i></label>
               </h4>
               <span class="signup_input">
-                  <input type="password" id="signup_pw2" maxlength="20" style="border: none; width: 100%;" onchange="isSame()">
+                  <input type="password" id="signup_pw2" maxlength="20" style="border: none; width: 100%;" onchange="isPwdSame()">
               </span>
-              <span class="error_next_box" id="pwMsg" style="display:none" role="alert">These passwords don’t match.</span>
+              <span class="error_next_box" id="pwMsg" style="display:none" role="alert">These Passwords don’t match.</span>
             </div>
 
             <div class="signup_row">
               <h4 class="signup_title">
-                <label for="id">Contact</label>
+                <label for="id">Contact (Mobile)</label>
               </h4>
               <span class="signup_input">
                 <input type="text" id="signup_contact" name="contact" maxlength="20" style="border: none; width: 100%;">
               </span>
             </div>
 
+            <div class="signup_row">
+              <h4 class="signup_title">
+                <label for="id">Current Major</label>
+              </h4>
+              <span class="signup_input">
+                <input type="text" id="signup_major" name="current_major" maxlength="40" style="border: none; width: 100%;">
+              </span>
+            </div>
+
+            <div class="signup_row">
+              <h4 class="signup_title">
+                <label for="id">Location</label>
+              </h4>
+              <span class="signup_input">
+                <input type="text" id="signup_location" name="location" maxlength="50" style="border: none; width: 100%;">
+              </span>
+            </div>
+
+
             <!-- <input type="submit" value="SignUp"> -->
             <div class="signup_btn_row">
-              <input type="submit" value="Sign up" id="btnJoin" class="btn_type btn_primary"></input>
+              <input type="submit" value="Sign up" id="btnJoin" class="btn_type btn_primary" onclick="checkAll()"></input>
             </div>
 
           </form>
@@ -166,48 +186,112 @@
       // console.log(userKeyList);
       for (var i=0; i<userKeyList.length; i++){
         // console.log(userKeyList[i]);
-        console.log(userList[userKeyList[i]].details.email);
+        // console.log(userList[userKeyList[i]].details.email);
         emailList.push(userList[userKeyList[i]].details.email);
       }
       // console.log(emailList);
     });
 
+    function nameCheck(){
+      var name1 = $('#signup_name1').val();
+      var name2 = $('#signup_name2').val();
+      var nameDone = document.getElementById("nameDone");
 
-      function confirmEmail() {
-        var email = $('#signup_email').val();
-        var emailMsg = document.getElementById("emailMsg");
-        if (email != ''){
-          console.log("Duplicate Email Check: ", email);
-          console.log(emailList);
-          if (emailList.includes(email)){
-            console.log("You cannot use this email: ", email);
-            if(emailMsg.style.display == 'none')
-              emailMsg.style.display = 'block';
+      if (name1 != "" && name2 != ""){
+        nameDone.style.color = "green";
+      }
+      else{
+        nameDone.style.color = "red";
+      }
+    }
+
+
+      /* Email Duplicate Check Function */
+    function confirmEmail() {
+      var email = $('#signup_email').val();
+      var emailMsg = document.getElementById("emailMsg");
+      var emailDone = document.getElementById("emailDone");
+      if (email != ''){
+        // console.log("Duplicate Email Check: ", email, emailList);
+        if (emailList.includes(email)){
+          // console.log("You cannot use this email: ", email);
+          if(emailMsg.style.display == 'none')
+            emailMsg.style.display = 'block';
+            emailDone.style.color = "red";
+        }
+        else{
+          emailMsg.style.display = 'none';
+          if (emailCheckMsg.style.display == 'none'){
+            emailDone.style.color = "green";
           }
           else{
-            emailMsg.style.display = 'none';
+            emailDone.style.color = "red";
           }
         }
       }
+    }
 
-      function isSame() {
-        var pw1 = $('#signup_pw1').val();
-        var pw2 = $('#signup_pw2').val();
-        var pwMsg = document.getElementById("pwMsg");
-        // console.log("isSame Function");
-        // console.log("pw1: ", pw1, " & pw2: ", pw2);
-        if (pw1 != "" && pw2 != "") {
-          if (pw1 != pw2){
-            // console.log(pwConfirm);
-            if(pwMsg.style.display == 'none')
-              pwMsg.style.display = 'block'
-          }
-          else {
-            pwMsg.style.display = 'none'
+      /* Email Format Check Function */
+    function emailCheck() {
+      var email = $('#signup_email').val();
+      var emailCheckMsg = document.getElementById("emailCheckMsg");
+      var emailDone = document.getElementById("emailDone");
+      emailDone.style.color = "red";
+
+      var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+			if (exptext.test(email)==false){
+        console.log("email check failed");
+        if (emailCheckMsg.style.display == 'none'){
+          emailCheckMsg.style.display = 'block';
+        }
+		  }
+      else{
+        emailCheckMsg.style.display = 'none';
+      }
+    }
+
+      /* Password Length Check and Matching Check Function */
+    function isPwdSame() {
+      var pw1 = $('#signup_pw1').val();
+      var pw2 = $('#signup_pw2').val();
+      var pwMsg = document.getElementById("pwMsg");
+      var pwCheckMsg = document.getElementById("pwCheckMsg");
+      var pwdDone1 = document.getElementById("pwdDone1");
+      var pwdDone2 = document.getElementById("pwdDone2");
+      pwdDone1.style.color = "red";
+      pwdDone2.style.color = "red";
+
+      if (pw1.length < 6){
+        if(pwCheckMsg.style.display == 'none')
+          pwCheckMsg.style.display = 'block';
+      }
+      else{
+        pwCheckMsg.style.display = 'none';
+      }
+
+      if (pw1 != "" && pw2 != "") {
+        if (pw1 != pw2){
+          // console.log(pwConfirm);
+          if(pwMsg.style.display == 'none'){
+            pwMsg.style.display = 'block';
           }
         }
-
+        else {
+          pwMsg.style.display = 'none';
+          if(pwCheckMsg.style.display == 'none'){
+            console.log("Password Complete");
+            pwdDone1.style.color = "green";
+            pwdDone2.style.color = "green";
+          }
+        }
       }
+    }
+
+    function checkAll(){
+      var email = $('#signup_email').val();
+      sessionStorage.setItem('email',email);
+      console.log("checkAll");
+    }
 
 
   </script>

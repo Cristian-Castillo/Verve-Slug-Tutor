@@ -11,9 +11,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/makePost.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
 
 
     {% if title %}
@@ -21,14 +25,58 @@
     {% else %}
     <title>Tutor trade</title>
     {% endif %}
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
   </head>
 
 
 {% load crispy_forms_tags %}
 {% block content %}
 
- <div class="content-section">
-        <form method="POST">
+ <div class="content-section" style="padding-top: 10px; width: 900px; margin: auto">
+   <form action="/knowledge" class="form-horizontal">
+     <div>
+     <legend class="border-bottom mb-4">Make a Post</legend>
+   </div>
+  <div class="form-group">
+    <label for="inputTitle3" class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+      <input type="name" class="form-control" id="input-title" >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputSubject3" class="col-sm-2 control-label" style="max-width: 30vw">Subject that you're looking for</label>
+    <div class="col-sm-offset-2 col-sm-10">
+      <!-- not implemented yet. -->
+      <input type="text" class="form-control" id="lookfor-subject" placeholder="look for" onchange="input1Check()">
+      <span class="error_next_box" id="input1Msg" style="display:none" role="alert">&nbsp&nbsp&nbsp&nbspIncorrect subject</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputSubject3" class="col-sm-2 control-label" style="max-width: 30vw">Subject that you can teach</label>
+    <div class="col-sm-offset-2 col-sm-10">
+      <!-- not implemented yet. -->
+      <input type="text" class="form-control" id="teach-subject" placeholder="teach" onchange="input2Check()">
+      <span class="error_next_box" id="input2Msg" style="display:none" role="alert">&nbsp&nbsp&nbsp&nbspIncorrect subject</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputContent3" class="col-sm-2 control-label">Content</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" rows="3"id="input-content"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" id="button-post" class="btn btn-success"><a href="{% url "blog-knowledge"%}" style="color: #fff;" >Post</a></button>
+    </div>
+  </div>
+</form>
+
+        <!-- <form method="POST">
             {% csrf_token %}
               <fieldset class="form-group">
                 <div>
@@ -44,11 +92,10 @@
 
               </div>
           </div>
-            </form>
-        </div>
+            </form> -->
+
             {% endblock content %}
-<div class="content-section">
-    <form method
+
   <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
@@ -59,12 +106,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}" style="color:white;">Knowledge Board</a>
+              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
-              <a class="nav-item nav-link" href="">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
+              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}" style="color:white;">Make A Post</a>
             </div>
           </div>
         </div>
@@ -98,11 +146,195 @@
         <div class="col-md-8">
 
  </main>
+
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
 
+    <script>
+      $(document).ready(function(){
+        console.log(sessionStorage.getItem('email'));
+        console.log(sessionStorage.getItem('author'));
+      })
+
+      var d = new Date();
+      console.log(`Today is ${d.getFullYear()}, ${d.getMonth()+1}, ${d.getDate()}`);
+      var firebaseConfig = {
+          apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+          authDomain: "verve-slug-tutor.firebaseapp.com",
+          databaseURL: "https://verve-slug-tutor.firebaseio.com",
+          projectId: "verve-slug-tutor",
+          storageBucket: "verve-slug-tutor.appspot.com",
+          messagingSenderId: "1013220996189",
+          appId: "1:1013220996189:web:615c1dfe72a6e660"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      var courseNameList = [];
+
+      firebase.database().ref('courseList/').once('value', function(snapshot){
+        var courseList = snapshot.val();
+        console.log("courseList: ", courseList);
+        var category = Object.keys(courseList);
+        console.log("category: ", category);
+        // var courseNameList =[];
+        for (var i=0; i<category.length; i++) {
+          var curKey = category[i]; /* department name */
+          var subcourseList = Object.keys(courseList[curKey]);
+          // console.log(subcourseList);
+          for (var j=0; j<subcourseList.length; j++) {
+            // var subcurKey = subcourseList[j]; /* department name */
+            var current = courseList[curKey][subcourseList[j]];
+            courseNameList.push(current.cName);
+          }
+        }
+        console.log(courseNameList);
+
+
+      });
+      /* Auto Complete */
+      $( function() {
+        // var names = [ "Jörn Zaefferer", "Scott González", "John Resig" ];
+        var accentMap = { "á": "a", "ö": "o" };
+        var normalize = function( term ) {
+          var ret = "";
+          for ( var i = 0; i < term.length; i++ ) {
+            ret += accentMap[ term.charAt(i) ] || term.charAt(i);
+          }
+          return ret;
+        };
+
+        $( "#lookfor-subject" ).autocomplete({
+          source: function( request, response ) {
+            var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+            response( $.grep( courseNameList, function( value ) {
+              value = value.label || value.value || value;
+              return matcher.test( value ) || matcher.test( normalize( value ) );
+            }) );
+          },
+          select: function( event, ui ) {
+            $( "#lookfor-subject" ).val(ui.item.value);
+            // // console.log("input text : "+ document.getElementById("pr2__answer").value);
+            // $( "#pr2__submit" ).click();
+            return false;
+          },
+          close: function(event, ui) {
+            var input1 = $('#lookfor-subject').val();
+            var input1CheckMsg = document.getElementById("input1Msg");
+            if (courseNameList.includes(input1)){
+              input1CheckMsg.style.display = 'none'
+            }
+            else{
+              input1CheckMsg.style.display = 'block';
+            }
+            console.log("close");
+          }
+        });
+      });
+
+      $( function() {
+        // var names = [ "Jörn Zaefferer", "Scott González", "John Resig" ];
+        var accentMap = { "á": "a", "ö": "o" };
+        var normalize = function( term ) {
+          var ret = "";
+          for ( var i = 0; i < term.length; i++ ) {
+            ret += accentMap[ term.charAt(i) ] || term.charAt(i);
+          }
+          return ret;
+        };
+
+        $( "#teach-subject" ).autocomplete({
+          source: function( request, response ) {
+            var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+            response( $.grep( courseNameList, function( value ) {
+              value = value.label || value.value || value;
+              return matcher.test( value ) || matcher.test( normalize( value ) );
+            }) );
+          },
+          select: function( event, ui ) {
+            $( "#teach-subject" ).val(ui.item.value);
+            // // console.log("input text : "+ document.getElementById("pr2__answer").value);
+            // $( "#pr2__submit" ).click();
+            return false;
+          },
+          close: function(event, ui) {
+            var input2 = $('#teach-subject').val();
+            var input2CheckMsg = document.getElementById("input2Msg");
+            if (courseNameList.includes(input2)){
+              input2CheckMsg.style.display = 'none'
+            }
+            else{
+              input2CheckMsg.style.display = 'block';
+            }
+            console.log("close");
+          }
+        });
+      });
+
+      $("#button-post").click(function(){
+        var d = new Date();
+        console.log(`Today is ${d.getFullYear()}, ${d.getMonth()}, ${d.getDate()}`);
+        var title = $("#input-title").val();
+        var content = $("#input-content").val();
+        var look=$("#lookfor-subject").val();
+        var offer=$("#teach-subject").val();
+        var date = d.getFullYear().toString()+"/"+(d.getMonth()+1).toString()+"/"+d.getDate().toString();
+        firebase.database().ref('post/').once('value', function(snapshot) {
+          var postList = snapshot.val();
+          var keyList = Object.keys(postList);
+          // postCnt+= keyList.length;
+          // postKey+= 'post'+(postCnt+1).toString();
+          firebase.database().ref('post/').push({
+              "title": title,
+              "content": content,
+              "look": look,
+              "offer": offer,
+              "date_posted": date,
+              "email": sessionStorage.getItem('email'),
+              "author": sessionStorage.getItem('name'),
+          });
+        });
+      });
+
+      function input1Check() {
+        var input1 = $('#lookfor-subject').val();
+        var input1CheckMsg = document.getElementById("input1Msg");
+        console.log("inputCheck: ", input1);
+        if (courseNameList.includes(input1)){
+          // console.log("inputCheck Success: ", input1);
+          input1CheckMsg.style.display = 'none'
+        }
+        else{
+          // console.log("inputCheck Failed: ", input1);
+          if (input1CheckMsg.style.display == 'none')
+            input1CheckMsg.style.display = 'block';
+        }
+      }
+
+      function input2Check() {
+        var input2 = $('#teach-subject').val();
+        var input2CheckMsg = document.getElementById("input2Msg");
+        console.log("inputCheck: ", input2);
+        if (courseNameList.includes(input2)){
+          input2CheckMsg.style.display = 'none'
+        }
+        else{
+          if (input2CheckMsg.style.display == 'none')
+            input2CheckMsg.style.display = 'block';
+        }
+      }
+
+    </script>
 
   </body>
 
