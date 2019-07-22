@@ -50,23 +50,6 @@
   /* text-align: center; */
 }
 
-
-.signup_container{
-  margin: 0 auto;
-  max-width: 768px;
-  min-width: 500px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-.signup_content{
-  /* width: 100%; */
-  width: 500px;
-  /* text-align: center; */
-  /* vertical-align: center; */
-}
-
-
 .search_row{
   /* margin-top: 20px; */
   display: block;
