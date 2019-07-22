@@ -135,7 +135,7 @@
                     <button type="button" class="btn btn-primary" id="update-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge_content_update' %}">Update</a></button>
                     <button type="button" class="btn btn-info" id="request-button" style="display:none">Request</button>
                     <button type="button" class="btn btn-warning" id="complete-button" style="display:none">Complete</button>
-                    <button type="button" class="btn btn-default" style="border: 1px solid #000"><a style="color: #000;" href="javascript:history.back();">Go Back</a></button>
+                    <button type="button" class="btn btn-default" style="border: 1px solid #000"><a style="color: #000;" href="{% url 'blog-knowledge' %}">Go Back</a></button>
                 </div>
                 </div>
               </form>
@@ -226,7 +226,6 @@
 
     $("#delete-button").click(function(){
       fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).remove();
-      alert('successfully deleted.');
     })
 
     $("#request-button").click(function(){

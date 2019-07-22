@@ -133,7 +133,7 @@
                   <th style="background-color: #eeeeee; text-align: center;">Can Tutor</th>
                   <th style="background-color: #eeeeee; text-align: center;">Title</th>
                   <th style="background-color: #eeeeee; text-align: center;">Author</th>
-                  <th style="background-color: #eeeeee; text-align: center;">Date</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Status</th>
                   <!-- <th style="background-color: #eeeeee; text-align: center;">author</th> -->
                 </thead>
                 <tbody id="table-body">
@@ -217,14 +217,14 @@
             //     var title = postList[curKey].title;
             var match="";
             if(postList[keyList[i]].matching==='n'){
-              match+=`<button type="button" class="btn btn-success" disabled>Proceed</button>`;
+              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="width: 90%; height: 25%" class="btn btn-success">Proceed</button></a>`;
             } else{
-              match+=`<button type="button" class="btn btn-danger" disabled>Complete</button>`;
+              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="width: 90%; height: 25%" class="btn btn-danger">Complete</button></a>`;
             }
             $("#table-body").append(`<tr>
               <td>${postList[keyList[i]].look}</td>
               <td>${postList[keyList[i]].offer}</td>
-              <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${postList[keyList[i]].title}</a></td>
+              <td><em><a style="color: #0000ff;" href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><p class="lead">${postList[keyList[i]].title}</p></a></em></td>
               <td>${postList[keyList[i]].author}</td>
               <td>${match}</td>
               </tr>`)
@@ -375,12 +375,19 @@
 
     function func(filtered, keyList){
       for(var i=0; i<Object.keys(filtered).length; i++) {
+        var match="";
+        if(filtered[keyList[i]].matching==='n'){
+          match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="width: 90%; height: 25%" class="btn btn-success">Proceed</button></a>`;
+        } else{
+          match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="width: 90%; height: 25%" class="btn btn-danger">Complete</button></a>`;
+        }
+
         $("#table-body").append(`<tr>
           <td>${filtered[keyList[i]].look}</td>
           <td>${filtered[keyList[i]].offer}</td>
-          <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${filtered[keyList[i]].title}</a></td>
+          <td><em><a style="color: #0000ff;" href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><p class="lead">${filtered[keyList[i]].title}</p></a></em></td>
           <td>${filtered[keyList[i]].author}</td>
-          <td>${filtered[keyList[i]].date_posted}</td>
+          <td>${match}</td>
           </tr>`);
       }
     }

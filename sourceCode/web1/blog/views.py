@@ -29,9 +29,9 @@ def home(request):
     message = "hide"
     try:
         idtoken = request.session['uid']
-        # print(idtoken)
+        print(idtoken)
         localID = authe.get_account_info(idtoken)['users'][0]['localId']
-        return render(request, "blog/home.html", {"title": "Profile", "localID": localID})
+        return render(request, "blog/home.html", {"title": "Profile"})
 
     except KeyError:
         return render(request, "blog/home.html", {"messg": message})
