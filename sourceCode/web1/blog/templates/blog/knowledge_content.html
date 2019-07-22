@@ -259,6 +259,9 @@
           document.getElementById("complete-button").setAttribute('disabled','disabled');
         }
       } else{
+        if(postList.matching==="y"){
+          document.getElementById("request-button").setAttribute('disabled','disabled');
+        }
         console.log(`false`);
         $("#request-button").css("display", "flex");
       }
