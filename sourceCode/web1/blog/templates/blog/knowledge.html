@@ -224,9 +224,9 @@
             //     var title = postList[curKey].title;
             var match="";
             if(postList[keyList[i]].matching==='n'){
-              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="width: 90%; height: 25%; text-align: center" class="btn btn-success">Proceed</button></a>`;
+              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 40%; width: 90%; height: 25%; text-align: center" class="btn btn-success">Proceed</button></a>`;
             } else{
-              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="width: 90%; height: 25%; text-align: center" class="btn btn-danger">Complete</button></a>`;
+              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 40%; width: 90%; height: 25%; text-align: center" class="btn btn-danger">Complete</button></a>`;
             }
             $("#table-body").append(`<tr>
               <td>${postList[keyList[i]].look}</td>
