@@ -81,11 +81,10 @@
     <main role="main" class="container">
 
       <div class="signup_container">
-        <div><h1>Log in to Tutor Trade!</h1></div>
         <div class="signup_content">
+          <div style="text-align: center;"><h1>Log in</h1></div>
           <!-- CC: added email & password encryption that correspond to firebase -->
           <form action="/postsign/" method="post">
-            <br>
             {% csrf_token %}
             <!-- Email :
             <input type="email" name ="email"> -->
