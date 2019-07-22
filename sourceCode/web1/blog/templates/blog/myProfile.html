@@ -13,8 +13,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/makePost.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
@@ -26,61 +28,12 @@
     <title>Tutor trade</title>
     {% endif %}
   </head>
+
   <body>
-    <main role="main" class="container">
-      <div class="row" style="margin-bottom: 10px;">
-        <div class="col-md-8">
-          <div class="title_container">
-            <h1> {{ headerName }}'s Profile </h1>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="title_container">
-
-          </div>
-        </div>
-      </div>
-
-      <div class="row" style="margin-top: 10px; margin-bottom: 50px">
-
-
-        <div class="col-md-12">
-          <div class="content-section">
-            <div class="row">
-              <div class="col-md-4">
-                {% for x in labelList %}
-
-                  {{x}}<br>
-
-                {% endfor %}
-              </div>
-              <div = class="col-md-4">
-               {% for x in detailList %}
-
-                {{x}}<br>
-
-               {% endfor %}
-              </div>
-              <div class="col-md-4">
-                <!-- put profile image here -->
-              </div>
-
-                <a class="nav-item nav-link" href="{% url 'blog-editProfile' %}">Edit Profile</a>
-            </div>
-            <div class="row" id="post-container">
-
-            </div>
-          </div>
-
-
-        </div>
-
-      </div>
-
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/">Welcome to Tutor Trade</a>
+          <a class="navbar-brand mr-4" href="/"><i class="fas fa-school"></i>&nbsp&nbspWelcome to Tutor Trade&nbsp&nbsp<i class="fas fa-exchange-alt"></i></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -99,12 +52,8 @@
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
-        </div>
-      </div>
-      <header class="site-header">
+
+    <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
         <div class="container">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,15 +72,117 @@
         </div>
       </nav>
     </header>
+
+
     <main role="main" class="container">
-      <div class="row">
+      <div class="row" style="margin-bottom: 10px;">
         <div class="col-md-8">
+          <div class="title_container">
+            <h1> {{ headerName }}'s Profile </h1>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="title_container">
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 10px;">
+        <div class="col-md-12">
+          <div class="content-section">
+            <div class="row">
+            <div class="col-md-4" style="">
+              <div style="margin: 20px auto; width: 220px; height: 220px;">
+                <img src="https://image.flaticon.com/icons/png/512/131/131040.png" width="220px" height="220px" />
+              </div>
+              <div id ="full_name" style="margin: auto; text-align: center; font-size: 25px; font-weight: bold; margin-bottom: 15px;">
+                &nbsp&nbsp
+              </div>
+              <div class="signup_btn_row">
+                <input type="button" class="btn_type btn_primary" value="Edit Profile" onclick="edit_profile()"></input>
+              </div>
+            </div>
+
+            <div class="col-md-8" style="">
+              <div class="signup_row" style="margin-top: 20px;">
+                <h4 class="signup_title"><label for="id">Email</label></h4>
+                <span class="signup_input" style="background-color: white">
+                  <input type="email" name ="email" id="email" placeholder="email" style="border: none; width: 100%; background-color: white;" disabled>
+                </span>
+              </div>
+
+              <div class="signup_row">
+                <h4 class="signup_title">
+                  <label for="id">Contact</label>
+                </h4>
+                <span class="signup_input">
+                  <input type="text" name="contact" id="contact" placeholder="contact" maxlength="20" style="border: none; width: 100%;" disabled>
+                </span>
+              </div>
+
+              <div class="signup_row">
+                <h4 class="signup_title">
+                  <label for="id">Location</label>
+                </h4>
+                <span class="signup_input">
+                  <input type="text" name="location" id="location" placeholder="location" maxlength="60" style="border: none; width: 100%;" disabled>
+                </span>
+              </div>
+
+              <div class="signup_row">
+                <h4 class="signup_title">
+                  <label for="id">Current Major</label>
+                </h4>
+                <span class="signup_input">
+                  <input type="text" name="major" id="major" placeholder="current major" maxlength="40" style="border: none; width: 100%;" disabled>
+                </span>
+              </div>
+
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
     </main>
 
 
 
+      <!-- <div class="row" style="margin-top: 10px; margin-bottom: 50px">
+        <div class="col-md-12">
+          <div class="content-section">
+            <div class="row">
+              <div class="col-md-4">
+                {% for x in labelList %}
+                  {{x}}<br>
+                {% endfor %}
+              </div>
+              <div = class="col-md-4">
+                {% for x in detailList %}
+                  {{x}}<br>
+                {% endfor %}
+              </div>
+              <div class="col-md-4">
 
+              </div>
+                <a class="nav-item nav-link" href="{% url 'blog-editProfile' %}">Edit Profile</a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+
+
+    <!-- <main role="main" class="container">
+      <div class="row">
           {% block content %}{% endblock %}
+      </div>
+    </main> -->
+
+
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -144,5 +195,52 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
 
+    <script>
+      var config = {
+        apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+        authDomain: "verve-slug-tutor.firebaseapp.com",
+        databaseURL: "https://verve-slug-tutor.firebaseio.com",
+        projectId: "verve-slug-tutor",
+        storageBucket: "verve-slug-tutor.appspot.com",
+        messagingSenderId: "1013220996189"
+      };
+      firebase.initializeApp(config);
+      // var data = jQuery.parseJSON('{{labelList}}');
+      // console.log(data);
+      // console.log(`localID is ${localID}`);
+      console.log(`email is ${sessionStorage.getItem('email')}`);
+      // console.log("labelList", ${{labelList}});
+      // console.log("detailList", {{detailList}});
+      var databaseRef = firebase.database().ref('users/');
+
+      console.log(sessionStorage.getItem('email'));
+      var userKey = "";
+      /* initial verification of the email */
+      firebase.database().ref('users/').once('value', function(snapshot){
+        var userList = snapshot.val();
+        console.log(userList);
+        var userKeyList = Object.keys(userList);
+        for (var i=0; i<userKeyList.length; i++){
+          if(sessionStorage.getItem('email') === userList[userKeyList[i]].details.email){
+            userKey = userKeyList[i];
+            console.log("Match", userKeyList[i], userList[userKeyList[i]].details.email);
+            console.log(userList[userKeyList[i]].details);
+            document.getElementById('full_name').innerHTML = userList[userKeyList[i]].details.name+"&nbsp"+userList[userKeyList[i]].details.name2;
+            // console.log(document.getElementById('email').placeholder);
+            document.getElementById('email').placeholder = userList[userKeyList[i]].details.email;
+            // document.getElementById('name').placeholder = userList[userKeyList[i]].details.name;
+            // document.getElementById('lastname').placeholder = userList[userKeyList[i]].details.name2;
+            document.getElementById('contact').placeholder = userList[userKeyList[i]].details.contact;
+            document.getElementById('location').placeholder = userList[userKeyList[i]].details.location;
+            document.getElementById('major').placeholder = userList[userKeyList[i]].details.current_major;
+          }
+        }
+      });
+
+      function edit_profile() {
+        console.log("edit profile");
+        window.location.href="{% url 'blog-editProfile' %}";
+      }
+    </script>
   </body>
 </html>
