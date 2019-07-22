@@ -48,9 +48,9 @@
     </header>
 
     <main role="main" class="container">
-      <div class="row" style="margin-bottom: 10px;">
-        <div class="col-md-8">
-          <div class="title_container" >
+      <div class="row" style="height: 5vh; margin-bottom: 10px;">
+        <div class="col-md-8" style="height: 0">
+          <div class="title_container" style="height: 10px">
             <h5 id="welcome-tag"></h5>
           </div>
         </div>
@@ -98,12 +98,12 @@
             <!-- <div class="row" id="post-container"> -->
 
               <form class="form-horizontal">
-                <div class="form-group" style="margin-top: 2vh;">
+                <div class="form-group" style="margin-top: 1vh;">
                   <!-- <label class="col-sm-2 control-label"><strong>Title</strong></label> -->
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="post-title"></p>
+                  <div class="col-sm-10" style="margin: 0 0 0 0;">
+                    <div class="form-control-static" id="post-title"></div>
                   </div>
-                  <div class="col-sm-10" style="margin-bottom: 2vh">
+                  <div class="col-sm-10" style="margin-bottom: 1vh">
                     <p class="form-control-static" id="post-author"></p>
                   </div>
                   <!-- <label class="col-sm-2 control-label"><strong>Content</strong></label> -->
@@ -119,7 +119,7 @@
                       <p class="form-control-static" style="font-size: 20px" id="post-offer"></p>
                     </div>
                   </div>
-                  <div class="col-sm-10" style="height: 30vh; max-width: 100%">
+                  <div class="col-sm-10" style="height: 20vh; max-width: 100%">
                     <p class="lead" id="post-content"></p>
                   </div>
                   <div class="col-sm-10" style="height: 10vh; max-width: 100%">
@@ -271,7 +271,7 @@
       $("#post-look").append(`<u>${postList.look}</u>`);
       $("#post-offer").append(`<u>${postList.offer}</u>`);
       // reqCnt=postList.reqCnt;
-      $("#current-request").append(`${postList.reqCnt} students currently send posts!`);
+      $("#current-request").append(`${postList.reqCnt} students currently send requests!`);
 
 
       // var keyList = Object.keys(postList);

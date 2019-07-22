@@ -200,7 +200,7 @@
       console.log(`localID is ${localID}`);
       console.log(`email is ${sessionStorage.getItem('email')}`);
       firebase.database().ref(`users/${localID}`).child('details').once('value', function(data){
-        var fullname = `${data.val()['name']} ${data.val()['nametwo']}`;
+        var fullname = `${data.val()['name']} ${data.val()['name2']}`;
         sessionStorage.setItem('name', fullname);
         console.log(`name is ${fullname}`);
       });
@@ -215,13 +215,18 @@
             //     var email = postList[curKey].email;
             //     var status = postList[curKey].status;
             //     var title = postList[curKey].title;
-
+            var match="";
+            if(postList[keyList[i]].matching==='n'){
+              match+=`<button type="button" class="btn btn-success" disabled>Proceed</button>`;
+            } else{
+              match+=`<button type="button" class="btn btn-danger" disabled>Complete</button>`;
+            }
             $("#table-body").append(`<tr>
               <td>${postList[keyList[i]].look}</td>
               <td>${postList[keyList[i]].offer}</td>
               <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${postList[keyList[i]].title}</a></td>
               <td>${postList[keyList[i]].author}</td>
-              <td>${postList[keyList[i]].date_posted}</td>
+              <td>${match}</td>
               </tr>`)
           }
       });
