@@ -8,6 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
@@ -25,7 +26,7 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/">Welcome to Tutor Trade</a>
+          <a class="navbar-brand mr-4" href="/"><i class="fas fa-school"></i>&nbsp&nbspWelcome to Tutor Trade&nbsp&nbsp<i class="fas fa-exchange-alt"></i></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -47,7 +48,7 @@
                 <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
-                <a class="nav-item nav-link" href="{% url 'blog-profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
                 <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
 
               {% endif %}
@@ -58,7 +59,7 @@
         </div>
       </nav>
     </header>
-    
+
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
@@ -71,8 +72,8 @@
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-
+            <div class="navbar-nav mr-auto" style="color: white;">
+              Bringing free knowledge to all UCSC students.
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -87,26 +88,94 @@
       <div class="row">
         <div class="col-md-8">
     </main>
-    <div>
+  <head>
 
-     <h2>Welcome To Tutor Trade</h2>
-<body><br>
-<div class="containerOne">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.containerOne{
- background: #5f788a;
- padding: 15px 15px;
- border: 2px solid #dddddd;
- border-radius: 3px;
- margin-bottom: 10px;
+
+body, html {
+  scroll-behavior: smooth;
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
 }
+
+.bgimg-1, .bgimg-2  {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("https://images.squarespace-cdn.com/content/v1/54bd6078e4b0ab9f36064ece/1422050437488-KADI87JBMQ5H01E187RX/ke17ZwdGBToddI8pDm48kEKAcg-kjphGFCuErbTTbpFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI08Z_IbMgMtJqsTTR0Nwh_d7ccA3dL912bvoz_cuSnBk/Screen+Shot+2015-01-23+at+1.56.57+PM.png?format=1500w");
+  min-height: 650px;
+}
+
+.bgimg-2 {
+  background-image: url("https://images.squarespace-cdn.com/content/v1/54bd6078e4b0ab9f36064ece/1422050437488-KADI87JBMQ5H01E187RX/ke17ZwdGBToddI8pDm48kEKAcg-kjphGFCuErbTTbpFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI08Z_IbMgMtJqsTTR0Nwh_d7ccA3dL912bvoz_cuSnBk/Screen+Shot+2015-01-23+at+1.56.57+PM.png?format=1500w");
+  min-height: 400px;
+}
+
+
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #5f788a;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2 {
+    background-attachment: scroll;
+  }
+}
+
 </style>
-        <img src="https://admissions.ucsc.edu/apply/images/22oakes-students.jpg" alt="Norway" style="width:100%;">
- <div class="text-block">  </body>
-
-
-
+</head>
+<body>
+  <div class="bgimg-1">
+  <div class="caption">
+  <span class="border">TUTOR TRADE</span>
+  </div>
+</div>
+<div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+  <h3 style="text-align:center;">BRINGING FREE KNOWLEDGE TO ALL</h3>
+  <p>TUTOR TRADE IS ABOUT CONNECTING WITH YOUR PEERS AND EXCHANGING YOUR ACADEMIC STRONG POINTS IN EXCHANGE FOR THEIRS. BY BECOMMING A MEMBER YOU WILL CONNECT WITH THOUSANDS OF STUDENTS WHO NEED HELP JUST LIKE YOU. THIS IS GREAT, BECAUSE YOU WILL BE ABLE TO REINFORCE WHAT YOU HAVE LEARNED, CONNECT WITH YOUR PEERS, AND ABOVE ALL EXCHANGE KNOWLEDGE FOR THE PRICE OF FREE! HAPPY TUTORING AND LEARNING, AND WELCOME TO TUTOR TRADE! UCSC TUTOR TRADE 2019 ©. </p>
+</div>
+<div class="bgimg-2">
+  <div class="caption">
+  <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">CONNECT TO LEARN</span>
+  </div>
+</div>
+<div style="position:relative;">
+  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:25px 80px;text-align: justify;">
+<p>.. </p>
+  </div>
+</div>
+</div>
 
 
           {% block content %}{% endblock %}

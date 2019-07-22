@@ -12,7 +12,13 @@ ul {
   margin: 0;
 }
 
-
+.containerOne{
+  background: #5f788a;
+  padding: 15px 15px;
+  border: 2px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 80px;
+}
 
 .bg-steel {
   background-color: #5f788a;
