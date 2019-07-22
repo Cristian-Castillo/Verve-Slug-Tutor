@@ -32,32 +32,35 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-                {% if messg %}
+              {% if messg %}
 
+              {% else %}
 
+                <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
+              {% endif %}
 
-                {% else %}
-
-                    <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
-                {% endif %}
 
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if messg %}
-
                 <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
                 <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
                 <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
+
                 <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a>
+
               {% endif %}
+
+
             </div>
           </div>
         </div>
       </nav>
     </header>
+
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
@@ -75,7 +78,9 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+
               <a class="nav-item nav-link" href="{% url 'blog-about' %}" style="color:white;">About</a>
+
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
@@ -86,26 +91,96 @@
       <div class="row">
         <div class="col-md-8">
     </main>
-<h3>About Tutor Trade</h3>
-<p>Tutor Trade is a web application that was established at UCSC for the sole purposes to exchange knowledge. Students offer their strong academic skillsets in exchange for that of their peers. The services provided enable students to interact with ease, learn with confidence, and reinforce their academic strengths by teaching others.</p>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+body, html {
+  scroll-behavior: smooth;
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+.bgimg-1, .bgimg-2  {
+  position: relative;
+  opacity: 0.75;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("https://images.singletracks.com/blog/wp-content/uploads/2017/01/3677159451_7e294158fa_o.jpg");
+  min-height: 650px;
+}
+
+.bgimg-2 {
+  background-image: url("https://images.singletracks.com/blog/wp-content/uploads/2017/01/3677159451_7e294158fa_o.jpg");
+  min-height: 400px;
+}
+
+
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #5f788a;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2 {
+    background-attachment: scroll;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="bgimg-1">
+  </div>
+</div>
+<div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+  <h3 style="text-align:center;">MISSION STATEMENT</h3>
+  <p>TUTOR TRADE WAS ESTABLISHED TO ENSURE THAT ALL STUDENTS HAVE ACCESS TO FREE KNOWLEDGE, REINFORCE THEIR OWN UNDERSTANDING OF SUBJECTS, AND CONNECT WITH THEIR LOCAL PEERS.  THE GOAL IS TO CONNECT YOU WITH OTHERS, AND EXCHANGE KNOWLEDGE SO THAT EVERYONE BENEFITS ACADEMICALLY. BY CONNECTING YOU WE HOPE THAT YOU TAKE AWAY THE APPROPRIATE NEEDED KNOWLEDGE AND POSSIBLY MAKE NEW FRIENDS ALONG THE WAY! </p>
+</div>
+<div class="bgimg-2">
+  <div class="caption">
+  <span class="border" style="background-color:transparent;font-size:25px;color: white;">BRIDGE THE GAP TO KNOWLEDGE</span>
+  </div>
+</div>
+<div style="position:relative;">
+  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:25px 80px;text-align: justify;">
+<p>.. </p>
+  </div>
+</div>
+</div>
+
 
           {% block content %}{% endblock %}
-      <!-- </div>
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>Tutor Trade a new and free tutoring service.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-    </main> -->
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

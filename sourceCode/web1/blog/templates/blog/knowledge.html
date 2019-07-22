@@ -77,7 +77,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <h5><div class="title_container" style="text-align: right;" id="welcome-tag"></h5>
+          <div class="title_container" id="welcome">
           </div>
         </div>
       </div>
@@ -90,7 +90,7 @@
               </div>
               <div class="col-md-4">
                 <div class="search_row">
-                  <div class="search_title">Looking for</div>
+                  <div class="search_title">Need Tutoring</div>
                   <span class="search_input">
                     <input type="search1" name ="search1" id="search1_input" maxlength="40" style="border: none; width: 100%;" />
                   </span>
@@ -98,7 +98,7 @@
               </div>
               <div class="col-md-4">
                 <div class="search_row">
-                  <div class="search_title">Offering</div>
+                  <div class="search_title">Can Tutor</div>
                   <span class="search_input">
                     <input type="search2" name ="search2" id="search2_input" maxlength="40" style="border: none; width: 100%;" />
                   </span>
@@ -129,11 +129,11 @@
             <div class="row" id="post-container">
               <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width: 90vw;">
                 <thead>
-                  <th style="background-color: #eeeeee; text-align: center;">Look</th>
-                  <th style="background-color: #eeeeee; text-align: center;">Offer</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Need Tutoring</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Can Tutor</th>
                   <th style="background-color: #eeeeee; text-align: center;">Title</th>
-                  <th style="background-color: #eeeeee; text-align: center;">Writer</th>
-                  <th style="background-color: #eeeeee; text-align: center;">Matching</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Author</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Date</th>
                   <!-- <th style="background-color: #eeeeee; text-align: center;">author</th> -->
                 </thead>
                 <tbody id="table-body">
@@ -200,9 +200,8 @@
       console.log(`localID is ${localID}`);
       console.log(`email is ${sessionStorage.getItem('email')}`);
       firebase.database().ref(`users/${localID}`).child('details').once('value', function(data){
-        var fullname = `${data.val()['name']} ${data.val()['name2']}`;
+        var fullname = `${data.val()['name']} ${data.val()['nametwo']}`;
         sessionStorage.setItem('name', fullname);
-
         console.log(`name is ${fullname}`);
       });
 
@@ -216,24 +215,17 @@
             //     var email = postList[curKey].email;
             //     var status = postList[curKey].status;
             //     var title = postList[curKey].title;
-            var match = "";
-            if(postList[keyList[i]].matching==="n"){
-              match += `<button class="btn btn-success" disabled>Proceed</button></td>`;
-            } else{
-              match += `<button class="btn btn-danger" disabled>Complete</button></td`;
-            }
+
             $("#table-body").append(`<tr>
               <td>${postList[keyList[i]].look}</td>
               <td>${postList[keyList[i]].offer}</td>
               <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${postList[keyList[i]].title}</a></td>
               <td>${postList[keyList[i]].author}</td>
-              <td>${match}</td>
-              </tr>`);
+              <td>${postList[keyList[i]].date_posted}</td>
+              </tr>`)
           }
       });
     })
-
-    $("#welcome-tag").append(`Welcome, ${sessionStorage.getItem('name')}!`);
 
     firebase.database().ref('courseList/').once('value', function(snapshot){
       var courseList = snapshot.val();
@@ -378,19 +370,12 @@
 
     function func(filtered, keyList){
       for(var i=0; i<Object.keys(filtered).length; i++) {
-
-        var match = ""
-        if(filtered[keyList[i]].matching==="n"){
-          match=`<div style="background-color: @gray-light"></div>`;
-        } else{
-          match=`<div style="background-color: @brand-primary"></div>`;
-        }
         $("#table-body").append(`<tr>
           <td>${filtered[keyList[i]].look}</td>
           <td>${filtered[keyList[i]].offer}</td>
           <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${filtered[keyList[i]].title}</a></td>
           <td>${filtered[keyList[i]].author}</td>
-          <td>${match}</td>
+          <td>${filtered[keyList[i]].date_posted}</td>
           </tr>`);
       }
     }
