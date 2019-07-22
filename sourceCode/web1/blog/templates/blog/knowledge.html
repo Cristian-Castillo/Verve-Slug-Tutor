@@ -86,7 +86,7 @@
           <div class="content-section">
             <div class="row">
               <div class="col-md-2" style="text-align: center;">
-                <div style="margin-top: 15px"><h4>Search Tutor</h4></div>
+                <div style="margin-top: 7px"><h3>Search Tutor</h3></div>
               </div>
               <div class="col-md-4">
                 <div class="search_row">
@@ -109,7 +109,7 @@
                           justify-content: space-around; /* center items vertically, in this case */
                           align-items: center;">
                 <div class="search_row">
-                  <a class="btn_primary btn_search" id="btnSearch" onclick="filtering()" style="text-align: center; color:white; position: relative; border-radius: 3px">
+                  <a class="btn_primary btn_search" id="btnSearch" onclick="filtering()" style="text-align: center; color:white; position: relative; border-radius: 3px; margin-top: 20px;">
                     Search
                   </a>
                 </div>
@@ -330,18 +330,23 @@
       var fpostLength = fkeyList.length;
       var new_filtered = {};
 
-      for(var i=0; i<fkeyList.length; i++) {
-         if (fpostList[fkeyList[i]].look === $( "#search1_input" ).val() && fpostList[fkeyList[i]].offer === $( "#search2_input" ).val()){
-           console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
-           new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
-         }
-         else if ($( "#search1_input" ).val() === "" && fpostList[fkeyList[i]].offer === $( "#search2_input" ).val()) {
-           console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
-           new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
-         }
-         else if($( "#search2_input" ).val() === "" && fpostList[fkeyList[i]].look === $( "#search1_input" ).val()){
-           console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
-           new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
+      if ($( "#search1_input" ).val() === "" && $( "#search2_input" ).val() === ""){
+        new_filtered = filtered;
+      }
+      else{
+        for(var i=0; i<fkeyList.length; i++) {
+           if (fpostList[fkeyList[i]].look === $( "#search1_input" ).val() && fpostList[fkeyList[i]].offer === $( "#search2_input" ).val()){
+             console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
+             new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
+           }
+           else if ($( "#search1_input" ).val() === "" && fpostList[fkeyList[i]].offer === $( "#search2_input" ).val()) {
+             console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
+             new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
+           }
+           else if($( "#search2_input" ).val() === "" && fpostList[fkeyList[i]].look === $( "#search1_input" ).val()){
+             console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
+             new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
+           }
          }
       }
       filtered = new_filtered;
