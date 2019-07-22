@@ -216,14 +216,19 @@
             //     var email = postList[curKey].email;
             //     var status = postList[curKey].status;
             //     var title = postList[curKey].title;
-
+            var match = "";
+            if(postList[keyList[i]].matching==="n"){
+              match += `<button class="btn btn-success" disabled>Proceed</button></td>`;
+            } else{
+              match += `<button class="btn btn-danger" disabled>Complete</button></td`;
+            }
             $("#table-body").append(`<tr>
               <td>${postList[keyList[i]].look}</td>
               <td>${postList[keyList[i]].offer}</td>
               <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${postList[keyList[i]].title}</a></td>
               <td>${postList[keyList[i]].author}</td>
-              <td>${postList[keyList[i]].matching}</td>
-              </tr>`)
+              <td>${match}</td>
+              </tr>`);
           }
       });
     })
@@ -373,12 +378,19 @@
 
     function func(filtered, keyList){
       for(var i=0; i<Object.keys(filtered).length; i++) {
+
+        var match = ""
+        if(filtered[keyList[i]].matching==="n"){
+          match=`<div style="background-color: @gray-light"></div>`;
+        } else{
+          match=`<div style="background-color: @brand-primary"></div>`;
+        }
         $("#table-body").append(`<tr>
           <td>${filtered[keyList[i]].look}</td>
           <td>${filtered[keyList[i]].offer}</td>
           <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${filtered[keyList[i]].title}</a></td>
           <td>${filtered[keyList[i]].author}</td>
-          <td>${filtered[keyList[i]].matching}</td>
+          <td>${match}</td>
           </tr>`);
       }
     }
