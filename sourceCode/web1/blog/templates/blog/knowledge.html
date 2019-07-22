@@ -133,7 +133,7 @@
                   <th style="background-color: #eeeeee; text-align: center;">Offer</th>
                   <th style="background-color: #eeeeee; text-align: center;">Title</th>
                   <th style="background-color: #eeeeee; text-align: center;">Writer</th>
-                  <th style="background-color: #eeeeee; text-align: center;">Date</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Matching</th>
                   <!-- <th style="background-color: #eeeeee; text-align: center;">author</th> -->
                 </thead>
                 <tbody id="table-body">
@@ -222,7 +222,7 @@
               <td>${postList[keyList[i]].offer}</td>
               <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${postList[keyList[i]].title}</a></td>
               <td>${postList[keyList[i]].author}</td>
-              <td>${postList[keyList[i]].date_posted}</td>
+              <td>${postList[keyList[i]].matching}</td>
               </tr>`)
           }
       });
@@ -378,7 +378,7 @@
           <td>${filtered[keyList[i]].offer}</td>
           <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${filtered[keyList[i]].title}</a></td>
           <td>${filtered[keyList[i]].author}</td>
-          <td>${filtered[keyList[i]].date_posted}</td>
+          <td>${filtered[keyList[i]].matching}</td>
           </tr>`);
       }
     }

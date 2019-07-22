@@ -123,7 +123,7 @@
                     <p class="lead" id="post-content"></p>
                   </div>
                   <div class="col-sm-10" style="height: 10vh; max-width: 100%">
-                    <div id="current-request"></div>
+                    <div style="display:flex;" id="current-request"></div>
                   </div>
                 </div>
                 <div class="form-group" style="max-width: 100%;">
@@ -134,6 +134,7 @@
                     <button type="button" class="btn btn-danger" id="delete-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge' %}">Delete</a></button>
                     <button type="button" class="btn btn-primary" id="update-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge_content_update' %}">Update</a></button>
                     <button type="button" class="btn btn-info" id="request-button" style="display:none">Request</button>
+                    <button type="button" class="btn btn-warning" id="complete-button" style="display:none">Complete</button>
                     <button type="button" class="btn btn-default" style="border: 1px solid #000"><a style="color: #000;" href="javascript:history.back();">Go Back</a></button>
                 </div>
                 </div>
@@ -229,14 +230,20 @@
     })
 
     $("#request-button").click(function(){
-      console.log(`${parseInt(document.getElementById('current-request').innerHTML)+1}!!!`);
-      var updateReq=parseInt(document.getElementById('current-request').innerHTML)+1;
+      console.log(`${parseInt(document.getElementById('current-request').innerHTML[0])+1}!!!`);
+      var updateReq=parseInt(document.getElementById('current-request').innerHTML[0])+1;
       fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
         reqCnt: updateReq
       });
       window.location.reload();
     })
 
+    $("#complete-button").click(function(){
+      fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+        matching: "y"
+      });
+      window.location.reload();
+    })
 
     fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).once('value', function(snapshot) {
       var postList = snapshot.val();
@@ -246,6 +253,12 @@
         console.log(`true`);
         $("#delete-button").css("display","flex");
         $("#update-button").css("display","flex");
+        if(postList.matching==="n"){
+          $("#complete-button").css("display", "flex");
+        } else{
+          $("#complete-button").css("display", "flex");
+          document.getElementById("complete-button").setAttribute('disabled','disabled');
+        }
       } else{
         console.log(`false`);
         $("#request-button").css("display", "flex");
@@ -258,7 +271,7 @@
       $("#post-look").append(`<u>${postList.look}</u>`);
       $("#post-offer").append(`<u>${postList.offer}</u>`);
       // reqCnt=postList.reqCnt;
-      $("#current-request").append(`${postList.reqCnt}`);
+      $("#current-request").append(`${postList.reqCnt} students currently send posts!`);
 
 
       // var keyList = Object.keys(postList);
