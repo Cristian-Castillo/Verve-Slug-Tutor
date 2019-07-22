@@ -35,10 +35,11 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
- <div class="content-section" style="padding-top: 10px; width: 900px; margin: auto; margin-bottom:100px">
+
+ <div class="content-section" style="padding-top: 10px; width: 900px; margin: auto; margin-bottom: 100px;">
    <form action="/knowledge" class="form-horizontal">
      <div>
-     <legend class="border-bottom mb-4">Make a Post</legend>
+       <legend class="border-bottom mb-4">Make a Post</legend>
    </div>
   <div class="form-group">
     <label for="inputTitle3" class="col-sm-2 control-label">Title</label>
@@ -68,7 +69,6 @@
       <textarea class="form-control" rows="3"id="input-content"></textarea>
     </div>
   </div>
-
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" id="button-post" class="btn btn-success"><a href="{% url "blog-knowledge"%}" style="color: #fff;" >Post</a></button>
@@ -95,6 +95,7 @@
             </form> -->
 
             {% endblock content %}
+
 
   <body>
     <header class="site-header">
@@ -147,6 +148,7 @@
         </div>
       </div>
     </main>
+
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -334,6 +336,64 @@
             input2CheckMsg.style.display = 'block';
         }
       }
+
+
+    <script>
+      $(document).ready(function(){
+        console.log(sessionStorage.getItem('email'));
+        console.log(sessionStorage.getItem('author'));
+      })
+
+      var d = new Date();
+      console.log(`Today is ${d.getFullYear()}, ${d.getMonth()+1}, ${d.getDate()}`);
+      var firebaseConfig = {
+          apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+          authDomain: "verve-slug-tutor.firebaseapp.com",
+          databaseURL: "https://verve-slug-tutor.firebaseio.com",
+          projectId: "verve-slug-tutor",
+          storageBucket: "verve-slug-tutor.appspot.com",
+          messagingSenderId: "1013220996189",
+          appId: "1:1013220996189:web:615c1dfe72a6e660"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // var localID = document.getElementById('localID').innerHTML;
+      // console.log(`localID is ${localID}`);
+      // console.log(`email is ${sessionStorage.getItem('email')}`);
+      // firebase.database().ref(`users/${sessionStorage.getItem('name')}`).child('details').once('value', function(data){
+        // var fullname = `${data.val()['name']} ${data.val()['lastname']}`;
+        // console.log(`name is ${fullname}`);
+      // });
+
+      // var postCnt=0;
+      // var postKey="";
+
+      $("#button-post").click(function(){
+        var d = new Date();
+        console.log(`Today is ${d.getFullYear()}, ${d.getMonth()}, ${d.getDate()}`);
+        var title = $("#input-title").val();
+        var content = $("#input-content").val();
+        var look=$("#lookfor-subject").val();
+        var offer=$("#teach-subject").val();
+        var date = d.getFullYear().toString()+"/"+(d.getMonth()+1).toString()+"/"+d.getDate().toString();
+        firebase.database().ref('post/').once('value', function(snapshot) {
+          var postList = snapshot.val();
+          var keyList = Object.keys(postList);
+          // postCnt+= keyList.length;
+          // postKey+= 'post'+(postCnt+1).toString();
+          firebase.database().ref('post/').push({
+              "title": title,
+              "content": content,
+              "look": look,
+              "offer": offer,
+              "date_posted": date,
+              "email": sessionStorage.getItem('email'),
+              "author": sessionStorage.getItem('name'),
+          });
+        });
+      });
+
 
     </script>
 
