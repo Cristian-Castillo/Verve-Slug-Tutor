@@ -10,6 +10,14 @@
   box-sizing: border-box;
 }
 
+.table td{
+  vertical-align: center;
+}
+
+td {
+  vertical-align: center;
+}
+
 #myInput {
   background-image: url('/css/searchicon.png');
   background-position: 10px 12px;
@@ -43,8 +51,8 @@
 }
 
 .title_container{
-  padding-right: 15px;
-  padding-left: 15px;
+  /* padding-right: 15px; */
+  /* padding-left: 15px; */
   margin-top: 10px;
   margin-bottom: 10px;
   height: 50px;
