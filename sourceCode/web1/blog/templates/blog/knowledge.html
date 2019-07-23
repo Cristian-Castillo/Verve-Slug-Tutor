@@ -10,6 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
@@ -41,7 +42,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
                 <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
-                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a>
+                <!-- <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a> -->
             </div>
           </div>
         </div>
@@ -71,26 +72,24 @@
 
     <main role="main" class="container" style="">
       <div class="row" style="margin-bottom: 10px;">
-        <div class="col-md-8" style="padding:0%">
+        <div class="col-md-11" style="padding:0%">
           <div class="title_container">
             <h1> Knowledge Board </h1>
             <div id="localID" style="display:none;">{{localID}}</div>
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
           <div class="title_container" id="welcome">
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="title_container">
-            <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a>
+            <button type="button" class="btn btn-color bmd-btn-fab" style="color: #fff; background-color: #5f788a; border-color: #5f788a;" onclick="makePost()">
+              <i class="material-icons">+</i>
+            </button>
           </div>
         </div>
       </div>
 
       <div class="row" style="margin-top: 10px;">
         <div class="col-md-12" style="padding:0%">
-          <div class="content-section">
+          <div class="content-section" style="margin-bottom:10px">
             <div class="row">
               <div class="col-md-2" style="text-align: center;">
                 <div style="margin-top: 20px"><h3>Search Tutor</h3></div>
@@ -127,7 +126,8 @@
         </div>
       </div>
 
-      <div class="row" style="margin-top: 10px; margin-bottom: 60px">
+
+      <div class="row" style="margin-top: 0px; margin-bottom: 60px">
         <div class="col-md-12">
           <!-- <div class="content-section"> -->
             <div class="row" id="post-container">
@@ -159,6 +159,11 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <!-- <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
@@ -209,9 +214,9 @@
             //     var title = postList[curKey].title;
             var match="";
             if(postList[keyList[i]].matching==='n'){
-              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 40%; width: 90%; height: 25%; text-align: center" class="btn btn-success">Open</button></a>`;
+              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 40%; width: 100%; height: 25%; text-align: center" class="btn btn-raised btn-success">Open</button></a>`;
             } else{
-              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 40%; width: 90%; height: 25%; text-align: center" class="btn btn-danger">Closed</button></a>`;
+              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 40%; width: 100%; height: 25%; text-align: center" class="btn btn-raised btn-danger">Closed</button></a>`;
             }
             $("#table-body").append(`<tr>
               <td>${postList[keyList[i]].look}</td>
@@ -317,7 +322,9 @@
       console.log("filtered", filtered);
     });
 
-
+    function makePost(){
+      window.location.href="{% url 'blog-post_form' %}";
+    }
 
 
 
@@ -363,9 +370,9 @@
       for(var i=0; i<Object.keys(filtered).length; i++) {
         var match="";
         if(filtered[keyList[i]].matching==='n'){
-          match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="width: 90%; height: 25%; text-align: center" class="btn btn-success">Proceed</button></a>`;
+          match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="width: 100%; height: 25%; text-align: center" class="btn btn-raised btn-success">Open</button></a>`;
         } else{
-          match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="width: 90%; height: 25%; text-align: center" class="btn btn-danger">Complete</button></a>`;
+          match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="width: 100%; height: 25%; text-align: center" class="btn btn-raised btn-danger">Closed</button></a>`;
         }
 
         $("#table-body").append(`<tr>

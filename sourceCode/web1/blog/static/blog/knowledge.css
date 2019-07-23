@@ -22,6 +22,12 @@ td {
   vertical-align: center;
 }
 
+.btn-color {
+    color: #fff;
+    background-color: #5f788a;
+    border-color: #5f788a;
+}
+
 #myInput {
   background-image: url('/css/searchicon.png');
   background-position: 10px 12px;
