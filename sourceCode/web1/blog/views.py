@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import pyrebase # CC: imported pyrebase wrapper, essentially derives from firebase July 9, 2019
+# from firebase_admin import auth
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import (CreateView)
@@ -25,15 +26,18 @@ database= firebase.database() # created the database
 
 
 def home(request):
-
     message = "hide"
+
     try:
         idtoken = request.session['uid']
-        # print(idtoken)
+        print("idtoken: ", idtoken)
         localID = authe.get_account_info(idtoken)['users'][0]['localId']
-        return render(request, "blog/home.html", {"title": "Profile", "localID": localID})
+        return render(request, "blog/home.html", {"title": "Profile"})
 
     except KeyError:
+        print("session: ", request.session)
+        # del request.session['uid']
+        # return render(request, 'login.html')
         return render(request, "blog/home.html", {"messg": message})
 
 
@@ -169,8 +173,8 @@ def postsign(request): #Changes made by JR in order to display name instead of e
     email=request.POST.get('email')
     passw = request.POST.get('pass')
 
-    print("email")
-    print("passw")
+    print(email)
+    print(passw)
     try:
         user = authe.sign_in_with_email_and_password(email,passw)
 
@@ -216,6 +220,7 @@ def postsignup(request):
     request.session['uid']=str(session_id)
     idtoken = request.session['uid']
     localID = authe.get_account_info(idtoken)['users'][0]['localId']
+    print(localID)
 
     data = {"name":name, "name2":name2, "email":email, "contact":contact, "current_major":current_major, "location":location ,"status":"1"}
     # to push the data into the database, 1 means account is enabled

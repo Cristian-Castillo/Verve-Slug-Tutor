@@ -10,13 +10,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
 
     {% if title %}
     <title>{{ title }}</title>
@@ -26,6 +26,7 @@
   </head>
 
   <body>
+    <!-- top header -->
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -41,7 +42,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
                 <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
-                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a>
+                <!-- <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a> -->
             </div>
           </div>
         </div>
@@ -61,6 +62,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
@@ -68,25 +70,29 @@
       </nav>
     </header>
 
-    <main role="main" class="container" style="max-width: 90vw;">
+    <main role="main" class="container" style="">
       <div class="row" style="margin-bottom: 10px;">
-        <div class="col-md-8" style="padding:0%">
+        <div class="col-md-11" style="padding:0%">
           <div class="title_container">
             <h1> Knowledge Board </h1>
             <div id="localID" style="display:none;">{{localID}}</div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-1">
           <div class="title_container" id="welcome">
+            <button type="button" class="btn btn-color bmd-btn-fab" style="color: #fff; background-color: #5f788a; border-color: #5f788a;" onclick="makePost()">
+              <i class="material-icons">+</i>
+            </button>
           </div>
         </div>
       </div>
+
       <div class="row" style="margin-top: 10px;">
         <div class="col-md-12" style="padding:0%">
-          <div class="content-section">
+          <div class="content-section" style="margin-bottom:10px">
             <div class="row">
               <div class="col-md-2" style="text-align: center;">
-                <div style="margin-top: 15px"><h4>Search Tutor</h4></div>
+                <div style="margin-top: 20px"><h3>Search Tutor</h3></div>
               </div>
               <div class="col-md-4">
                 <div class="search_row">
@@ -109,7 +115,7 @@
                           justify-content: space-around; /* center items vertically, in this case */
                           align-items: center;">
                 <div class="search_row">
-                  <a class="btn_primary btn_search" id="btnSearch" onclick="filtering()" style="text-align: center; color:white; position: relative; border-radius: 3px">
+                  <a class="btn_primary btn_search" id="btnSearch" onclick="filtering()" style="text-align: center; color:white; position: relative; border-radius: 3px; margin-top: 30px;">
                     Search
                   </a>
                 </div>
@@ -117,13 +123,11 @@
 
             </div>
           </div>
+        </div>
       </div>
 
-      </div>
 
-      <div class="row" style="margin-top: 10px; margin-bottom: 50px">
-
-
+      <div class="row" style="margin-top: 0px; margin-bottom: 60px">
         <div class="col-md-12">
           <!-- <div class="content-section"> -->
             <div class="row" id="post-container">
@@ -133,10 +137,10 @@
                   <th style="background-color: #eeeeee; text-align: center;">Can Tutor</th>
                   <th style="background-color: #eeeeee; text-align: center;">Title</th>
                   <th style="background-color: #eeeeee; text-align: center;">Author</th>
-                  <th style="background-color: #eeeeee; text-align: center;">Date</th>
+                  <th style="background-color: #eeeeee; text-align: center;">Status</th>
                   <!-- <th style="background-color: #eeeeee; text-align: center;">author</th> -->
                 </thead>
-                <tbody id="table-body">
+                <tbody id="table-body" style="vertical-align: center;">
                 </tbody>
               </table>
             </div>
@@ -144,25 +148,6 @@
         </div>
       </div>
     </main>
-
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
-        <div class="container">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
 
 
     <!-- Optional JavaScript -->
@@ -174,6 +159,11 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <!-- <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
@@ -195,13 +185,20 @@
     firebase.initializeApp(firebaseConfig);
     var courseNameList = [];
 
+
+
     $(document).ready(function(){
-      var localID = document.getElementById('localID').innerHTML;
-      console.log(`localID is ${localID}`);
+      if(document.getElementById('localID').innerHTML!==""){
+        sessionStorage.setItem('localID', document.getElementById('localID').innerHTML)
+      }
+      // console.log(document.getElementById('localID').innerHTML);
+      console.log(`localID is ${sessionStorage.getItem('localID')}`);
       console.log(`email is ${sessionStorage.getItem('email')}`);
-      firebase.database().ref(`users/${localID}`).child('details').once('value', function(data){
-        var fullname = `${data.val()['name']} ${data.val()['nametwo']}`;
+      firebase.database().ref(`users/${sessionStorage.getItem('localID')}`).child('details').once('value', function(data){
+        console.log(`data_val is ${data.val()}`);
+        var fullname = `${data.val()['name']} ${data.val()['name2']}`;
         sessionStorage.setItem('name', fullname);
+        console.log(`checkin`);
         console.log(`name is ${fullname}`);
       });
 
@@ -215,13 +212,18 @@
             //     var email = postList[curKey].email;
             //     var status = postList[curKey].status;
             //     var title = postList[curKey].title;
-
+            var match="";
+            if(postList[keyList[i]].matching==='n'){
+              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 50%; width: 100%; height: 25%; text-align: center" class="btn btn-raised btn-success">Open</button></a>`;
+            } else{
+              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 50%; width: 100%; height: 25%; text-align: center" class="btn btn-raised btn-danger">Closed</button></a>`;
+            }
             $("#table-body").append(`<tr>
               <td>${postList[keyList[i]].look}</td>
               <td>${postList[keyList[i]].offer}</td>
-              <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${postList[keyList[i]].title}</a></td>
+              <td><em><a style="color: #0000ff;" href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><p class="lead">${postList[keyList[i]].title}</p></a></em></td>
               <td>${postList[keyList[i]].author}</td>
-              <td>${postList[keyList[i]].date_posted}</td>
+              <td>${match}</td>
               </tr>`)
           }
       });
@@ -244,8 +246,6 @@
         }
       }
       console.log(courseNameList);
-
-
     });
 
     /* Auto Complete */
@@ -320,7 +320,9 @@
       console.log("filtered", filtered);
     });
 
-
+    function makePost(){
+      window.location.href="{% url 'blog-post_form' %}";
+    }
 
 
 
@@ -330,18 +332,23 @@
       var fpostLength = fkeyList.length;
       var new_filtered = {};
 
-      for(var i=0; i<fkeyList.length; i++) {
-         if (fpostList[fkeyList[i]].look === $( "#search1_input" ).val() && fpostList[fkeyList[i]].offer === $( "#search2_input" ).val()){
-           console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
-           new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
-         }
-         else if ($( "#search1_input" ).val() === "" && fpostList[fkeyList[i]].offer === $( "#search2_input" ).val()) {
-           console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
-           new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
-         }
-         else if($( "#search2_input" ).val() === "" && fpostList[fkeyList[i]].look === $( "#search1_input" ).val()){
-           console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
-           new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
+      if ($( "#search1_input" ).val() === "" && $( "#search2_input" ).val() === ""){
+        new_filtered = filtered;
+      }
+      else{
+        for(var i=0; i<fkeyList.length; i++) {
+           if (fpostList[fkeyList[i]].look === $( "#search1_input" ).val() && fpostList[fkeyList[i]].offer === $( "#search2_input" ).val()){
+             console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
+             new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
+           }
+           else if ($( "#search1_input" ).val() === "" && fpostList[fkeyList[i]].offer === $( "#search2_input" ).val()) {
+             console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
+             new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
+           }
+           else if($( "#search2_input" ).val() === "" && fpostList[fkeyList[i]].look === $( "#search1_input" ).val()){
+             console.log("catch", fkeyList[i], fpostList[fkeyList[i]]);
+             new_filtered[fkeyList[i]] = fpostList[fkeyList[i]];
+           }
          }
       }
       filtered = new_filtered;
@@ -350,19 +357,6 @@
 
       var keyList=Object.keys(filtered);
 
-
-      // I want to remove the whole data of table, then add rows -> sequential execution of function needed.
-
-
-      // for(var i=0; i<Object.keys(filtered).length; i++) {
-      //   $("#table-body").append(`<tr>
-      //     <td>${filtered[keyList[i]].look}</td>
-      //     <td>${filtered[keyList[i]].offer}</td>
-      //     <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${filtered[keyList[i]].title}</a></td>
-      //     <td>${filtered[keyList[i]].author}</td>
-      //     <td>${filtered[keyList[i]].date_posted}</td>
-      //     </tr>`);
-      // }
       $("#table-body").empty().promise().done(function(){
         func(filtered, keyList);
       })
@@ -370,12 +364,19 @@
 
     function func(filtered, keyList){
       for(var i=0; i<Object.keys(filtered).length; i++) {
+        var match="";
+        if(filtered[keyList[i]].matching==='n'){
+          match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 50%; width: 100%; height: 25%; text-align: center" class="btn btn-raised btn-success">Open</button></a>`;
+        } else{
+          match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 50%; width: 100%; height: 25%; text-align: center" class="btn btn-raised btn-danger">Closed</button></a>`;
+        }
+
         $("#table-body").append(`<tr>
           <td>${filtered[keyList[i]].look}</td>
           <td>${filtered[keyList[i]].offer}</td>
-          <td><a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)">${filtered[keyList[i]].title}</a></td>
+          <td><em><a style="color: #0000ff;" href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><p class="lead">${filtered[keyList[i]].title}</p></a></em></td>
           <td>${filtered[keyList[i]].author}</td>
-          <td>${filtered[keyList[i]].date_posted}</td>
+          <td>${match}</td>
           </tr>`);
       }
     }

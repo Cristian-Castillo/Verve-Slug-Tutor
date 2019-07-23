@@ -1,20 +1,19 @@
-
 <!DOCTYPE html>
-
 <html>
-<head>
-  {% load static %}
-  {% if messg %}
-  <script>
+  <head>
+    {% load static %}
+    {% if messg %}
+    <script>
       alert('{{ messg }}');
-  </script>
-  {% endif %}
-<!-- Required meta tags -->
+    </script>
+    {% endif %}
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
@@ -35,8 +34,10 @@
          sessionStorage.setItem('email',email);
       }
     </script>
-</head>
-<body>
+  </head>
+
+  <body>
+    <!-- top header -->
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -63,64 +64,7 @@
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
         <div class="container">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto" style="color: white;">
-              Bringing free knowledge to all UCSC students.
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <main role="main" class="container">
-
-      <div class="signup_container">
-        <div><h1>Log in to Tutor Trade!</h1></div>
-        <div class="signup_content">
-          <!-- CC: added email & password encryption that correspond to firebase -->
-          <form action="/postsign/" method="post">
-            <br>
-            {% csrf_token %}
-            <!-- Email :
-            <input type="email" name ="email"> -->
-            <div class="signup_row">
-              <h4 class="signup_title"><label for="id">Email</label></h4>
-              <span class="signup_input">
-                <input type="email" name ="email" id="login_email" maxlength="40" style="border: none; width: 100%;">
-              </span>
-            </div>
-
-            <div class="signup_row">
-              <h4 class="signup_title"><label for="id">Password</label></h4>
-              <span class="signup_input">
-                <input type="password" name ="pass" id="login_pass" maxlength="20" style="border: none; width: 100%;">
-              </span>
-              <!-- <span class="error_next_box" id="idPw" style="display:none" role="alert">These passwords don’t match.</span> -->
-            </div>
-
-            <div class="signup_btn_row">
-              <input type="submit" value="Log in" class="btn_type btn_primary" onclick="storageEmail();">
-              <!-- <button type="button" id="btnLogin" class="btn_type btn_primary">
-                <span>Login</span>
-              </button> -->
-            </div>
-          </form>
-          <a class="text-muted" href="{% url 'blog-passwordReset' %}">Forgot your password?</a>
-        </div>
-      </div>
-            <!-- Navbar Bottom Right Side -->
-
-      <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
-        <div class="container">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto" style="color: white;">
@@ -135,47 +79,46 @@
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
-    </main>
-<!-- this is the bottom border for the page -->
 
-    <!-- Sorry Dana, you can tweak my code to make it look like what you had before.
-        <main role="main" class="container">
+
+    <main role="main" class="container">
+
       <div class="signup_container">
-        <div><h1>Login for Verve-Slug-Tutor</h1></div>
         <div class="signup_content">
-          <div class="signup_row">
-            <h4 class="signup_title">
-              <label for="id">Username</label>
-            </h4>
-            <span class="signup_input">
-              <input type="text" id="login_id" name="id" maxlength="20" style="border: none; width: 100%;">
-            <span>
-          </div>
-          <div class="signup_row">
-            <h4 class="signup_title">
-              <label for="id">Password</label>
-            </h4>
-            <span class="signup_input">
-              <input type="text" id="login_pw" name="pw" maxlength="20" style="border: none; width: 100%;">
-            <span>
-            <span class="error_next_box" id="idPw" style="display:none" role="alert">These passwords don’t match.</span>
-          </div>
-          <div class="signup_btn_row">
-            <button type="button" id="btnLogin" class="btn_type btn_primary">
-              <span>Login</span>
-            </button>
-          </div>
+          <div style="text-align: center;"><h1>Log in</h1></div>
+          <!-- CC: added email & password encryption that correspond to firebase -->
+          <form action="/postsign/" method="post">
+            {% csrf_token %}
+
+            <div class="signup_row">
+              <h4 class="signup_title"><label for="id">Email</label></h4>
+              <span class="signup_input">
+                <input type="email" name ="email" id="login_email" maxlength="40" style="border: none; width: 100%;">
+              </span>
+            </div>
+
+            <div class="signup_row">
+              <h4 class="signup_title"><label for="id">Password</label></h4>
+              <span class="signup_input">
+                <input type="password" name ="pass" id="login_pass" maxlength="20" style="border: none; width: 100%;">
+              </span>
+            </div>
+
+            <div class="signup_btn_row">
+              <input type="submit" value="Log in" class="btn_type btn_primary" onclick="storageEmail();">
+            </div>
+
+          </form>
+          <a class="text-muted" href="{% url 'blog-passwordReset' %}">Forgot your password?</a>
         </div>
       </div>
     </main>
-      </div> -->
-   <!-- Optional JavaScript -->
+
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-</body>
+  </body>
+</html>

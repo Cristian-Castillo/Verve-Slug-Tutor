@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     {% load static %}
 <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,6 +8,7 @@
 
     <!-- Bootstrap and Fontawesome CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
@@ -20,11 +21,11 @@
     {% else %}
     <title>Tutor trade</title>
     {% endif %}
-</head>
+  </head>
 
 
 
-<body>
+  <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -53,9 +54,6 @@
           <form action="/postsignup/" method="post">
             {% csrf_token %}
 
-            <!-- Name:
-            <input type="text" name ="name"><br><br> -->
-
             <div class="signup_row" style="margin-top: 20px;">
               <h4 class="signup_title">
                 <label for="id">Name&nbsp&nbsp&nbsp&nbsp<i class="fas fa-check-circle" id="nameDone" style="color:red;"></i></label>
@@ -74,8 +72,6 @@
               </div>
             </div>
 
-            <!-- Email :
-            <input type="email" name ="email"><br><br> -->
             <div class="signup_row">
               <h4 class="signup_title">
                 <label for="id">Email&nbsp&nbsp&nbsp&nbsp<i class="fas fa-check-circle" id="emailDone" style="color:red;"></i></label>
@@ -92,8 +88,6 @@
               </div>
             </div>
 
-            <!-- Password:
-            <input type="password" name ="pass"><br><br> -->
             <div class="signup_row">
               <h4 class="signup_title">
                 <label for="id">Password&nbsp&nbsp&nbsp&nbsp<i class="fas fa-check-circle" id="pwdDone1" style="color:red;"></i></label>
@@ -101,7 +95,7 @@
               <span class="signup_input">
                 <input type="password" name ="pass" id="signup_pw1" maxlength="20" style="border: none; width: 100%;" onchange="isPwdSame()">
               </span>
-              <span class="error_next_box" id="pwCheckMsg" style="display:none" role="alert">Incorrect Passwords: Passwords should be longer than 6.</span>
+              <span class="error_next_box" id="pwCheckMsg" style="display:none" role="alert">Passwords should be more than 6 characters.</span>
             </div>
 
             <div class="signup_row">
@@ -151,21 +145,20 @@
         </form>
         </div>
       </div>
-
     </main>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
 
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
-  <script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+    <script>
 
     var config = {
       apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
@@ -290,11 +283,10 @@
     function checkAll(){
       var email = $('#signup_email').val();
       sessionStorage.setItem('email',email);
+      // sessionStorage.setItem('name', `${$("#signup_name1").val()} ${$("#signup_name2").val()}`)
       console.log("checkAll");
     }
+    </script>
 
-
-  </script>
-
-</body>
+  </body>
 </html>

@@ -10,6 +10,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
@@ -24,10 +26,11 @@
   </head>
 
   <body>
+    <!-- top header -->
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/">Welcome to Tutor Trade</a>
+          <a class="navbar-brand mr-4" href="/"><i class="fas fa-school"></i>&nbsp&nbspWelcome to Tutor Trade&nbsp&nbsp<i class="fas fa-exchange-alt"></i></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -47,118 +50,7 @@
       </nav>
     </header>
 
-    <main role="main" class="container">
-      <div class="row" style="margin-bottom: 10px;">
-        <div class="col-md-8">
-          <div class="title_container" >
-            <h5 id="welcome-tag"></h5>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="title_container">
-
-          </div>
-        </div>
-      </div>
-
-      <div class="row" style="margin-top: 10px;">
-        <!-- <div class="col-md-3">
-          <div class="content-section">
-            <h3>Search Tutor</h3>
-
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light" style="color: black;">
-                  <div class="search_row">
-                    <div class="search_title">Looking for</div>
-                    <span class="search_input">
-                      <input type="search1" name ="search1" id="search1_input" maxlength="40" style="border: none; width: 100%;" />
-                    </span>
-                  </div>
-                </li>
-                <li class="list-group-item list-group-item-light" style="color: black;">
-                  <div class="search_row">
-                    <div class="search_title">Offering</div>
-                    <span class="search_input">
-                      <input type="search2" name ="search2" id="search2_input" maxlength="40" style="border: none; width: 100%;" />
-                    </span>
-                  </div>
-                </li>
-                <li class="list-group-item list-group-item-light">Offering</li>
-                <li class="list-group-item list-group-item-light">Offering box</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-          </div>
-        </div> -->
-
-        <div class="col-md-9">
-          <div class="content-section">
-            <!-- <h3>knowledge board part</h3> -->
-
-            <!-- <div class="row" id="post-container"> -->
-
-              <form class="form-horizontal">
-                <div class="form-group" style="margin-top: 2vh;">
-                  <!-- <label class="col-sm-2 control-label"><strong>Title</strong></label> -->
-                  <div class="col-sm-10">
-                    <p class="form-control-static" id="post-title"></p>
-                  </div>
-                  <div class="col-sm-10" style="margin-bottom: 2vh">
-                    <p class="form-control-static" id="post-author"></p>
-                  </div>
-                  <!-- <label class="col-sm-2 control-label"><strong>Content</strong></label> -->
-                  <div class="finding-part" style="margin-bottom: 2vh">
-                    <em><label class="col-sm-2 control-label" style="max-width:100%"><strong>I'm looking for the one who can teach me..</strong></label></em>
-                    <div class="col-sm-10">
-                      <p class="form-control-static" style="font-size: 20px" id="post-look"></p>
-                    </div>
-                  </div>
-                  <div class="offering-part" style="margin-bottom: 2vh">
-                    <em><label class="col-sm-2 control-label" style="max-width:100%"><strong>and I can help you learn..</strong></label></em>
-                    <div class="col-sm-10">
-                      <p class="form-control-static" style="font-size: 20px" id="post-offer"></p>
-                    </div>
-                  </div>
-                  <div class="col-sm-10" style="height: 30vh; max-width: 100%">
-                    <p class="lead" id="post-content"></p>
-                  </div>
-                </div>
-                <div class="form-group" style="max-width: 100%;">
-                  <div style="display: flex;           /* establish flex container */
-                              flex-direction: row;  /* make main axis vertical */
-                              justify-content: space-around; /* center items vertically, in this case */
-                              align-items: center;     /* center items horizontally, in this case */; width: 100%; height: 5vh;" >
-                    <button type="button" class="btn btn-danger" id="delete-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge' %}">Delete</a></button>
-                    <button type="button" class="btn btn-primary" id="update-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge_content_update' %}">Update</a></button>
-                </div>
-                </div>
-              </form>
-              <!-- <div class="col-md-6 post-box">
-                <div class="post-box">
-                box1
-                </div>
-              </div>
-              <div class="col-md-6 post-box">
-                box2
-              </div> -->
-
-          <!-- {% for post in posts %}
-          <article class="media content-section">
-            <div class="media-body">
-              <div class="article-metadata">
-                <a class="mr-2" href="#">{{ post.author }}</a>
-                <small class="text-muted">{{ post.date_posted }}</small>
-              </div>
-              <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-              <p class="article-content">{{ post.content }}</p>
-            </div>
-          </article>
-          {% endfor %} -->
-            <!-- </div> -->
-          </div>
-
-        </div>
-      </div>
+    <!-- bottom header -->
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
         <div class="container">
@@ -178,11 +70,73 @@
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
 
- </main>
+
+    <main role="main" class="container">
+      <div class="row" style="height: 5vh; margin-bottom: 10px;">
+        <div class="col-md-8" style="">
+          <div class="title_container" style="height: 10px">
+            <h5 id="welcome-tag"></h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="title_container">
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-md-9" style="flex: 1 1 100%; max-width: 100%">
+          <div class="content-section" style="margin-bottom: 100px">
+
+              <form class="form-horizontal">
+                <div class="form-group" style="margin-top: 1vh;">
+                  <!-- <label class="col-sm-2 control-label"><strong>Title</strong></label> -->
+                  <div class="col-sm-10" style="margin: 0 0 0 0;">
+                    <div class="form-control-static" id="post-title"></div>
+                  </div>
+                  <div class="col-sm-10" style="margin-bottom: 1vh">
+                    <p class="form-control-static" id="post-author"></p>
+                  </div>
+                  <!-- <label class="col-sm-2 control-label"><strong>Content</strong></label> -->
+                  <div class="finding-part" style="margin-bottom: 2vh">
+                    <em><label class="col-sm-2 control-label" style="max-width:100%"><strong>I'm looking for the one who can teach me..</strong></label></em>
+                    <div class="col-sm-10">
+                      <p class="form-control-static" style="font-size: 20px" id="post-look"></p>
+                    </div>
+                  </div>
+                  <div class="offering-part" style="margin-bottom: 2vh">
+                    <em><label class="col-sm-2 control-label" style="max-width:100%"><strong>and I can help you learn..</strong></label></em>
+                    <div class="col-sm-10">
+                      <p class="form-control-static" style="font-size: 20px" id="post-offer"></p>
+                    </div>
+                  </div>
+                  <div class="col-sm-10" style="max-width: 100%">
+                    <p class="lead" id="post-content"></p>
+                  </div>
+                  <div class="col-sm-10" style="height: 10vh; max-width: 100%">
+                    <div style="display:flex;" id="current-request"></div>
+                  </div>
+                </div>
+                <div class="form-group" style="max-width: 100%;">
+                  <div style="display: flex;           /* establish flex container */
+                              flex-direction: row;  /* make main axis vertical */
+                              justify-content: space-around; /* center items vertically, in this case */
+                              align-items: center;     /* center items horizontally, in this case */; width: 100%; height: 5vh;" >
+                    <button type="button" class="btn btn-raised btn-danger" id="delete-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge' %}">Delete</a></button>
+                    <button type="button" class="btn btn-raised btn-primary" id="update-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge_content_update' %}">Update</a></button>
+                    <button type="button" class="btn btn-raised btn-info" id="request-button" style="display:none">Request</button>
+                    <button type="button" class="btn btn-raised btn-warning" id="complete-button" style="display:none">Complete</button>
+                    <button type="button" class="btn btn-raised btn-default" style="border: 1px solid #000"><a style="color: #000;" href="{% url 'blog-knowledge' %}">Go Back</a></button>
+                </div>
+                </div>
+              </form>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -198,9 +152,9 @@
     console.log('knowledge board!');
     console.log(sessionStorage.getItem('contentKey'));
     console.log(sessionStorage.getItem('email'));
-    $("#welcome-tag").append(`Welcome, ${sessionStorage.getItem('name')}!`);
+    // $("#welcome-tag").append(`Welcome, ${sessionStorage.getItem('name')}!`);
 
-
+    var reqCnt=0;
 
 
     var firebaseConfig = {
@@ -220,11 +174,23 @@
 
     $("#delete-button").click(function(){
       fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).remove();
-      alert('successfully deleted.');
     })
 
+    $("#request-button").click(function(){
+      console.log(`${parseInt(document.getElementById('current-request').innerHTML[0])+1}!!!`);
+      var updateReq=parseInt(document.getElementById('current-request').innerHTML[0])+1;
+      fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+        reqCnt: updateReq
+      });
+      window.location.reload();
+    })
 
-
+    $("#complete-button").click(function(){
+      fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+        matching: "y"
+      });
+      window.location.reload();
+    })
 
     fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).once('value', function(snapshot) {
       var postList = snapshot.val();
@@ -234,8 +200,18 @@
         console.log(`true`);
         $("#delete-button").css("display","flex");
         $("#update-button").css("display","flex");
+        if(postList.matching==="n"){
+          $("#complete-button").css("display", "flex");
+        } else{
+          $("#complete-button").css("display", "flex");
+          document.getElementById("complete-button").setAttribute('disabled','disabled');
+        }
       } else{
+        if(postList.matching==="y"){
+          document.getElementById("request-button").setAttribute('disabled','disabled');
+        }
         console.log(`false`);
+        $("#request-button").css("display", "flex");
       }
       // console.log(Object.keys(postList));
       // console.log(Object.keys(postList).length);
@@ -244,6 +220,9 @@
       $("#post-content").append(postList.content);
       $("#post-look").append(`<u>${postList.look}</u>`);
       $("#post-offer").append(`<u>${postList.offer}</u>`);
+      // reqCnt=postList.reqCnt;
+      $("#current-request").append(`${postList.reqCnt} students currently send requests!`);
+
 
       // var keyList = Object.keys(postList);
       // var postLength = keyList.length;

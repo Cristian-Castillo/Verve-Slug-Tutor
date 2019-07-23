@@ -1,4 +1,6 @@
 /* css for the knowledge page */
+/* html, body {margin: 0; height: 100%; overflow: hidden} */
+
 :root {
   --btn-color: #5f788a;
   --btn-color2: #4D6270;
@@ -6,6 +8,24 @@
 
 * {
   box-sizing: border-box;
+}
+
+.table tbody td{
+  vertical-align: center;
+}
+
+td {
+  vertical-align: center;
+}
+
+.vertical{
+  vertical-align: center;
+}
+
+.btn-color {
+    color: #fff;
+    background-color: #5f788a;
+    border-color: #5f788a;
 }
 
 #myInput {
@@ -41,31 +61,14 @@
 }
 
 .title_container{
-  padding-right: 15px;
-  padding-left: 15px;
+  /* padding-right: 15px; */
+  /* padding-left: 15px; */
   margin-top: 10px;
   margin-bottom: 10px;
   height: 50px;
   line-height: 50px;
   /* text-align: center; */
 }
-
-
-.signup_container{
-  margin: 0 auto;
-  max-width: 768px;
-  min-width: 500px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-.signup_content{
-  /* width: 100%; */
-  width: 500px;
-  /* text-align: center; */
-  /* vertical-align: center; */
-}
-
 
 .search_row{
   /* margin-top: 20px; */

@@ -26,6 +26,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
@@ -60,7 +61,7 @@
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}" style="color:white;">My Profile</a>
-              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a>
+              <!-- <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a> -->
             </div>
           </div>
         </div>
@@ -78,7 +79,7 @@
             <div class="navbar-nav mr-auto" style="color: white;">
               Bringing free knowledge to all UCSC students.
             </div>
-             Navbar Right Side
+             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
@@ -90,13 +91,9 @@
 
     <main role="main" class="container" style="margin-bottom: 100px;">
       <div class="signup_container">
-        <!-- <div class="row" style="height: 50px; margin-bottom: 30px;">
-          <div class="col-md-5"><h1>Tutor Trade!</h1></div>
-          <div class="col-md-7" style="line-height: 50px;">Bringing free knowledge to all UCSC students.</div>
-        </div> -->
 
         <div><h1>Edit Profile</h1>
-          <p class="text-muted">Please note that changing your "Contact" field to an email address is fine, <br/>But will not alter your login email.</p>
+          <p class="text-muted">Please note that changing your "Contact" field to an email address <b>will not alter</b> your login email.</p>
         </div>
 
         <form action="/postprofile/" method="post">

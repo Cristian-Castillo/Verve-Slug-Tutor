@@ -8,6 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
@@ -15,14 +16,77 @@
     <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
 
+    <style>
+
+    body, html {
+      scroll-behavior: smooth;
+      height: 100%;
+      margin: 0;
+      font: 400 15px/1.8 "Lato", sans-serif;
+      color: #777;
+    }
+
+    .bgimg-1, .bgimg-2  {
+      position: relative;
+      opacity: 0.75;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+    }
+    .bgimg-1 {
+      background-image: url("https://images.singletracks.com/blog/wp-content/uploads/2017/01/3677159451_7e294158fa_o.jpg");
+      min-height: 650px;
+    }
+
+    .bgimg-2 {
+      background-image: url("https://images.singletracks.com/blog/wp-content/uploads/2017/01/3677159451_7e294158fa_o.jpg");
+      min-height: 400px;
+    }
+
+    .caption {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+      color: #000;
+    }
+
+    .caption span.border {
+      background-color: #5f788a;
+      color: #fff;
+      padding: 18px;
+      font-size: 25px;
+      letter-spacing: 10px;
+    }
+
+    h3 {
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font: 20px "Lato", sans-serif;
+      color: #111;
+    }
+
+    /* Turn off parallax scrolling for tablets and phones */
+    @media only screen and (max-device-width: 1024px) {
+      .bgimg-1, .bgimg-2 {
+        background-attachment: scroll;
+      }
+    }
+    </style>
 
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
     <title>Tutor trade</title>
     {% endif %}
+
   </head>
+
   <body>
+    <!-- top header -->
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -33,13 +97,9 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               {% if messg %}
-
               {% else %}
-
                 <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}">Knowledge Board</a>
               {% endif %}
-
-
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -49,28 +109,20 @@
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
                 <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
-
-                <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a>
-
+                <!-- <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a> -->
               {% endif %}
-
-
             </div>
           </div>
         </div>
       </nav>
     </header>
 
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
-        </div>
-      </div>
-      <header class="site-header">
+    <!-- bottom header -->
+    <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
         <div class="container">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto" style="color: white;">
@@ -78,108 +130,37 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-
               <a class="nav-item nav-link" href="{% url 'blog-about' %}" style="color:white;">About</a>
-
               <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
             </div>
           </div>
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
+
+    <main>
+      <div class="bgimg-1">
+        <div class="caption">
+          <!-- <span class="border" style="background-color:black; opacity:0.8">ABOUT</span> -->
+        </div>
+      </div>
+
+      <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+        <h3 style="text-align:center;">MISSION STATEMENT</h3>
+        <p>TUTOR TRADE WAS ESTABLISHED TO ENSURE THAT ALL STUDENTS HAVE ACCESS TO FREE KNOWLEDGE, REINFORCE THEIR OWN UNDERSTANDING OF SUBJECTS, AND CONNECT WITH THEIR LOCAL PEERS.  THE GOAL IS TO CONNECT YOU WITH OTHERS, AND EXCHANGE KNOWLEDGE SO THAT EVERYONE BENEFITS ACADEMICALLY. BY CONNECTING YOU WE HOPE THAT YOU TAKE AWAY THE APPROPRIATE NEEDED KNOWLEDGE AND POSSIBLY MAKE NEW FRIENDS ALONG THE WAY! </p>
+      </div>
+      <div class="bgimg-2">
+        <div class="caption">
+          <span class="border" style="background-color:transparent;font-size:25px;color: white;">BRIDGE THE GAP TO KNOWLEDGE</span>
+        </div>
+      </div>
+      <div style="position:relative;">
+        <div style="color:#ddd;background-color:#282E34;text-align:center;padding:7.5px 80px;text-align: justify;">
+          <p>.. </p>
+        </div>
+      </div>
     </main>
-<head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-
-body, html {
-  scroll-behavior: smooth;
-  height: 100%;
-  margin: 0;
-  font: 400 15px/1.8 "Lato", sans-serif;
-  color: #777;
-}
-
-.bgimg-1, .bgimg-2  {
-  position: relative;
-  opacity: 0.75;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-}
-.bgimg-1 {
-  background-image: url("https://images.singletracks.com/blog/wp-content/uploads/2017/01/3677159451_7e294158fa_o.jpg");
-  min-height: 650px;
-}
-
-.bgimg-2 {
-  background-image: url("https://images.singletracks.com/blog/wp-content/uploads/2017/01/3677159451_7e294158fa_o.jpg");
-  min-height: 400px;
-}
-
-
-
-.caption {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  color: #000;
-}
-
-.caption span.border {
-  background-color: #5f788a;
-  color: #fff;
-  padding: 18px;
-  font-size: 25px;
-  letter-spacing: 10px;
-}
-
-h3 {
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  font: 20px "Lato", sans-serif;
-  color: #111;
-}
-
-/* Turn off parallax scrolling for tablets and phones */
-@media only screen and (max-device-width: 1024px) {
-  .bgimg-1, .bgimg-2 {
-    background-attachment: scroll;
-  }
-}
-
-</style>
-</head>
-<body>
-  <div class="bgimg-1">
-  </div>
-</div>
-<div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
-  <h3 style="text-align:center;">MISSION STATEMENT</h3>
-  <p>TUTOR TRADE WAS ESTABLISHED TO ENSURE THAT ALL STUDENTS HAVE ACCESS TO FREE KNOWLEDGE, REINFORCE THEIR OWN UNDERSTANDING OF SUBJECTS, AND CONNECT WITH THEIR LOCAL PEERS.  THE GOAL IS TO CONNECT YOU WITH OTHERS, AND EXCHANGE KNOWLEDGE SO THAT EVERYONE BENEFITS ACADEMICALLY. BY CONNECTING YOU WE HOPE THAT YOU TAKE AWAY THE APPROPRIATE NEEDED KNOWLEDGE AND POSSIBLY MAKE NEW FRIENDS ALONG THE WAY! </p>
-</div>
-<div class="bgimg-2">
-  <div class="caption">
-  <span class="border" style="background-color:transparent;font-size:25px;color: white;">BRIDGE THE GAP TO KNOWLEDGE</span>
-  </div>
-</div>
-<div style="position:relative;">
-  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:25px 80px;text-align: justify;">
-<p>.. </p>
-  </div>
-</div>
-</div>
-
-
-          {% block content %}{% endblock %}
 
 
     <!-- Optional JavaScript -->
