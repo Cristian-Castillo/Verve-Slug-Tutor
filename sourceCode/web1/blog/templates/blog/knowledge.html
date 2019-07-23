@@ -14,9 +14,8 @@
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
 
     {% if title %}
     <title>{{ title }}</title>
@@ -26,6 +25,7 @@
   </head>
 
   <body>
+    <!-- top header -->
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -87,7 +87,7 @@
           <div class="content-section">
             <div class="row">
               <div class="col-md-2" style="text-align: center;">
-                <div style="margin-top: 7px"><h3>Search Tutor</h3></div>
+                <div style="margin-top: 20px"><h3>Search Tutor</h3></div>
               </div>
               <div class="col-md-4">
                 <div class="search_row">
@@ -110,7 +110,7 @@
                           justify-content: space-around; /* center items vertically, in this case */
                           align-items: center;">
                 <div class="search_row">
-                  <a class="btn_primary btn_search" id="btnSearch" onclick="filtering()" style="text-align: center; color:white; position: relative; border-radius: 3px; margin-top: 20px;">
+                  <a class="btn_primary btn_search" id="btnSearch" onclick="filtering()" style="text-align: center; color:white; position: relative; border-radius: 3px; margin-top: 30px;">
                     Search
                   </a>
                 </div>
@@ -122,7 +122,7 @@
 
       </div>
 
-      <div class="row" style="margin-top: 10px; margin-bottom: 50px">
+      <div class="row" style="margin-top: 10px; margin-bottom: 60px">
 
 
         <div class="col-md-12">
@@ -137,7 +137,7 @@
                   <th style="background-color: #eeeeee; text-align: center;">Status</th>
                   <!-- <th style="background-color: #eeeeee; text-align: center;">author</th> -->
                 </thead>
-                <tbody id="table-body">
+                <tbody id="table-body" style="vertical-align: center;">
                 </tbody>
               </table>
             </div>
@@ -208,9 +208,9 @@
             //     var title = postList[curKey].title;
             var match="";
             if(postList[keyList[i]].matching==='n'){
-              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 40%; width: 90%; height: 25%; text-align: center" class="btn btn-success">Proceed</button></a>`;
+              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 40%; width: 90%; height: 25%; text-align: center" class="btn btn-success">Open</button></a>`;
             } else{
-              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 40%; width: 90%; height: 25%; text-align: center" class="btn btn-danger">Complete</button></a>`;
+              match+=`<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${keyList[i]}\`)"><button type="button" style="font-size: 40%; width: 90%; height: 25%; text-align: center" class="btn btn-danger">Closed</button></a>`;
             }
             $("#table-body").append(`<tr>
               <td>${postList[keyList[i]].look}</td>

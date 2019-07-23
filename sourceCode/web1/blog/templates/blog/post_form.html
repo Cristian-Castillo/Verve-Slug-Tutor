@@ -76,28 +76,11 @@
   </div>
 </form>
 
-        <!-- <form method="POST">
-            {% csrf_token %}
-              <fieldset class="form-group">
-                <div>
-                <legend class="border-bottom mb-4">Post</legend>
-                <div>
-                {{ form|crispy }}
-
-            </fieldset>
-            <div class="form-group">
-            </div>
-                <button class="btn btn-outline-info" type="submit">Make Post</button>
-
-
-              </div>
-          </div>
-            </form> -->
-
             {% endblock content %}
 
 
   <body>
+    <!-- top header -->
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -113,7 +96,7 @@
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
-              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}" style="color:white;">Make A Post</a>
+              <a class="nav-item nav-link" href="{% url 'blog-post_form' %}" style="color:white;">Make a Post</a>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     {% load static %}
 <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -20,11 +20,11 @@
     {% else %}
     <title>Tutor trade</title>
     {% endif %}
-</head>
+  </head>
 
 
 
-<body>
+  <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -53,9 +53,6 @@
           <form action="/postsignup/" method="post">
             {% csrf_token %}
 
-            <!-- Name:
-            <input type="text" name ="name"><br><br> -->
-
             <div class="signup_row" style="margin-top: 20px;">
               <h4 class="signup_title">
                 <label for="id">Name&nbsp&nbsp&nbsp&nbsp<i class="fas fa-check-circle" id="nameDone" style="color:red;"></i></label>
@@ -74,8 +71,6 @@
               </div>
             </div>
 
-            <!-- Email :
-            <input type="email" name ="email"><br><br> -->
             <div class="signup_row">
               <h4 class="signup_title">
                 <label for="id">Email&nbsp&nbsp&nbsp&nbsp<i class="fas fa-check-circle" id="emailDone" style="color:red;"></i></label>
@@ -92,8 +87,6 @@
               </div>
             </div>
 
-            <!-- Password:
-            <input type="password" name ="pass"><br><br> -->
             <div class="signup_row">
               <h4 class="signup_title">
                 <label for="id">Password&nbsp&nbsp&nbsp&nbsp<i class="fas fa-check-circle" id="pwdDone1" style="color:red;"></i></label>
@@ -151,21 +144,20 @@
         </form>
         </div>
       </div>
-
     </main>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
 
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
-  <script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+    <script>
 
     var config = {
       apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
@@ -293,9 +285,7 @@
       // sessionStorage.setItem('name', `${$("#signup_name1").val()} ${$("#signup_name2").val()}`)
       console.log("checkAll");
     }
+    </script>
 
-
-  </script>
-
-</body>
+  </body>
 </html>
