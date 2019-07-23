@@ -10,6 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- main CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
@@ -28,7 +29,7 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/">Welcome to Tutor Trade</a>
+          <a class="navbar-brand mr-4" href="/"><i class="fas fa-school"></i>&nbsp&nbspWelcome to Tutor Trade&nbsp&nbsp<i class="fas fa-exchange-alt"></i></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -48,55 +49,44 @@
       </nav>
     </header>
 
+    <!-- bottom header -->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
     <main role="main" class="container">
       <div class="row" style="height: 5vh; margin-bottom: 10px;">
-        <div class="col-md-8" style="height: 0">
+        <div class="col-md-8" style="">
           <div class="title_container" style="height: 10px">
             <h5 id="welcome-tag"></h5>
           </div>
         </div>
         <div class="col-md-4">
           <div class="title_container">
-
           </div>
         </div>
       </div>
 
       <div class="row" style="margin-top: 10px;">
-        <!-- <div class="col-md-3">
-          <div class="content-section">
-            <h3>Search Tutor</h3>
-
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light" style="color: black;">
-                  <div class="search_row">
-                    <div class="search_title">Looking for</div>
-                    <span class="search_input">
-                      <input type="search1" name ="search1" id="search1_input" maxlength="40" style="border: none; width: 100%;" />
-                    </span>
-                  </div>
-                </li>
-                <li class="list-group-item list-group-item-light" style="color: black;">
-                  <div class="search_row">
-                    <div class="search_title">Offering</div>
-                    <span class="search_input">
-                      <input type="search2" name ="search2" id="search2_input" maxlength="40" style="border: none; width: 100%;" />
-                    </span>
-                  </div>
-                </li>
-                <li class="list-group-item list-group-item-light">Offering</li>
-                <li class="list-group-item list-group-item-light">Offering box</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-          </div>
-        </div> -->
-
         <div class="col-md-9" style="flex: 1 1 100%; max-width: 100%">
           <div class="content-section" style="margin-bottom: 100px">
-            <!-- <h3>knowledge board part</h3> -->
-
-            <!-- <div class="row" id="post-container"> -->
 
               <form class="form-horizontal">
                 <div class="form-group" style="margin-top: 1vh;">
@@ -140,56 +130,12 @@
                 </div>
                 </div>
               </form>
-              <!-- <div class="col-md-6 post-box">
-                <div class="post-box">
-                box1
-                </div>
-              </div>
-              <div class="col-md-6 post-box">
-                box2
-              </div> -->
 
-          <!-- {% for post in posts %}
-          <article class="media content-section">
-            <div class="media-body">
-              <div class="article-metadata">
-                <a class="mr-2" href="#">{{ post.author }}</a>
-                <small class="text-muted">{{ post.date_posted }}</small>
-              </div>
-              <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-              <p class="article-content">{{ post.content }}</p>
-            </div>
-          </article>
-          {% endfor %} -->
-            <!-- </div> -->
           </div>
-
         </div>
       </div>
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
-        <div class="container">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
+    </main>
 
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
-
- </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -205,7 +151,7 @@
     console.log('knowledge board!');
     console.log(sessionStorage.getItem('contentKey'));
     console.log(sessionStorage.getItem('email'));
-    $("#welcome-tag").append(`Welcome, ${sessionStorage.getItem('name')}!`);
+    // $("#welcome-tag").append(`Welcome, ${sessionStorage.getItem('name')}!`);
 
     var reqCnt=0;
 
