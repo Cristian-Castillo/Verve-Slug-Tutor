@@ -51,6 +51,7 @@
                 <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
                 <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a>
 
+
               {% endif %}
 
 
@@ -175,6 +176,14 @@ h3 {
   </div>
   </div>
           {% block content %}{% endblock %}
+
+          <script>
+            if(sessionStorage.getItem('email')===null){
+              console.log('yes!')
+            } else{
+              console.log(`login now, email is ${sessionStorage.getItem('email')}`)
+            }
+          </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
