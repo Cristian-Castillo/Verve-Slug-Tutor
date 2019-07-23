@@ -10,11 +10,15 @@
   box-sizing: border-box;
 }
 
-.table td{
+.table tbody td{
   vertical-align: center;
 }
 
 td {
+  vertical-align: center;
+}
+
+.vertical{
   vertical-align: center;
 }
 
