@@ -199,6 +199,7 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     var courseNameList = [];
+    var postList;
 
 
 
@@ -241,7 +242,7 @@
       });
 
       firebase.database().ref('post/').once('value', function(snapshot) {
-        var postList = snapshot.val();
+        postList = snapshot.val();
           console.log(postList);
           var keyList = Object.keys(postList);
           var postLength = keyList.length;
@@ -371,7 +372,7 @@
       var new_filtered = {};
 
       if ($( "#search1_input" ).val() === "" && $( "#search2_input" ).val() === ""){
-        new_filtered = filtered;
+        new_filtered = postList;
       }
       else{
         for(var i=0; i<fkeyList.length; i++) {
