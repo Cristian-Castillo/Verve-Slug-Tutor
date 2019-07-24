@@ -43,10 +43,10 @@
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
                 {% if messg %}
-                    <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'blog-login' %}">Log in</a>
                     <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Sign Up</a>
                 {% else %}
-                    <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+                    <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Log out</a>
                     <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
                     <!-- <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a> -->
                 {% endif %}
@@ -98,7 +98,7 @@
             <div class="contact_container">
               <h2>Cris Castillo</h2>
               <p class="title">Product Owner</p>
-              <p>Founder of UCSC Tutoring App</p>
+              <p>Founder of multi-million dollar UCSC Tutoring App</p>
               <p>ccarri11@ucsc.edu</p>
               <p><button class="button"><a href="mailto:ccarri11@ucsc.edu?"Subject=Hello%20again target="_top">Contact</a></button></p>
             </div>

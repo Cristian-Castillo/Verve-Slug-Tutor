@@ -104,10 +104,10 @@
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if messg %}
-                <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
-                <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Signup</a>
+                <a class="nav-item nav-link" href="{% url 'blog-login' %}">Log in</a>
+                <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Sign Up</a>
               {% else %}
-                <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+                <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Log out</a>
                 <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
                 <!-- <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a> -->
               {% endif %}
