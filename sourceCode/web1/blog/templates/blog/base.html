@@ -37,7 +37,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Login</a>
+              <a class="nav-item nav-link" href="{% url 'blog-login' %}">Log in</a>
               <a class="nav-item nav-link" href="{% url 'blog-signup' %}">Sign Up</a>
             </div>
           </div>
@@ -104,6 +104,20 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
+    <script>
+      $('#icon_inbox').click(function(){
+        console.log("plz");
+        var inbox = document.getElementById("inbox");
+        if(inbox.style.display == 'none')
+          inbox.style.display = 'block';
+          else {
+            inbox.style.display = 'none';
+          }
+      });
 
+      function moveToContent(contentKey){
+        sessionStorage.setItem('contentKey', contentKey);
+      }
+    </script>
   </body>
 </html>
