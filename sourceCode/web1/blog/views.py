@@ -264,7 +264,15 @@ def knowledge_content_update(request):
     except KeyError:
         return render(request, "blog/login.html", {"messg": message})
 
+def knowledge_content_list(request):
+    try:
+        idtoken = request.session['uid']
+        localID = authe.get_account_info(idtoken)['users'][0]['localId']
+        name = database.child('users').child(localID).child('details').child('name').get().val()
+        return render(request, "blog/knowledge_content_list.html", {"e": name})
 
+    except KeyError:
+        return render(request, "blog/login.html", {"messg": message})
 
 def postprofile(request):
     message = "Profile updated!"
