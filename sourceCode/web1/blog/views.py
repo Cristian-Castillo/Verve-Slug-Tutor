@@ -32,7 +32,7 @@ def home(request):
         idtoken = request.session['uid']
         print("idtoken: ", idtoken)
         localID = authe.get_account_info(idtoken)['users'][0]['localId']
-        return render(request, "blog/home.html", {"title": "Profile"})
+        return render(request, "blog/home.html", {"title": "Home"})
 
     except KeyError:
         print("session: ", request.session)
@@ -115,7 +115,7 @@ def contact(request):
     message = "hide"
     try:
         idtoken = request.session['uid']
-        return render(request, "blog/contact.html", {"title": "Contact"})
+        return render(request, "blog/contact.html", {"title": "Contact Us"})
 
     except KeyError:
         return render(request, "blog/contact.html", {"messg": message})
@@ -161,7 +161,7 @@ def myProfile(request):
 
         List1 = [storedFirstname, storedLastname, storedContact, storedLocation, storedCurMaj]
         List2 = ["First Name:", "Last Name:", "Contact Info:", "Location:", "Current Major:"]
-        return render(request, "blog/myProfile.html", {"detailList": List1, "headerName": storedFirstname, "labelList": List2})
+        return render(request, "blog/myProfile.html", {"title": "Profile", "detailList": List1, "headerName": storedFirstname, "labelList": List2})
 
     except KeyError:
         return render(request, "blog/login.html", {"messg": message})
