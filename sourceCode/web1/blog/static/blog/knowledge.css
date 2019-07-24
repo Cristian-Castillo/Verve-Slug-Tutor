@@ -28,6 +28,10 @@ td {
     border-color: #5f788a;
 }
 
+#icon_inbox {
+  cursor: pointer;
+}
+
 #inbox_count {
 	/* font-family: 'Open Sans', sans-serif; */
   font-size: 10px;
