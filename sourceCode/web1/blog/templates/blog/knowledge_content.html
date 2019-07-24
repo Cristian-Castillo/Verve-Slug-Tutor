@@ -99,7 +99,7 @@
 
       <div class="row" style="margin-top: 10px;">
         <div class="col-md-9" style="flex: 1 1 100%; max-width: 100%">
-          <div class="content-section">
+          <div class="content-section" style="max-height: 60vh">
 
               <form class="form-horizontal">
                 <div class="form-group" style="margin-top: 1vh;">
@@ -111,15 +111,15 @@
                     <p class="form-control-static" id="post-author"></p>
                   </div>
                   <!-- <label class="col-sm-2 control-label"><strong>Content</strong></label> -->
-                  <div class="finding-part" style="margin-bottom: 2vh">
-                    <em><label class="col-sm-2 control-label" style="max-width:100%"><strong>I need tutoring in: </strong></label></em>
-                    <div class="col-sm-10">
+                  <div class="finding-part" style="margin-bottom: 2vh; display: flex; flex-direction: row" >
+                    <div style="padding-left: 15px; width: 30vw"><em><strong>I need tutoring in: </strong></em></div>
+                    <div class="col-sm-10" style="max-width: 50vw">
                       <p class="form-control-static" style="font-size: 20px" id="post-look"></p>
                     </div>
                   </div>
-                  <div class="offering-part" style="margin-bottom: 2vh">
-                    <em><label class="col-sm-2 control-label" style="max-width:100%"><strong>I can tutor in: </strong></label></em>
-                    <div class="col-sm-10">
+                  <div class="offering-part" style="margin-bottom: 2vh; display: flex; flex-direction: row">
+                    <div style="padding-left: 15px; width: 30vw"><em><strong>I can tutor in: </strong></em></div>
+                    <div class="col-sm-10" style="max-width: 50vw" >
                       <p class="form-control-static" style="font-size: 20px" id="post-offer"></p>
                     </div>
                   </div>
@@ -139,8 +139,8 @@
                     <button type="button" class="btn btn-raised btn-primary" id="update-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge_content_update' %}">Update</a></button>
                     <button type="button" class="btn btn-raised btn-primary" id="close-button" style="display:none;">CLOSED</button>
                     <button type="button" class="btn btn-raised btn-info" id="request-button" style="display:none"><a style="color:#fff">Request</a></button>
-                    <button type="button" class="btn btn-raised btn-warning" id="list-button" style="display:none"><a style="color:#fff" href="{% url 'blog-knowledge_content_list' %}">Applicant list</a></button>
-                    <button type="button" class="btn btn-raised btn-default" style="border: 1px solid #000"><a style="color: #000;" href="{% url 'blog-knowledge' %}">Go Back</a></button>
+                    <button type="button" class="btn btn-raised btn-warning" id="list-button" style="display:none">Applicant list</button>
+                    <button type="button" class="btn btn-raised btn-default" style="border: 1px solid #000"><a style="color: #000;" href="{% url 'blog-knowledge' %}">Go Board</a></button>
                 </div>
                 </div>
               </form>
@@ -259,7 +259,7 @@
     })
 
     $("#submit-button").click(function(){
-      console.log('hello');
+      // console.log('hello');
       // if($("#comment-input").val().length<10){
       //   alert('Please, write your comments more than 10 characters..!');
       // } else{
@@ -301,17 +301,27 @@
         if(!clickFlag){
           alert('If you want to make a request, write a comment and press submit button.');
         } else{
-          alert('you alreay made a request');
+          alert('You already made a request. Please wait.');
         }
 
       }
     });
 
     $("#list-button").click(function(){
+      fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).once('value', function(snapshot) {
+        var postList = snapshot.val();
+        console.log(`postList is ${postList}`);
+        console.log(`${postList['list']}`)
+        if(postList['list']===undefined){
+          alert('there is no request now.');
+        } else{
+          window.location.replace('list');
+        }
+      });
       // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
       //   matching: "y"
       // });
-
+      // <a style="color:#fff" href="{% url 'blog-knowledge_content_list' %}">
     })
 
     function checkAndDo(){

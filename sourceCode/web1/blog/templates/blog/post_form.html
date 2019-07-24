@@ -99,7 +99,7 @@
       {% block content %}
 
        <div class="content-section" style="padding-top: 10px; width: 900px; margin: auto; margin-bottom: 100px;">
-         <form action="/knowledge" class="form-horizontal">
+         <!-- <form action="/knowledge" class="form-horizontal"> -->
            <div>
              <legend class="border-bottom mb-4">Make a Post</legend>
          </div>
@@ -133,10 +133,10 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" id="button-post" class="btn btn-raised btn-success"><a href="{% url "blog-knowledge"%}" style="color: #fff;" >Post</a></button>
+            <button id="button-post" class="btn btn-raised btn-success">Post</button>
           </div>
         </div>
-      </form>
+      <!-- </form> -->
       {% endblock content %}
     </main>
 
@@ -346,24 +346,44 @@
         var content = $("#input-content").val();
         var look = $("#lookfor-subject").val();
         var offer = $("#teach-subject").val();
-        var date = d.getFullYear().toString()+"/"+(d.getMonth()+1).toString()+"/"+d.getDate().toString();
-        firebase.database().ref('post/').once('value', function(snapshot) {
-          var postList = snapshot.val();
-          var keyList = Object.keys(postList);
-          // postCnt+= keyList.length;
-          // postKey+= 'post'+(postCnt+1).toString();
-          firebase.database().ref('post/').push({
-              "title": title,
-              "content": content,
-              "look": look,
-              "offer": offer,
-              "date_posted": date,
-              "email": sessionStorage.getItem('email'),
-              "author": sessionStorage.getItem('name'),
-              "reqCnt": 0,
-              "matching": 'n'
-          });
-        });
+        if(title.length<10){
+          alert('please write a title more than 10 characters.');
+        } else if(content.length<10){
+          alert('please write a content more than 10 characters.');
+        } else if(look.length<5){
+          alert('please write a subject in proper form.');
+        } else if(offer.length<5){
+          alert('please write a subject in proper form.');
+        } else{
+          var mth = "";
+          if(d.getMonth()+1<10){
+            mth+="0"+(d.getMonth()+1).toString();
+          } else{
+            mth+=(d.getMonth()+1).toString();
+          }
+          var date = d.getFullYear().toString()+mth+d.getDate().toString();
+          if(firebase.database().ref('post/').once('value', function(snapshot) {
+            var postList = snapshot.val();
+            var keyList = Object.keys(postList);
+            // postCnt+= keyList.length;
+            // postKey+= 'post'+(postCnt+1).toString();
+            firebase.database().ref('post/').push({
+                "title": title,
+                "content": content,
+                "look": look,
+                "offer": offer,
+                "date_posted": date,
+                "email": sessionStorage.getItem('email'),
+                "author": sessionStorage.getItem('name'),
+                "reqCnt": 0,
+                "matching": 'n'
+            });
+          })){
+            window.location.replace('../knowledge');
+          } else{
+            alert('error');
+          }
+        }
       });
 
     $('#icon_inbox').click(function(){

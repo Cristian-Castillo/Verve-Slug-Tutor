@@ -36,8 +36,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}" style="color:white;">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
@@ -91,7 +89,7 @@
       <div class="row" style="margin-top: 10px;">
         <div class="col-md-9" style="flex: 1 1 100%; max-width: 100%">
           <div class="content-section" style="max-width: 100%; margin-bottom: 100px">
-              <form action="/knowledge_content" class="form-horizontal">
+              <!-- <form action="/knowledge_content" class="form-horizontal"> -->
                 <div class="form-group" style="margin-top: 2vh">
                   <label class="col-sm-2 control-label"><strong><h3>Title</h3></strong></label>
                   <div class="col-sm-10" style="max-width: 100%;">
@@ -123,11 +121,11 @@
                               flex-direction: row;  /* make main axis vertical */
                               justify-content: space-around; /* center items vertically, in this case */
                               align-items: center; width: 100%; height: 5vh">
-                    <button type="submit" class="btn btn-raised btn-success" id="update-button">Update</button>
+                    <button class="btn btn-raised btn-success" id="update-button">Update</button>
                     <button onclick="window.history.back();" class="btn btn-raised btn-danger" id="cancel-button">Cancel</button>
                   </div>
                 </div>
-              </form>
+              <!-- </form> -->
           </div>
 
         </div>
@@ -204,14 +202,22 @@
     });
 
     $("#update-button").click(function(){
-      if(fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
-        title: $("#title-update").val(),
-        content: $("#content-update").val()
-      })){
-        // alert('successfully updated');
-        // window.location.href="knowledge/";
+      var title = $("#title-update").val();
+      var content = $("#content-update").val();
+      if(title.length<10){
+        alert('Please write a title more than 10 characters.');
+      } else if (content.length<10){
+        alert('Please write a content more than 10 characters.');
       } else{
-        // alert('unexpected error!');
+        if(fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+          title: title,
+          content: content
+        })){
+          // alert('successfully updated');
+          window.location.replace('../knowledge');
+        } else{
+          alert('error.');
+        }
       }
     })
 
