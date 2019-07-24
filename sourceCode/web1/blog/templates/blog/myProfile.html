@@ -45,7 +45,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Log out</a>
               <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}" style="color:white;">My Profile</a>
               <!-- <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a> -->
 
@@ -146,7 +146,7 @@
                 </h4>
                 <!-- <span class="signup_input"> -->
                   <!-- <input type="text" name="major" id="major" placeholder="current major" maxlength="40" style="border: none; width: 100%;" disabled> -->
-                  <div id="matching_status">No matching.</div>
+                  <div id="matching_status">No Matches Found</div>
                 <!-- </span> -->
               </div>
 
@@ -258,7 +258,7 @@
                 for(var i=0;i<matchIdList.length;i++){
                   // console.log(`${matchList.(matchIdList[i])}`);
                   console.log(matchList[matchIdList[i]].contentKey);
-                  $("#matching_status").append(`<div>${matchList[matchIdList[i]].email} accept your request</div>
+                  $("#matching_status").append(`<div>${matchList[matchIdList[i]].email} accepted your request!</div>
                                                 <a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${matchList[matchIdList[i]].contentKey}\`)"><button type="button" class="btn btn-raised btn-success">Check</button></a>`)
                   console.log(matchList[matchIdList[i]].email)
                 }
