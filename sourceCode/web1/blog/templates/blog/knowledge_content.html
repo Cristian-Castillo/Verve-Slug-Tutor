@@ -98,13 +98,13 @@
                   </div>
                   <!-- <label class="col-sm-2 control-label"><strong>Content</strong></label> -->
                   <div class="finding-part" style="margin-bottom: 2vh">
-                    <em><label class="col-sm-2 control-label" style="max-width:100%"><strong>I'm looking for the one who can teach me..</strong></label></em>
+                    <em><label class="col-sm-2 control-label" style="max-width:100%"><strong>I need tutoring in: </strong></label></em>
                     <div class="col-sm-10">
                       <p class="form-control-static" style="font-size: 20px" id="post-look"></p>
                     </div>
                   </div>
                   <div class="offering-part" style="margin-bottom: 2vh">
-                    <em><label class="col-sm-2 control-label" style="max-width:100%"><strong>and I can help you learn..</strong></label></em>
+                    <em><label class="col-sm-2 control-label" style="max-width:100%"><strong>I can tutor in: </strong></label></em>
                     <div class="col-sm-10">
                       <p class="form-control-static" style="font-size: 20px" id="post-offer"></p>
                     </div>
@@ -325,9 +325,13 @@
       $("#post-content").append(postList.content);
       $("#post-look").append(`<u>${postList.look}</u>`);
       $("#post-offer").append(`<u>${postList.offer}</u>`);
-      // reqCnt=postList.reqCnt;
-      // $("#current-request").append(`${postList.reqCnt} students currently send requests!`);
 
+      // conditional statement for displaying request or request(s)
+      if(postList.reqCnt == 1){
+        $("#current-request").append(`${postList.reqCnt} request have been made!`);
+      } else {
+        $("#current-request").append(`${postList.reqCnt} requests have been made!`);
+      }
 
       // var keyList = Object.keys(postList);
       // var postLength = keyList.length;
