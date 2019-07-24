@@ -40,8 +40,22 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Log out</a>
               <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
-              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+              <div class= "nav-down">
+                <a class="nav-item nav-down nav-link" id="icon_inbox">
+                  <i class="fas fa-bell" style="font-size: 1.2rem; position: fixed;"></i>
+                  <div id="inbox_count" style="display:none;"></div>
+                </a>
+                <div class="hide" id="inbox" style="display:none;">
+                  <div class="inbox_content_header" style="">
+                    Matching Requests
+                  </div>
+                  <div class="inbox_content_body" style="" id="inbox_body">
+                    <div class="inbox_content_row" id="no_request">No Matching Request</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -166,6 +180,43 @@
     var fbAuth = firebase.auth();
     var fbData = firebase.database();
 
+    $(document).ready(function(){
+  // console.log(document.getElementById('localID').innerHTML);
+  console.log(`localID is ${sessionStorage.getItem('localID')}`);
+  console.log(`email is ${sessionStorage.getItem('email')}`);
+  firebase.database().ref(`users/${sessionStorage.getItem('localID')}`).child('details').once('value', function(data){
+    console.log(`data_val is ${data.val()}`);
+    var fullname = `${data.val()['name']} ${data.val()['name2']}`;
+    sessionStorage.setItem('name', fullname);
+    console.log(`checkin`);
+    console.log(`name is ${fullname}`);
+    var inbox_body = document.getElementById("inbox_body");
+    console.log(inbox_body.innerHTML);
+    var inbox_count = document.getElementById("inbox_count");
+    if(data.val().matchList === undefined){
+      inbox_count.style.display = 'none';
+      console.log("No match request in here");
+      inbox_body.innerHTML = '<div class="inbox_content_row" id="no_request">No Matching Request</div>';
+    }
+    else{
+      var matchkeyList = Object.keys(data.val().matchList);
+      console.log("matchkeyList", matchkeyList, matchkeyList.length);
+      var inbox_body = document.getElementById("inbox_body");
+      inbox_count.style.display = 'block';
+      // inbox_body.innerHTML = '<div class="inbox_content_row" id="no_request">There is a match</div>';
+      var str_inbox = "";
+      for(var i=0; i<matchkeyList.length; i++){
+        var match_email = data.val().matchList[matchkeyList[i]].email;
+        var match_key = data.val().matchList[matchkeyList[i]].contentKey;
+        console.log(match_email);
+        str_inbox = str_inbox+'<div class="inbox_content_row" id="no_request">Match with '+match_email+'<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent('+match_key+')"><button type="button" class="btn btn-raised btn-success">Check</button></a></div>'
+      }
+      inbox_body.innerHTML = str_inbox;
+    }
+  });
+});
+
+
     // $("#delete-button").click(function(){
     //   // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).remove();
     // })
@@ -289,6 +340,21 @@
       // $("#current-request").append(`${postList.reqCnt} students currently send requests!`);
 
     });
+
+    $('#icon_inbox').click(function(){
+      console.log("plz");
+      var inbox = document.getElementById("inbox");
+      if(inbox.style.display == 'none')
+      inbox.style.display = 'block';
+      else {
+        inbox.style.display = 'none';
+      }
+    });
+
+    function moveToContent(contentKey){
+      sessionStorage.setItem('contentKey', contentKey);
+    }
+
 
 
     </script>
