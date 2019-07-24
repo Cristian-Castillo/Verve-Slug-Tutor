@@ -22,6 +22,9 @@ urlpatterns = [
     path('post/', PostCreateView.as_view(), name='blog-post_form'),
     path('logout/', views.logout, name="blog-logout"),
 
+    path('knowledge_content/list', views.knowledge_content_list, name='blog-knowledge_content_list'),
+    # path('knowledge_content/request', views.knowledge_content_request, name='blog-knowledge_content_request'),
+
     path('editProfile/',views.editProfile, name='blog-editProfile'),
     path('myProfile/', views.myProfile, name='blog-myProfile'),
     path('postprofile/', views.postprofile, name='blog-postprofile'),
