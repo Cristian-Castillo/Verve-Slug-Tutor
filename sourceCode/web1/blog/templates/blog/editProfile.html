@@ -48,7 +48,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Log out</a>
               <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}" style="color:white;">My Profile</a>
               <div class= "nav-down">
                 <a class="nav-item nav-down nav-link" id="icon_inbox">
@@ -169,6 +169,10 @@
 
 
   <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
   <script>
   // var tblUsers = document.getElementById('tbl_users_list');
   var config = {
@@ -184,9 +188,11 @@
 
   console.log(sessionStorage.getItem('email'));
   var userKey = "";
+
   /* initial verification of the email */
   firebase.database().ref('users/').once('value', function(snapshot){
     var userList = snapshot.val();
+
     console.log(userList);
     var userKeyList = Object.keys(userList);
     for (var i=0; i<userKeyList.length; i++){
@@ -201,9 +207,39 @@
         document.getElementById('contact').placeholder = userList[userKeyList[i]].details.contact;
         document.getElementById('location').placeholder = userList[userKeyList[i]].details.location;
         document.getElementById('major').placeholder = userList[userKeyList[i]].details.current_major;
+
+        var inbox_body = document.getElementById("inbox_body");
+        console.log(inbox_body.innerHTML);
+        var inbox_count = document.getElementById("inbox_count");
+
+        if(userList[userKeyList[i]].details.matchList===undefined){
+          console.log('true');
+          inbox_count.style.display = 'none';
+          console.log("No match request in here");
+          inbox_body.innerHTML = '<div class="inbox_content_row" id="no_request">No Matching Request</div>';
+        }else{
+          var matchList = userList[userKeyList[i]].details.matchList;
+          console.log("matchList", matchList);
+          var matchIdList = Object.keys(userList[userKeyList[i]].details.matchList);
+
+          // var matchkeyList = Object.keys(userList[userKeyList[i]].details.matchList);
+          // console.log("matchkeyList", matchkeyList, matchkeyList.length);
+          var inbox_body = document.getElementById("inbox_body");
+          inbox_count.style.display = 'block';
+          // inbox_body.innerHTML = '<div class="inbox_content_row" id="no_request">There is a match</div>';
+          var str_inbox = "";
+          for(var j=0; j<matchIdList.length; j++){
+            var match_email = matchList[matchIdList[j]].email;
+            var match_key = matchList[matchIdList[j]].contentKey;
+            console.log("match_email", match_email);
+            str_inbox = str_inbox+'<div class="inbox_content_row" id="no_request">Match with '+match_email+'<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent('+match_key+')"><button type="button" class="btn btn-raised btn-success">Check</button></a></div>'
+            console.log(str_inbox);
+          }
+          inbox_body.innerHTML = str_inbox;
+        }
       }
     }
-    });
+  });
   // function update_user() {
   //   // var email = sessionStorage.setItem('email'); // look into this
   //   var name = document.getElementById('name').value;
@@ -245,8 +281,5 @@
 
    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
