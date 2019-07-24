@@ -28,6 +28,61 @@ td {
     border-color: #5f788a;
 }
 
+#inbox_count {
+	/* font-family: 'Open Sans', sans-serif; */
+  font-size: 10px;
+  font-weight: bold;
+  position: absolute;
+  top: 13px;
+  margin-left: 13px;
+  background-color: red;
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  text-align: center;
+  color: white;
+}
+
+#inbox {
+  position: absolute;
+  width: 250px;
+  top: 60px;
+  right: 50px;
+  border: solid 1px dimgray;
+  background-color: white;
+}
+
+.inbox_content_header {
+  padding: 3px;
+  list-style-type: none;
+  font-weight: bold;
+  color: white;
+  border-bottom: 2px solid dimgray;
+  background-color: dimgray !important;
+  text-align: center;
+  z-index: 32;
+}
+
+.inbox_content_body {
+  font-size: 14px;
+  /* border-bottom: 1px solid var(--table-border-color); */
+  list-style-type: none;
+  z-index: 32;
+  text-align: center;
+  /* padding: 5px; */
+}
+
+.inbox_content_row {
+  list-style-type: none;
+  overflow:auto;
+  border: 1px solid dimgray;
+  padding: 5px;
+}
+
+.inbox_content_row:hover {
+  /* background-color: var(--table-border-color); */
+}
+
 #myInput {
   background-image: url('/css/searchicon.png');
   background-position: 10px 12px;

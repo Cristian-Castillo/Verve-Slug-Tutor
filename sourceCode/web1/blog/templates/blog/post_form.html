@@ -52,6 +52,20 @@
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
+              <div class= "nav-down">
+                <a class="nav-item nav-down nav-link" id="icon_inbox">
+                  <i class="fas fa-bell" style="font-size: 1.2rem; position: fixed;"></i>
+                  <div id="inbox_count" style="display:none;"></div>
+                </a>
+                <div class="hide" id="inbox" style="display:none;">
+                  <div class="inbox_content_header" style="">
+                    Matching Requests
+                  </div>
+                  <div class="inbox_content_body" style="" id="inbox_body">
+                    <div class="inbox_content_row" id="no_request">No Matching Request</div>
+                  </div>
+                </div>
+              </div>
               <!-- <a class="nav-item nav-link" href="{% url 'blog-post_form' %}" style="color:white;">Make a Post</a> -->
             </div>
           </div>
@@ -315,6 +329,20 @@
           });
         });
       });
+      
+    $('#icon_inbox').click(function(){
+      console.log("plz");
+      var inbox = document.getElementById("inbox");
+      if(inbox.style.display == 'none')
+        inbox.style.display = 'block';
+      else {
+        inbox.style.display = 'none';
+      }
+    });
+
+    function moveToContent(contentKey){
+      sessionStorage.setItem('contentKey', contentKey);
+    }
     </script>
 
   </body>

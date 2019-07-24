@@ -47,6 +47,20 @@
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}" style="color:white;">My Profile</a>
+              <div class= "nav-down">
+                <a class="nav-item nav-down nav-link" id="icon_inbox">
+                  <i class="fas fa-bell" style="font-size: 1.2rem; position: fixed;"></i>
+                  <div id="inbox_count" style="display:none;"></div>
+                </a>
+                <div class="hide" id="inbox" style="display:none;">
+                  <div class="inbox_content_header" style="">
+                    Matching Requests
+                  </div>
+                  <div class="inbox_content_body" style="" id="inbox_body">
+                    <div class="inbox_content_row" id="no_request">No Matching Request</div>
+                  </div>
+                </div>
+              </div>
               <!-- <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make A Post</a> -->
 
             </div>
@@ -235,6 +249,10 @@
         for (var i=0; i<userKeyList.length; i++){
           if(sessionStorage.getItem('email') === userList[userKeyList[i]].details.email){
             userKey = userKeyList[i];
+            var inbox_body = document.getElementById("inbox_body");
+            console.log(inbox_body.innerHTML);
+            var inbox_count = document.getElementById("inbox_count");
+
             console.log("Match", userKeyList[i], userList[userKeyList[i]].details.email);
             console.log(userList[userKeyList[i]].details);
             document.getElementById('full_name').innerHTML = userList[userKeyList[i]].details.name+"&nbsp"+userList[userKeyList[i]].details.name2;
@@ -245,28 +263,57 @@
             document.getElementById('contact').placeholder = userList[userKeyList[i]].details.contact;
             document.getElementById('location').placeholder = userList[userKeyList[i]].details.location;
             document.getElementById('major').placeholder = userList[userKeyList[i]].details.current_major;
+
             if(userList[userKeyList[i]].details.matchList===undefined){
               console.log('true');
+              inbox_count.style.display = 'none';
+              console.log("No match request in here");
+              inbox_body.innerHTML = '<div class="inbox_content_row" id="no_request">No Matching Request</div>';
             }else{
-
               var matchList = userList[userKeyList[i]].details.matchList;
-              console.log(matchList);
+              console.log("matchList", matchList);
               var matchIdList = Object.keys(userList[userKeyList[i]].details.matchList);
-              console.log(matchIdList);
-              // console.log(Object.keys(userList[userKeyList[i]].details.matchList).length);
-              $("#matching_status").empty().promise().done(function(){
-                for(var i=0;i<matchIdList.length;i++){
-                  // console.log(`${matchList.(matchIdList[i])}`);
-                  console.log(matchList[matchIdList[i]].contentKey);
-                  $("#matching_status").append(`<div>${matchList[matchIdList[i]].email} accept your request</div>
-                                                <a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${matchList[matchIdList[i]].contentKey}\`)"><button type="button" class="btn btn-raised btn-success">Check</button></a>`)
-                  console.log(matchList[matchIdList[i]].email)
-                }
-              })
+
+              // var matchkeyList = Object.keys(userList[userKeyList[i]].details.matchList);
+              // console.log("matchkeyList", matchkeyList, matchkeyList.length);
+              var inbox_body = document.getElementById("inbox_body");
+              inbox_count.style.display = 'block';
+              // inbox_body.innerHTML = '<div class="inbox_content_row" id="no_request">There is a match</div>';
+              var str_inbox = "";
+              for(var j=0; j<matchIdList.length; j++){
+                var match_email = matchList[matchIdList[j]].email;
+                var match_key = matchList[matchIdList[j]].contentKey;
+                console.log("match_email", match_email);
+                str_inbox = str_inbox+'<div class="inbox_content_row" id="no_request">Match with '+match_email+'<a href="{% url "blog-knowledge_content" %}" onclick="moveToContent('+match_key+')"><button type="button" class="btn btn-raised btn-success">Check</button></a></div>'
+                console.log(str_inbox);
+              }
+              inbox_body.innerHTML = str_inbox;
+
+              // var matchIdList = Object.keys(userList[userKeyList[i]].details.matchList);
+              // console.log(matchIdList);
+              // // console.log(Object.keys(userList[userKeyList[i]].details.matchList).length);
+              // $("#matching_status").empty().promise().done(function(){
+              //   for(var i=0;i<matchIdList.length;i++){
+              //     // console.log(`${matchList.(matchIdList[i])}`);
+              //     console.log(matchList[matchIdList[i]].contentKey);
+              //     $("#matching_status").append(`<div>${matchList[matchIdList[i]].email} accept your request</div>
+              //                                   <a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${matchList[matchIdList[i]].contentKey}\`)"><button type="button" class="btn btn-raised btn-success">Check</button></a>`)
+              //     console.log(matchList[matchIdList[i]].email)
+              //   }
+              // })
 
             }
             // console.log(userList[userKeyList[i]].details.matchList);
           }
+        }
+      });
+      $('#icon_inbox').click(function(){
+        console.log("plz");
+        var inbox = document.getElementById("inbox");
+        if(inbox.style.display == 'none')
+          inbox.style.display = 'block';
+        else {
+          inbox.style.display = 'none';
         }
       });
 

@@ -7,19 +7,8 @@
         alert('{{ messg }}');
       </script>
     {% endif %}
-    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
-        authDomain: "verve-slug-tutor.firebaseapp.com",
-        databaseURL: "https://verve-slug-tutor.firebaseio.com",
-        projectId: "verve-slug-tutor",
-        storageBucket: "verve-slug-tutor.appspot.com",
-        messagingSenderId: "1013220996189"
-      };
-      firebase.initializeApp(config);
-    </script>
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -61,6 +50,20 @@
             <div class="navbar-nav">
               <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}" style="color:white;">My Profile</a>
+              <div class= "nav-down">
+                <a class="nav-item nav-down nav-link" id="icon_inbox">
+                  <i class="fas fa-bell" style="font-size: 1.2rem; position: fixed;"></i>
+                  <div id="inbox_count" style="display:none;"></div>
+                </a>
+                <div class="hide" id="inbox" style="display:none;">
+                  <div class="inbox_content_header" style="">
+                    Matching Requests
+                  </div>
+                  <div class="inbox_content_body" style="" id="inbox_body">
+                    <div class="inbox_content_row" id="no_request">No Matching Request</div>
+                  </div>
+                </div>
+              </div>
               <!-- <a class="nav-item nav-link" href="{% url 'blog-post_form' %}">Make a Post</a> -->
             </div>
           </div>
@@ -165,9 +168,18 @@
 
 
 
-
- <script>
+  <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script>
   // var tblUsers = document.getElementById('tbl_users_list');
+  var config = {
+    apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+    authDomain: "verve-slug-tutor.firebaseapp.com",
+    databaseURL: "https://verve-slug-tutor.firebaseio.com",
+    projectId: "verve-slug-tutor",
+    storageBucket: "verve-slug-tutor.appspot.com",
+    messagingSenderId: "1013220996189"
+  };
+  firebase.initializeApp(config);
   var databaseRef = firebase.database().ref('users/');
 
   console.log(sessionStorage.getItem('email'));
@@ -214,6 +226,20 @@
   //   }, 500);
   //  // try if here after
   // }
+
+  $('#icon_inbox').click(function(){
+    console.log("plz");
+    var inbox = document.getElementById("inbox");
+    if(inbox.style.display == 'none')
+      inbox.style.display = 'block';
+    else {
+      inbox.style.display = 'none';
+    }
+  });
+
+  function moveToContent(contentKey){
+    sessionStorage.setItem('contentKey', contentKey);
+  }
 
   </script>
 
