@@ -180,7 +180,7 @@
         return this.id;
       }).toArray();
       if(checkedIds.length!==1){
-        alert('you must select at least one applicant.');
+        alert('Please select only one applicant.');
       } else{
         var number=checkedIds[0].slice(9);
         var target="email_"+number;
