@@ -6,6 +6,8 @@ from django.urls import path, include
 from .views import(
     PostCreateView
     )
+from django.views.generic import RedirectView
+
 
 urlpatterns = [
     path('', views.home, name='blog-home'),
