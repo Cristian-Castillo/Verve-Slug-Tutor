@@ -1,0 +1,290 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <!-- main CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/knowledge.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/signup.css' %}">
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Tutor trade</title>
+    {% endif %}
+  </head>
+
+  <body>
+    <!-- top header -->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/"><i class="fas fa-school"></i>&nbsp&nbspWelcome to Tutor Trade&nbsp&nbsp<i class="fas fa-exchange-alt"></i></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+              <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}" style="color:white;">Knowledge Board</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- bottom header -->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-bottom">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+              <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
+    <main role="main" class="container">
+      <div class="row" style="height: 5vh; margin-bottom: 10px;">
+        <div class="col-md-8" style="">
+          <div class="title_container" style="height: 10px">
+            <h5 id="welcome-tag"></h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="title_container">
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-md-9" style="flex: 1 1 100%; max-width: 100%">
+          <div class="content-section" style="margin-bottom: 100px">
+
+              <!-- <form class="form-horizontal"> -->
+                <div class="form-group" style="margin-top: 1vh;">
+                  <div class="col-sm-10" style="margin: 0 0 0 0;">
+                    <div class="form-control-static" id="post-title"></div>
+                  </div>
+                  <div id="list-space">
+                    <!-- <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="defaultCheck1">
+                      <div id="email"></div>
+                      <div id="content"></div>
+                    </div> -->
+                  </div>
+                  <!-- <div class="col-sm-10" style="margin-bottom: 1vh">
+                    <p class="form-control-static" id="post-author"></p>
+                  </div> -->
+                  <!-- <div class="col-sm-10" style="max-width: 100%">
+                    <p class="lead" id="post-content"></p>
+                  </div> -->
+                  <!-- <div class="col-sm-10" style="height: 10vh; max-width: 100%">
+                    <div style="display:flex;" id="current-request"></div>
+                  </div> -->
+                </div>
+                <div class="form-group" style="max-width: 100%;">
+                  <div style="display: flex;           /* establish flex container */
+                              flex-direction: row;  /* make main axis vertical */
+                              justify-content: space-around; /* center items vertically, in this case */
+                              align-items: center;     /* center items horizontally, in this case */; width: 100%; height: 5vh;" >
+                    <!-- <button type="button" class="btn btn-raised btn-danger" id="delete-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge' %}">Delete</a></button> -->
+                    <!-- <button type="button" class="btn btn-raised btn-primary" id="update-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge_content_update' %}">Update</a></button> -->
+                    <button type="submit" class="btn btn-raised btn-info" id="match-button">match</button>
+                    <!-- <button type="button" class="btn btn-raised btn-warning" id="list-button">Applicant list</button> -->
+                    <button type="button" class="btn btn-raised btn-default" style="border: 1px solid #000"><a style="color: #000;" href="{% url 'blog-knowledge' %}">Go Back</a></button>
+                </div>
+                </div>
+              <!-- </form> -->
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
+
+    <script>
+    console.log(`contentKey is ${sessionStorage.getItem('contentKey')}`);
+    console.log(`email is ${sessionStorage.getItem('email')}`);
+    console.log(`name is ${sessionStorage.getItem('name')}`);
+    // $("#welcome-tag").append(`Welcome, ${sessionStorage.getItem('name')}!`);
+
+    // var reqCnt=0;
+
+    $(document).ready(function(){
+      $('input:checkbox').click(function() {
+          $('input:checkbox').not(this).prop('checked', false);
+      });
+    });
+
+
+    var firebaseConfig = {
+      apiKey: "AIzaSyBHHg2e5gRop8tcO2RReu8paiEXJbGomVw",
+      authDomain: "verve-slug-tutor.firebaseapp.com",
+      databaseURL: "https://verve-slug-tutor.firebaseio.com",
+      projectId: "verve-slug-tutor",
+      storageBucket: "verve-slug-tutor.appspot.com",
+      messagingSenderId: "1013220996189",
+      appId: "1:1013220996189:web:462bd852caeea191"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var fbAuth = firebase.auth();
+    var fbData = firebase.database();
+
+    // $("#delete-button").click(function(){
+    //   // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).remove();
+    // })
+
+    $("#match-button").click(async function(){
+      var checkedIds = $(".form-check-input:checked").map(function() {
+        return this.id;
+      }).toArray();
+      if(checkedIds.length!==1){
+        alert('you must select at least one applicant.');
+      } else{
+        var number=checkedIds[0].slice(9);
+        var target="email_"+number;
+        var applicantEmail=document.getElementById(target).innerHTML;
+        console.log(`the email of applicant is ${applicantEmail}`)
+        fbData.ref('users/').once('value', function(snapshot){
+          var userList = snapshot.val();
+          console.log(userList);
+          var userKeyList = Object.keys(userList);
+          for (var i=0; i<userKeyList.length; i++){
+            if(applicantEmail === userList[userKeyList[i]].details.email){
+              userKey = userKeyList[i];
+              console.log("Match", userKeyList[i], userList[userKeyList[i]].details.email);
+              console.log(userList[userKeyList[i]].details);
+              if(fbData.ref(`users/${userKeyList[i]}/details/matchList`).push({
+                  email: sessionStorage.getItem('email'),
+                  contentKey: sessionStorage.getItem('contentKey')
+              })){
+                fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+                  matching: "y"
+                });
+                window.location.replace(`../knowledge`);
+              } else{
+                alert('error.');
+              }
+              // document.getElementById('full_name').innerHTML = userList[userKeyList[i]].details.name+"&nbsp"+userList[userKeyList[i]].details.name2;
+              // console.log(document.getElementById('email').placeholder);
+              // document.getElementById('email').placeholder = userList[userKeyList[i]].details.email;
+              // document.getElementById('name').placeholder = userList[userKeyList[i]].details.name;
+              // document.getElementById('lastname').placeholder = userList[userKeyList[i]].details.name2;
+              // document.getElementById('contact').placeholder = userList[userKeyList[i]].details.contact;
+              // document.getElementById('location').placeholder = userList[userKeyList[i]].details.location;
+              // document.getElementById('major').placeholder = userList[userKeyList[i]].details.current_major;
+            }
+          }
+        });
+      }
+      // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+      //     matching: "y"
+      // });
+      // fbData.ref().child('users').orderByChild('email').equalTo()
+      // window.location.replace('../knowledge');
+      // console.log(`${parseInt(document.getElementById('current-request').innerHTML[0])+1}!!!`);
+      // var updateReq=parseInt(document.getElementById('current-request').innerHTML[0])+1;
+      // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+      //   reqCnt: updateReq
+      // });
+      // window.location.reload();
+    })
+
+    // $("#list-button").click(function(){
+    //   // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+    //   //   matching: "y"
+    //   // });
+    //   // window.location.reload();
+    // })
+
+    fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).once('value', function(snapshot) {
+      var postList = snapshot.val();
+      console.log(`postList is ${postList}`);
+      console.log(`keys in postList ${Object.keys(postList['list'])}`);
+      console.log(`the length is ${Object.keys(postList['list']).length}`);
+
+      for(var i=0;i<Object.keys(postList['list']).length;i++){
+        // console.log(`${postList[Object.keys(postList['list'])]}`);
+        fbData.ref(`post/${sessionStorage.getItem('contentKey')}/list/${Object.keys(postList['list'])[i]}`).once('value', function(snapshot) {
+          $("#list-space").append(`<div class="form-check" id="applicant_${i}">
+            <input class="form-check-input" type="checkbox" id="checkbox_${i}">
+            <div id="email_${i}">${snapshot.val().email}</div>
+            <div id="content_${i}">${snapshot.val().content}</div>
+          </div>`);
+        });
+      }
+      if(sessionStorage.getItem('email')===postList.email){
+        console.log(`true`);
+        // $("#delete-button").css("display","flex");
+        // $("#update-button").css("display","flex");
+        // if(postList.matching==="n"){
+        //   $("#complete-button").css("display", "flex");
+        // } else{
+        //   $("#complete-button").css("display", "flex");
+        //   document.getElementById("complete-button").setAttribute('disabled','disabled');
+        // }
+      } else{
+        // if(postList.matching==="y"){
+        //   document.getElementById("request-button").setAttribute('disabled','disabled');
+        // }
+        console.log(`false`);
+        // $("#request-button").css("display", "flex");
+      }
+      // console.log(Object.keys(postList));
+      // console.log(Object.keys(postList).length);
+      // $("#post-title").append(`<h1>${postList.title}</h1>`);
+      // $("#post-author").append(`<h2><small style="color: #808080;">by ${postList.author}</small></h2>`);
+      // $("#post-content").append(postList.content);
+      // $("#post-look").append(`<u>${postList.look}</u>`);
+      // $("#post-offer").append(`<u>${postList.offer}</u>`);
+      // // reqCnt=postList.reqCnt;
+      // $("#current-request").append(`${postList.reqCnt} students currently send requests!`);
+
+    });
+
+
+    </script>
+  </body>
+
+</html>

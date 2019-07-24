@@ -140,6 +140,16 @@
                 </span>
               </div>
 
+              <div class="signup_row">
+                <h4 class="signup_title">
+                  <label for="id">Matching Status</label>
+                </h4>
+                <!-- <span class="signup_input"> -->
+                  <!-- <input type="text" name="major" id="major" placeholder="current major" maxlength="40" style="border: none; width: 100%;" disabled> -->
+                  <div id="matching_status">No matching.</div>
+                <!-- </span> -->
+              </div>
+
             </div>
           </div>
           </div>
@@ -235,9 +245,34 @@
             document.getElementById('contact').placeholder = userList[userKeyList[i]].details.contact;
             document.getElementById('location').placeholder = userList[userKeyList[i]].details.location;
             document.getElementById('major').placeholder = userList[userKeyList[i]].details.current_major;
+            if(userList[userKeyList[i]].details.matchList===undefined){
+              console.log('true');
+            }else{
+
+              var matchList = userList[userKeyList[i]].details.matchList;
+              console.log(matchList);
+              var matchIdList = Object.keys(userList[userKeyList[i]].details.matchList);
+              console.log(matchIdList);
+              // console.log(Object.keys(userList[userKeyList[i]].details.matchList).length);
+              $("#matching_status").empty().promise().done(function(){
+                for(var i=0;i<matchIdList.length;i++){
+                  // console.log(`${matchList.(matchIdList[i])}`);
+                  console.log(matchList[matchIdList[i]].contentKey);
+                  $("#matching_status").append(`<div>${matchList[matchIdList[i]].email} accept your request</div>
+                                                <a href="{% url "blog-knowledge_content" %}" onclick="moveToContent(\`${matchList[matchIdList[i]].contentKey}\`)"><button type="button" class="btn btn-raised btn-success">Check</button></a>`)
+                  console.log(matchList[matchIdList[i]].email)
+                }
+              })
+
+            }
+            // console.log(userList[userKeyList[i]].details.matchList);
           }
         }
       });
+
+      function moveToContent(contentKey){
+        sessionStorage.setItem('contentKey', contentKey);
+      }
 
       function edit_profile() {
         console.log("edit profile");

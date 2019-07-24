@@ -36,13 +36,11 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}" style="color:white;">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-profile' %}">My Profile</a>
+              <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
               <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
             </div>
           </div>
@@ -58,8 +56,8 @@
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-
+            <div class="navbar-nav mr-auto" style="color: white;">
+              Bringing free knowledge to all UCSC students.
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -87,7 +85,7 @@
 
       <div class="row" style="margin-top: 10px;">
         <div class="col-md-9" style="flex: 1 1 100%; max-width: 100%">
-          <div class="content-section" style="margin-bottom: 100px">
+          <div class="content-section">
 
               <form class="form-horizontal">
                 <div class="form-group" style="margin-top: 1vh;">
@@ -125,14 +123,17 @@
                               align-items: center;     /* center items horizontally, in this case */; width: 100%; height: 5vh;" >
                     <button type="button" class="btn btn-raised btn-danger" id="delete-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge' %}">Delete</a></button>
                     <button type="button" class="btn btn-raised btn-primary" id="update-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge_content_update' %}">Update</a></button>
-                    <button type="button" class="btn btn-raised btn-info" id="request-button" style="display:none">Request</button>
-                    <button type="button" class="btn btn-raised btn-warning" id="complete-button" style="display:none">Close</button>
+                    <button type="button" class="btn btn-raised btn-primary" id="close-button" style="display:none;">CLOSED</button>
+                    <button type="button" class="btn btn-raised btn-info" id="request-button" style="display:none"><a style="color:#fff">Request</a></button>
+                    <button type="button" class="btn btn-raised btn-warning" id="list-button" style="display:none"><a style="color:#fff" href="{% url 'blog-knowledge_content_list' %}">Applicant list</a></button>
                     <button type="button" class="btn btn-raised btn-default" style="border: 1px solid #000"><a style="color: #000;" href="{% url 'blog-knowledge' %}">Go Back</a></button>
                 </div>
                 </div>
               </form>
 
           </div>
+          <div id="request-comment"></div>
+          <div id="request-submit"></div>
         </div>
       </div>
     </main>
@@ -149,12 +150,9 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
 
     <script>
-    console.log('knowledge board!');
-    console.log(sessionStorage.getItem('contentKey'));
-    console.log(sessionStorage.getItem('email'));
-    // $("#welcome-tag").append(`Welcome, ${sessionStorage.getItem('name')}!`);
-
-    var reqCnt=0;
+    console.log(`current contentKey is ${sessionStorage.getItem('contentKey')}`);
+    console.log(`user email is ${sessionStorage.getItem('email')}`);
+    console.log(`user name is ${sessionStorage.getItem('name')}`)
 
 
     var firebaseConfig = {
@@ -171,47 +169,154 @@
     firebase.initializeApp(firebaseConfig);
     var fbAuth = firebase.auth();
     var fbData = firebase.database();
+    var reqFlag=true;
+    var clickFlag=true;
+    async function checkDuplicateReq(fbData){
+      console.log('start');
+      // var flag=true;
+      // await fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).once('value', function(snapshot) {
+      //
+      // });
+      await fbData.ref(`post/${sessionStorage.getItem('contentKey')}/list`).once('value', function(snapshot) {
+        if(snapshot.val()===null){
+          console.log(`null`);
+        } else{
+          for(var i=0;i<Object.keys(snapshot.val()).length;i++){
+            fbData.ref(`post/${sessionStorage.getItem('contentKey')}/list/${Object.keys(snapshot.val())[i]}`).once('value', function(snapshot) {
+              console.log(`email is ${snapshot.val().email}`);
+              if(snapshot.val().email===sessionStorage.getItem('email')){
+                reqFlag=false;
+              }
+            });
+          }
+        }
+        // console.log(`I wanna check ${Object.keys(snapshot.val())}`);
+        // console.log(`I wanna check ${Object.keys(snapshot.val()).length}`);
+
+      });
+      console.log(reqFlag);
+    }
+
+    checkDuplicateReq(fbData);
 
     $("#delete-button").click(function(){
       fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).remove();
     })
 
+    $("#submit-button").click(function(){
+      console.log('hello');
+      // if($("#comment-input").val().length<10){
+      //   alert('Please, write your comments more than 10 characters..!');
+      // } else{
+      //   fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).once('value', function(snapshot) {
+      //     // console.log(`current reqCnt is ${snapshot.val().reqCnt}`);
+      //     // var updateCnt=snapshot.val().reqCnt+1;
+      //     // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+      //     //   reqCnt: updateCnt
+      //     // });
+      //     if(fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).child('list').push({
+      //       email: sessionStorage.getItem('email'),
+      //       content: $("#comment-input").val()
+      //     })){
+      //       window.location.replace('../knowledge');
+      //     } else{
+      //       alert('error.');
+      //     }
+      //   });
+      // }
+    });
+
+
     $("#request-button").click(function(){
-      console.log(`${parseInt(document.getElementById('current-request').innerHTML[0])+1}!!!`);
-      var updateReq=parseInt(document.getElementById('current-request').innerHTML[0])+1;
-      fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
-        reqCnt: updateReq
-      });
-      window.location.reload();
+      // console.log(`${parseInt(document.getElementById('current-request').innerHTML[0])+1}!!!`);
+      // var updateReq=parseInt(document.getElementById('current-request').innerHTML[0])+1;
+      if(clickFlag&&reqFlag){
+        clickFlag=false;
+        // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+        //   reqCnt: updateReq
+        // });
+        // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).child('list').push({
+        //   email: sessionStorage.getItem('email')
+        // })
+        $("#request-comment").append(`<div class="content-section"><label for="exampleFormControlTextarea1">Comments</label>
+                                      <button style="margin-left: 10px" type="button" class="btn btn-raised btn-primary" id="submit-button" onclick="checkAndDo();">Submit</button>
+                                      <textarea class="form-control" id="comment-input" rows="3"></textarea></div>`);
+        // window.location.replace('request');
+      } else{
+        if(!clickFlag){
+          alert('If you want to make a request, write a comment and press submit button.');
+        } else{
+          alert('you alreay made a request');
+        }
+
+      }
+    });
+
+    $("#list-button").click(function(){
+      // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+      //   matching: "y"
+      // });
+
     })
 
-    $("#complete-button").click(function(){
-      fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
-        matching: "y"
-      });
-      window.location.reload();
-    })
+    function checkAndDo(){
+      if($("#comment-input").val().length<10){
+        alert('Please, write your comments more than 10 characters..!');
+      } else{
+        fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).once('value', function(snapshot) {
+          // console.log(`current reqCnt is ${snapshot.val().reqCnt}`);
+          // var updateCnt=snapshot.val().reqCnt+1;
+          // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).update({
+          //   reqCnt: updateCnt
+          // });
+          if(fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).child('list').push({
+            email: sessionStorage.getItem('email'),
+            content: $("#comment-input").val()
+          })){
+            window.location.replace('../knowledge');
+          } else{
+            alert('error.');
+          }
+        });
+      }
+    }
 
     fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).once('value', function(snapshot) {
       var postList = snapshot.val();
       console.log(postList);
 
-      if(sessionStorage.getItem('email')===postList.email){
-        console.log(`true`);
+      if(sessionStorage.getItem('email')===postList.email){ // current content is user's content
+        console.log(`It is my post!`);
         $("#delete-button").css("display","flex");
         $("#update-button").css("display","flex");
-        if(postList.matching==="n"){
-          $("#complete-button").css("display", "flex");
-        } else{
-          $("#complete-button").css("display", "flex");
-          document.getElementById("complete-button").setAttribute('disabled','disabled');
+        $("#list-button").css("display", "flex");
+        // if(postList.matching==="n"){
+        //   $("#complete-button").css("display", "flex");
+        // } else{
+        //   $("#complete-button").css("display", "flex");
+        //   document.getElementById("complete-button").setAttribute('disabled','disabled');
+        // }
+        if(postList.matching==="y"){ // it already is closed
+          console.log(`matching yes`);
+          // document.getElementById("list-button").setAttribute('disabled','disabled');
+          $("#list-button").remove();
+          $("#delete-button").remove();
+          $("#update-button").remove();
+          $("#close-button").css("display", "flex");
+        }else{ // not yet
+          console.log(`matching no`);
         }
-      } else{
+      } else{ // not
         if(postList.matching==="y"){
+          console.log(`matching yes`);
           document.getElementById("request-button").setAttribute('disabled','disabled');
+        }else{
+          console.log(`matching no!!`);
         }
         console.log(`false`);
         $("#request-button").css("display", "flex");
+
+
       }
       // console.log(Object.keys(postList));
       // console.log(Object.keys(postList).length);
@@ -222,11 +327,11 @@
       $("#post-offer").append(`<u>${postList.offer}</u>`);
 
       // conditional statement for displaying request or request(s)
-      if(postList.reqCnt == 1){
-        $("#current-request").append(`${postList.reqCnt} request have been made!`);
-      } else {
-        $("#current-request").append(`${postList.reqCnt} requests have been made!`);
-      }
+      // if(postList.reqCnt == 1){
+      //   $("#current-request").append(`${postList.reqCnt} request have been made!`);
+      // } else {
+      //   $("#current-request").append(`${postList.reqCnt} requests have been made!`);
+      // }
 
       // var keyList = Object.keys(postList);
       // var postLength = keyList.length;
