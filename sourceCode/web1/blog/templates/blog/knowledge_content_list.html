@@ -36,8 +36,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
               <a class="nav-item nav-link" href="{% url 'blog-knowledge' %}" style="color:white;">Knowledge Board</a>
             </div>
             <!-- Navbar Right Side -->
@@ -120,7 +118,7 @@
                     <!-- <button type="button" class="btn btn-raised btn-primary" id="update-button" style="display:none;"><a style="color:#fff" href="{% url 'blog-knowledge_content_update' %}">Update</a></button> -->
                     <button type="submit" class="btn btn-raised btn-info" id="match-button">match</button>
                     <!-- <button type="button" class="btn btn-raised btn-warning" id="list-button">Applicant list</button> -->
-                    <button type="button" class="btn btn-raised btn-default" style="border: 1px solid #000"><a style="color: #000;" href="{% url 'blog-knowledge' %}">Go Back</a></button>
+                    <button type="button" class="btn btn-raised btn-default" style="border: 1px solid #000"><a style="color: #000;" href="{% url 'blog-knowledge' %}">Go Board</a></button>
                 </div>
                 </div>
               <!-- </form> -->
@@ -149,11 +147,8 @@
 
     // var reqCnt=0;
 
-    $(document).ready(function(){
-      $('input:checkbox').click(function() {
-          $('input:checkbox').not(this).prop('checked', false);
-      });
-    });
+    // $(document).ready(function(){
+    // });
 
 
     var firebaseConfig = {
@@ -174,6 +169,15 @@
     // $("#delete-button").click(function(){
     //   // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).remove();
     // })
+
+    function checkOnlyOne(i){
+      if($('input[name="chckbxColors"]:checked').length!==1){
+        $('input[name="chckbxColors"]').each(function() {
+          $(this).prop('checked', false);
+        });
+        alert('You should check only one applicant.');
+      }
+    }
 
     $("#match-button").click(async function(){
       var checkedIds = $(".form-check-input:checked").map(function() {
@@ -241,19 +245,22 @@
     fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).once('value', function(snapshot) {
       var postList = snapshot.val();
       console.log(`postList is ${postList}`);
-      console.log(`keys in postList ${Object.keys(postList['list'])}`);
-      console.log(`the length is ${Object.keys(postList['list']).length}`);
-
-      for(var i=0;i<Object.keys(postList['list']).length;i++){
-        // console.log(`${postList[Object.keys(postList['list'])]}`);
-        fbData.ref(`post/${sessionStorage.getItem('contentKey')}/list/${Object.keys(postList['list'])[i]}`).once('value', function(snapshot) {
-          $("#list-space").append(`<div class="form-check" id="applicant_${i}">
-            <input class="form-check-input" type="checkbox" id="checkbox_${i}">
-            <div id="email_${i}">${snapshot.val().email}</div>
-            <div id="content_${i}">${snapshot.val().content}</div>
-          </div>`);
-        });
+      console.log(`${postList['list']}`)
+      // console.log(`keys in postList ${Object.keys(postList['list'])}`);
+      // console.log(`the length is ${Object.keys(postList['list']).length}`);
+      if(postList['list']!==undefined){
+        for(var i=0;i<Object.keys(postList['list']).length;i++){
+          // console.log(`${postList[Object.keys(postList['list'])]}`);
+          fbData.ref(`post/${sessionStorage.getItem('contentKey')}/list/${Object.keys(postList['list'])[i]}`).once('value', function(snapshot) {
+            $("#list-space").append(`<div class="form-check" id="applicant_${i}"">
+              <input class="form-check-input"  name="chckbxColors" type="checkbox" id="checkbox_${i}" onclick="checkOnlyOne(${i});">
+              <div id="email_${i}">${snapshot.val().email}</div>
+              <div id="content_${i}">${snapshot.val().content}</div>
+            </div>`);
+          });
+        }
       }
+
       if(sessionStorage.getItem('email')===postList.email){
         console.log(`true`);
         // $("#delete-button").css("display","flex");
