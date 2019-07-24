@@ -40,7 +40,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'blog-logout' %}">Log out</a>
               <a class="nav-item nav-link" href="{% url 'blog-myProfile' %}">My Profile</a>
               <div class= "nav-down">
                 <a class="nav-item nav-down nav-link" id="icon_inbox">
@@ -99,7 +99,7 @@
 
       <div class="row" style="margin-top: 10px;">
         <div class="col-md-9" style="flex: 1 1 100%; max-width: 100%">
-          <div class="content-section" style="max-height: 60vh">
+          <div class="content-section" style="max-height: 60vh;">
 
               <form class="form-horizontal">
                 <div class="form-group" style="margin-top: 1vh;">
@@ -293,7 +293,7 @@
         // fbData.ref(`post/${sessionStorage.getItem('contentKey')}`).child('list').push({
         //   email: sessionStorage.getItem('email')
         // })
-        $("#request-comment").append(`<div class="content-section"><label for="exampleFormControlTextarea1">Comments</label>
+        $("#request-comment").append(`<div class="content-section" style="margin-bottom: 100px;"><label for="exampleFormControlTextarea1">Comments</label>
                                       <button style="margin-left: 10px" type="button" class="btn btn-raised btn-primary" id="submit-button" onclick="checkAndDo();">Submit</button>
                                       <textarea class="form-control" id="comment-input" rows="3"></textarea></div>`);
         // window.location.replace('request');
